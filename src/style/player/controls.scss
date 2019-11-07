@@ -1,0 +1,32 @@
+.hkplayer-controls{
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: $controlsIconHeight;
+  background-image: $controlsBgImage;
+  z-index: 10;
+  @at-root .hkplayer-nostart &{
+    display: none;
+  }
+  @at-root .no-controls &{
+    display: none !important;
+  }
+  @at-root .hkplayer-inactive & {
+    display: none;
+  }
+  @at-root .hkplayer-is-live & {
+    > *{
+      display: none;
+    }
+    .hkplayer-play,
+    .hkplayer-play-img,
+    .hkplayer-placeholder,
+    .hkplayer-volume,
+    .hkplayer-live,
+    .hkplayer-fullscreen {
+      display: block;
+    }
+  }
+}

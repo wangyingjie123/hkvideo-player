@@ -1,0 +1,147 @@
+.hkplayer-pip{
+  order: 9;
+  position: relative;
+  outline: none;
+  display: block;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: 9px;
+  margin-bottom: 11px;
+  height: 20px;
+  .name {
+    text-align: center;
+    font-family: PingFangSC-Regular;
+    font-size: 13px;
+    line-height: 20px;
+    height: 20px;
+    color: $definitionNameColor;
+    span{
+      width: 60px;
+      height: 20px;
+      line-height: 20px;
+      background: $definitionNameBgColor;
+      border-radius: 10px;
+      display:inline-block;
+      vertical-align:middle;
+    }
+  }
+  @at-root .hkplayer.hkplayer-pip-active{
+    position: fixed !important;
+    right: 0;
+    bottom: 200px;
+    width: 320px!important;
+    height: 180px!important;
+    z-index: 999 !important;
+    &:hover {
+      .hkplayer-pip-drag {
+          display: flex;
+      }
+      .hkplayer-pip-lay{
+        display: block;
+      }
+    }
+    .hkplayer-replay {
+      &-svg {
+        transform: scale(0.7);
+      }
+      &-txt {
+        line-height: 20px;
+        margin-top: -10px;
+      }
+    }
+    .hkplayer-controls {
+      background: transparent;
+      z-index: 45;
+      .hkplayer-progress {
+        top: 40px;
+        left: 0;
+        right: 0;
+      }
+      .hkplayer-cssfullscreen, .hkplayer-fullscreen{
+        display: none!important;
+      }
+      .hkplayer-volume {
+        display: none;
+      }
+      .hkplayer-playback {
+        display: none;
+      }
+      .hkplayer-time {
+        width: 82px !important;
+        height: 14px !important;
+        position: relative;
+        top: 32px;
+        left: -36px;
+        font-size: 12px !important;
+      }
+      .hkplayer-definition {
+        display: none;
+      }
+    }
+    &.hkplayer-playing {
+      .hkplayer-start {
+        display: none!important;
+      }
+      .hkplayer-play {
+        height: 40px;
+        top: -70px;
+        left: 140px;
+        .hkplayer-tips {
+          top: 42px;
+        }
+      }
+      &:hover {
+        .hkplayer-controls {
+          display: flex;
+        }
+      }
+    }
+    //  弹幕
+    hk-bullet {
+      display: none;
+    }
+     .hkplayer-replay {
+         width: auto;
+         height: 112px;
+         background-color: transparent;
+         top: 40px;
+         left: 50%;
+         margin-left: -39px;
+     }
+  }
+}
+
+.hkplayer-pip-lay{
+    display: none;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 5px;
+    left: 300px;
+    z-index: 130;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAYUExURUdwTNPT09PT09PT0////9TU1NPT09LS0lmqAmIAAAAHdFJOUwCbhY4CXtGALbTEAAAAtUlEQVQ4y93TsQ6CMBAG4KJld9CwuhhWNleML+DGysYMHe717WlL/5PfB1ASyN3l/9omgHN/ctVH017Waph7mO/kkctWkLRyKBkgpoGQ5TFFARK7XyFgLbnCbpjcf4Ic3YCUJeAdJkDTgQIlEwNKJPDXMsnYs/n9m2jiHh2ZV3qqQEH3uglIDwIcISm7JTnayJkBLRac+xK05FZyhniMYQ3AeWzMusgHPEkk69dem7P704/+5k//sTRtrbE09QAAAABJRU5ErkJggg==') no-repeat;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.hkplayer-pip-drag{
+  cursor: move;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 26px;
+  background-color: rgba(0,0,0,.16);
+  z-index: 30;
+  display: none;
+  .drag-handle {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: transparent;
+  }
+  @at-root .hkplayer.hkplayer-inactive & {
+    display: none;
+  }
+}

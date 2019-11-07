@@ -1,0 +1,101 @@
+// order:
+// hkplayer-play  0
+// hkplayer-playNext  1
+// hkplayer-time  2
+// hkplayer-placeholder 3
+// hkplayer-definition 4
+// hkplayer-volume 5
+// hkplayer-bullet-btn 6
+// hkplayer-textTrack 7
+// hkplayer-playback 8
+// hkplayer-rotate 9
+// hkplayer-screenShot 10
+// hkplayer-fullscreen 11
+
+@import "player/animation";
+//@import "player/download";
+@import "player/rotate";
+
+.hkplayer{
+    background: $playerBgColor;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    user-select: none;
+    -ms-user-select: none;
+    background-color: #000;
+    *{
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+    .hkplayer-none{
+        display: none
+    }
+    &.hkplayer-is-fullscreen{
+        width: 100%!important;
+        height: 100%!important;
+        // Undo any aspect ratio padding for fluid layouts
+        padding-top: 0 !important;
+        z-index: 9999;
+    }
+    &.hkplayer-is-fullscreen.hkplayer-inactive{
+        cursor: none;
+    }
+    video{
+        width:100%;
+        height: 100%;
+        outline: none;
+    }
+}
+.hkplayer-icon {
+    display: block;
+    height: $controlsIconHeight;
+    width: $controlsIconWidth;
+    overflow: hidden;
+    fill:$playerIconColor;
+}
+
+@import "player/controls";
+@import "player/progress";
+@import "player/play";
+@import "player/playNext";
+@import "player/time";
+@import "player/tips";
+@import "player/volume";
+@import "player/placeholder";
+@import "player/start";
+@import "player/texttrack";
+@import "player/defination";
+@import "player/playback";
+@import "player/pip";
+@import "player/fullscreen";
+@import "player/cssFullscreen";
+@import "player/bullet";
+@import "player/loading";
+@import "player/replay";
+@import "player/enter";
+@import "player/screenShot";
+
+.hkplayer-poster{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-size: cover;
+    background-position: center center;
+}
+.hkplayer-live{
+    display: block;
+    font-size: 12px;
+    color: $liveColor;
+    line-height: 40px;
+    order: 1;
+}
+
+@import "player/error";
