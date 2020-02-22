@@ -4,6 +4,7 @@
     display: inline-block;
     cursor: pointer;
     opacity: 0.9;
+
     .hkplayer-icon {
         svg {
             position: relative;
@@ -12,6 +13,7 @@
             transform: translate(-50%, -50%);
         }
     }
+
     &:hover {
         .hkplayer-tips {
             display: block;

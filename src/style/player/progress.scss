@@ -1,120 +1,140 @@
-.hkplayer-progress{
-  display: block;
-  position: absolute;
-  height: 20px;
-  line-height: 20px;
-  left: 0;
-  right: 0;
-  outline: none;
-  top: -10px;
-  z-index: 35;
-  @at-root .hkplayer.hkplayer-volume-active &{
-    z-index: 15;
-  }
-  @at-root .hkplayer.hkplayer-definition-active &{
-    z-index: 15;
-  }
-  @at-root .hkplayer.hkplayer-textTrack-active &{
-    z-index: 15;
-  }
+.hkplayer-progress {
+    display: block;
+    position: absolute;
+    height: 20px;
+    line-height: 20px;
+    left: 0;
+    right: 0;
+    outline: none;
+    top: -10px;
+    z-index: 40;
+
+    @at-root .hkplayer.hkplayer-volume-active & {
+        z-index: 15;
+    }
+
+    @at-root .hkplayer.hkplayer-definition-active & {
+        z-index: 15;
+    }
+
+    @at-root .hkplayer.hkplayer-textTrack-active & {
+        z-index: 15;
+    }
 }
-.hkplayer-progress-outer{
-  background: $progressOuterBgColor;
-  display: block;
-  height: 3px;
-  line-height: 3px;
-  margin-top: 8.5px;
-  width: 100%;
-  position: relative;
-  cursor: pointer;
+
+.hkplayer-progress-outer {
+    background: $progressOuterBgColor;
+    display: block;
+    height: 3px;
+    line-height: 3px;
+    margin-top: 8.5px;
+    width: 100%;
+    position: relative;
+    cursor: pointer;
 }
-.hkplayer-progress-cache,.hkplayer-progress-played{
-  display: block;
-  height: 100%;
-  line-height: 1;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-.hkplayer-progress-cache{
-  width: 0;
-  background: $progressCacheBgColor;
-}
-.hkplayer-progress-played{
-  display: block;
-  width: 0;
-  background-image: $progressPlayedBgImage;
-  border-radius: 0 1.5px 1.5px 0;
-}
-.hkplayer-progress-btn{
-  display: none;
-  position: absolute;
-  left: 0px;
-  top: -6px;
-  width: 14px;
-  height: 16px;
-  border-radius: 6px;
-  background: #FFFFFF;
-  box-shadow: $progressPlayedShadow;
-}
-.hkplayer-progress-point{
-  position: absolute;
-  &.hkplayer-tips{
-    margin-left: 0;
-    top: -25px;
-    display: none;
-    z-index: 100;
-    transform: translateX(0);
-  }
-}
-.hkplayer-progress-dot{
-  display: inline-block;
-  position: absolute;
-  height: 3px;
-  width: 5px;
-  top: 0px;
-  background: white;
-  border-radius: 6px;
-  z-index: 16;
-  .hkplayer-progress-tip {
+
+.hkplayer-progress-cache,
+.hkplayer-progress-played {
+    display: block;
+    height: 100%;
+    line-height: 1;
     position: absolute;
     left: 0;
-    top: -40px;
-    height: auto;
-    line-height: 30px;
-    width: auto;
-    transform: scale(0.8);
-    background: rgba(0, 0, 0, .3);
-    border-radius: 6px;
-    border: 1px solid rgba(0, 0, 0, .8);
-    cursor: default;
-    white-space: nowrap;
-    display: none;
-  }
+    top: 0;
 }
-.hkplayer-progress-dot-show{
-  .hkplayer-progress-tip{
+
+.hkplayer-progress-cache {
+    width: 0;
+    background: $progressCacheBgColor;
+}
+
+.hkplayer-progress-played {
     display: block;
-  }
+    width: 0;
+    background-image: $progressPlayedBgImage;
+    border-radius: 0 1.5px 1.5px 0;
 }
-.hkplayer-progress-thumbnail{
-  position: absolute;
-  box-sizing: border-box;
-  &.hkplayer-tips{
-    margin-left: 0;
+
+.hkplayer-progress-btn {
     display: none;
-    z-index: 99;
-  }
+    position: absolute;
+    left: 0px;
+    top: -6px;
+    width: 14px;
+    height: 16px;
+    border-radius: 6px;
+    background: #FFFFFF;
+    box-shadow: $progressPlayedShadow;
 }
-.hkplayer-progress:hover,.hkplayer-progress:focus{
-  .hkplayer-progress-outer{
-    height: 6px;
-    margin-top: 7px;
-  }
-  .hkplayer-progress-dot{
-    height: 6px;
-  }
-  .hkplayer-progress-btn{
-    display: block
-  }
+
+.hkplayer-progress-point {
+    position: absolute;
+
+    &.hkplayer-tips {
+        margin-left: 0;
+        top: -25px;
+        display: none;
+        z-index: 100;
+        transform: translateX(0);
+    }
+}
+
+.hkplayer-progress-dot {
+    display: inline-block;
+    position: absolute;
+    height: 3px;
+    width: 5px;
+    top: 0px;
+    background: white;
+    border-radius: 6px;
+    z-index: 16;
+
+    .hkplayer-progress-tip {
+        position: absolute;
+        left: 0;
+        top: -40px;
+        height: auto;
+        line-height: 30px;
+        width: auto;
+        transform: scale(0.8);
+        background: rgba(0, 0, 0, .3);
+        border-radius: 6px;
+        border: 1px solid rgba(0, 0, 0, .8);
+        cursor: default;
+        white-space: nowrap;
+        display: none;
+    }
+}
+
+.hkplayer-progress-dot-show {
+    .hkplayer-progress-tip {
+        display: block;
+    }
+}
+
+.hkplayer-progress-thumbnail {
+    position: absolute;
+    box-sizing: border-box;
+
+    &.hkplayer-tips {
+        margin-left: 0;
+        display: none;
+        z-index: 99;
+    }
+}
+
+.hkplayer-progress:hover,
+.hkplayer-progress:focus {
+    .hkplayer-progress-outer {
+        height: 6px;
+        margin-top: 7px;
+    }
+
+    .hkplayer-progress-dot {
+        height: 6px;
+    }
+
+    .hkplayer-progress-btn {
+        display: block
+    }
 }

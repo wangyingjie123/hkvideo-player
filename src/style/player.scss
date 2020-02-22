@@ -4,10 +4,10 @@
 // hkplayer-time  2
 // hkplayer-placeholder 3
 // hkplayer-definition 4
-// hkplayer-volume 5
+// hkplayer-playback 5
+// hkplayer-volume 6
 // hkplayer-bullet-btn 6
 // hkplayer-textTrack 7
-// hkplayer-playback 8
 // hkplayer-rotate 9
 // hkplayer-screenShot 10
 // hkplayer-fullscreen 11
@@ -16,7 +16,7 @@
 //@import "player/download";
 @import "player/rotate";
 
-.hkplayer{
+.hkplayer {
     background: $playerBgColor;
     width: 100%;
     height: 100%;
@@ -24,7 +24,8 @@
     user-select: none;
     -ms-user-select: none;
     background-color: #000;
-    *{
+
+    * {
         margin: 0;
         padding: 0;
         border: 0;
@@ -32,31 +33,36 @@
         font: inherit;
         vertical-align: baseline;
     }
-    .hkplayer-none{
+
+    .hkplayer-none {
         display: none
     }
-    &.hkplayer-is-fullscreen{
-        width: 100%!important;
-        height: 100%!important;
+
+    &.hkplayer-is-fullscreen {
+        width: 100% !important;
+        height: 100% !important;
         // Undo any aspect ratio padding for fluid layouts
         padding-top: 0 !important;
         z-index: 9999;
     }
-    &.hkplayer-is-fullscreen.hkplayer-inactive{
+
+    &.hkplayer-is-fullscreen.hkplayer-inactive {
         cursor: none;
     }
-    video{
-        width:100%;
+
+    video {
+        width: 100%;
         height: 100%;
         outline: none;
     }
 }
+
 .hkplayer-icon {
     display: block;
     height: $controlsIconHeight;
     width: $controlsIconWidth;
     overflow: hidden;
-    fill:$playerIconColor;
+    fill: $playerIconColor;
 }
 
 @import "player/controls";
@@ -80,7 +86,7 @@
 @import "player/enter";
 @import "player/screenShot";
 
-.hkplayer-poster{
+.hkplayer-poster {
     position: absolute;
     left: 0;
     top: 0;
@@ -90,7 +96,8 @@
     background-size: cover;
     background-position: center center;
 }
-.hkplayer-live{
+
+.hkplayer-live {
     display: block;
     font-size: 12px;
     color: $liveColor;

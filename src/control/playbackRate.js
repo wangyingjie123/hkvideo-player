@@ -1,62 +1,74 @@
 import Player from '../player'
 
 let playbackRate = function () {
-  let player = this
-  let util = Player.util
-  let selected = 0
-  let selectedSpeed = 1
-  let rateTpl = []
-  if (player.config.playbackRate) {
-    player.config.playbackRate.sort((a, b) => a - b)
-    player.config.playbackRate.forEach((item, index) => {
-      if(player.config.defaultPlaybackRate && player.config.defaultPlaybackRate === item) {
-        selected = index
-        selectedSpeed = item
-        player.once('playing', () => { player.video.playbackRate = item})
-      } else if (item === 1 || item === '1') {
-        selected = index
-      }
-      rateTpl.push(`${item}x`)
-    })
-  } else {
-    return false
-  }
-  let tipsSpeed = player.config.lang && player.config.lang === 'zh-cn' ? '倍速' : 'Speed'
-  let ul = util.createDom('hk-playback', `<p class='name'><span>${selectedSpeed}x</span></p>`, {}, 'hkplayer-playback')
-  let root = player.controls
-  let tips = util.createDom('hk-tips', tipsSpeed, {}, 'hkplayer-tips')
-  ul.appendChild(tips)
-  root.appendChild(ul);
-  ['touchstart', 'click'].forEach(item => {
-    ul.addEventListener(item, function (e) {
-      e.preventDefault()
-      e.stopPropagation()
-      let p = e.target || e.srcElement
-      if (p && (p.tagName.toLocaleLowerCase() === 'p' || p.tagName.toLocaleLowerCase() === 'span')) {
-        selected = selected + 1 === rateTpl.length ? 0 : selected + 1
-        ul.querySelector('p').innerHTML = `<span>${rateTpl[selected]}</span>`
-        player.video.playbackRate = rateTpl[selected].replace(/x$/g, '') * 1
-      }
-    }, false)
-  })
-
-  ul.addEventListener('mouseenter', (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-    tips.style.left = '50%'
-    let rect = tips.getBoundingClientRect()
-    let rootRect = player.root.getBoundingClientRect()
-    if (rect.right > rootRect.right) {
-      tips.style.left = `${-rect.right + rootRect.right + 16}px`
+    let player = this;
+    let util = Player.util;
+    let selected = 0;
+    let rateTpl = [];
+    let selectedSpeed = 1;
+    if (player.config.playbackRate) {
+        player.config.playbackRate.sort((a, b) => a - b);
+        player.config.playbackRate.forEach((item, index) => {
+            if (player.config.defaultPlaybackRate && player.config.defaultPlaybackRate === item) {
+                selected = index;
+                selectedSpeed = item;
+                player.once('playing', () => {
+                    player.video.playbackRate = item;
+                });
+            } else if (item === 1 || item === '1') {
+                selected = index;
+            }
+            rateTpl.push(`${item}`);
+        });
+    } else {
+        return false;
     }
-  })
+    let tipsSpeed = player.config.lang && player.config.lang === 'zh-cn' ? '倍速' : 'Speed';
+    let list = '<ul class="hkplayer-playback-list">';
+    rateTpl.forEach((v, i) => {
+        list += `<li class=${v === 1 || v === '1' ? 'selected' : ''}>${v}x</li>`;
+    });
+    list += '</ul>';
+    let ul = util.createDom('hk-playback',
+    `${list}<p class='name'><span>${tipsSpeed}</span></p>`, {}, 'hkplayer-playback');
+    let root = player.controls;
+    root.appendChild(ul);
+    ['touchstart', 'click'].forEach(item => {
+        ul.addEventListener(item, function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            let li = e.target || e.srcElement;
+            if (li && li.tagName.toLocaleLowerCase() === 'li') {
+                let parent = li.parentNode;
+                for (let i = 0; i < parent.children.length; i++) {
+                    util.removeClass(parent.children[i], 'selected');
+                    if (li === parent.children[i]) {
+                        selected = i;
+                    }
+                }
+                util.addClass(li, 'selected');
+                ul.querySelector('p').innerHTML = `<span>${rateTpl[selected]}x</span>`;
+                player.video.playbackRate = rateTpl[selected] * 1;
+            }
+        }, false);
+    });
 
-  player.on('play', () => {
-    let rateNow = parseFloat(rateTpl[selected].substring(0, rateTpl[selected].length - 1))
-    if(player.video.playbackRate.toFixed(1) !== rateNow.toFixed(1) ) {
-      player.video.playbackRate = rateNow
-    }
-  })
+    ul.querySelector('.name').addEventListener('mouseenter', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        util.addClass(ul, 'hkplayer-playback-active');
+    });
+    ul.addEventListener('mouseleave', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        util.removeClass(ul, 'hkplayer-playback-active');
+    });
+    player.on('play', () => {
+        let rateNow = parseFloat(rateTpl[selected]);
+        if (player.video.playbackRate.toFixed(1) !== rateNow.toFixed(1)) {
+            player.video.playbackRate = rateNow;
+        }
+    });
 }
 
 Player.install('playbackRate', playbackRate)

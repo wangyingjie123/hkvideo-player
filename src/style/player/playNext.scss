@@ -1,7 +1,9 @@
-.hkplayer-playNext, .hkplayer-playNext-img {
+.hkplayer-playNext,
+.hkplayer-playNext-img {
     order: 1;
     cursor: pointer;
-    &:hover{
+
+    &:hover {
         opacity: 0.85;
     }
 }

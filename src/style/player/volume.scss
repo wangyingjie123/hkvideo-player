@@ -1,6 +1,6 @@
 .hkplayer-volume {
     outline: none;
-    order: 5;
+    order: 6;
     width: 40px;
     display: inline-block;
     position: relative;
@@ -24,7 +24,7 @@
     width: 40px;
     height: 108px;
     background: $sliderBgColor;
-    bottom: $controlsIconHeight;
+    bottom: 56px;
     outline: none;
     left: 0;
     border-radius: 4px;

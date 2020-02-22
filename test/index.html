@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+    .content {
+        margin-top: 30px;
+    }
+    #app {
+        margin: 0 auto;
+    }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div id="app"></div>
+    <button id='button'>小窗</button>
+</div>
+<script src="../browser/index.js"></script>
+<script>
+const Player = window.Player;
+let player = new Player({
+    id: 'app',
+    cssFullscreen: true,
+    volume: 0,
+    playbackRate: [0.75, 1, 1.5, 2],
+    url: 'https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/cae-legoup-video-target/461b1dc0-c2e5-4bce-9c58-5ffea8f26c27.mp4',
+});
+document.querySelector('#button').onclick = function () {
+    player.getPIP();
+}
+</script>
+</body>
+</html>
