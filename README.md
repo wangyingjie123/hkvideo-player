@@ -1,12 +1,10 @@
-<<<<<<< HEAD
-# haokan-player
+# hkvideo-player
 ##1.代码库地址
-[haokan-pc-player](http://icode.baidu.com/repos/baidu/haokan-fe/haokan-pc-player/tree/master)
 
 ##2.使用
 ```javascript { .theme-peacock }
-npm install @baidu/hk-player
-import Player from '@baidu/hk-player';  
+npm install hkvideo-player
+import Player from 'hkvideo-player';  
 const players = new Player({
     id: 'app',
     url: '',
@@ -72,63 +70,7 @@ player.emit('resourceReady', [{name: '高清', url: 'url1'}, {name: '超清', ur
 |<span style="color: rgb(0, 0, 0); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; text-align: start; white-space: normal; background-color: rgb(255, 255, 255);">requestCssFullscreen</span><input type="checkbox" class="rowselector hidden"> | <span style="color: rgb(0, 0, 0); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; text-align: start; white-space: normal; background-color: rgb(255, 255, 255);">进入样式全屏</span> | 
 |<span style="color: rgb(0, 0, 0); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; text-align: start; white-space: normal; background-color: rgb(246, 248, 250);">exitCssFullscreen</span><input type="checkbox" class="rowselector hidden"> | <span style="color: rgb(0, 0, 0); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; text-align: start; white-space: normal; background-color: rgb(246, 248, 250);">退出样式全屏</span> | 
 ###事件注册/注销
-####永久注册
-```javascript { .theme-peacock }
-player.on('事件名',function(){
-  //事件名称可以在上述查询
-=======
- 
- 
 
-
- 
-### Start
-
-1. Install
-
-    ```
-    $ npm install xgplayer
-    ```
-
-2. Usage
-
-    Step 1:
-
-    ```html
-    <div id="vs"></div>
-    ```
-    Step 2:
-
-    ```js
-    import Player from 'xgplayer';
-
-    const player = new Player({
-        id: 'vs',
-        url: 'http://s2.pstatp.com/cdn/expire-1-M/byted-player-videos/1.0.0/xgplayer-demo.mp4'
-    })
-    ```
-
-    This is the easiest way to configure the player, then it runs with video. For more advanced content, see the plug-in section or documentation. [more config](http://h5player.bytedance.com/en/config/)
-
-
-
-
-### Plugins
-
-xgplayer provides more plugins. Plugins are divided into two categories: one is self-starting, and another inherits the player's core class named xgplayer. In principle, the officially provided plug-ins are self-starting and the packaged third-party libraries are inherited. Some feature plug-ins themselves can provide a downgrade scenario that suggests a self-start approach, or an inheritance approach if not. The player supports custom plugins for more content viewing [plugins](http://h5player.bytedance.com/en/plugins/)
-
-The following is how to use a self-starting plug-in：
-
-```js
-import Player from 'xgplayer';
-import 'xgplayer-mp4';
-
-const player = new Player({
-    id: 'video',
-    url: '//abc.com/test.mp4'
->>>>>>> dd4845450f90021b42adc8aa3a5bc26fa9f274c7
-})
-```
 ####一次注册
 ```javascript { .theme-peacock }
 player.once('事件名',function(){
@@ -145,20 +87,3 @@ player.off('事件名',function(){
 ```javascript { .theme-peacock }
 player.emit('事件名')
 ```
-
-
-
-
-##6.自定义插件开发
-```javascript { .theme-peacock }
-// pluginName.js
-import Player from '@baidu/hk-player';
-
-let pluginName = function(player){
-  // 插件逻辑
-}
-
-Player.install('pluginName', pluginName);
-```
-
-1、播放器的基本功能有，如：清晰度切换、画中画模式、流式布局、网页全屏
