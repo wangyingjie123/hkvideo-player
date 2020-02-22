@@ -1,7 +1,7 @@
 # hkvideo-player
-##1.代码库地址
+## 1.代码库地址
 
-##2.使用
+## 2.使用
 ```javascript { .theme-peacock }
 npm install hkvideo-player
 import Player from 'hkvideo-player';  
@@ -13,7 +13,7 @@ const players = new Player({
     autoplay,
 });
 ```
-##3.常用api
+## 3.常用api
 |属性名 | 含义 | 
 |---|---|
 |autoplay<input type="checkbox" class="rowselector hidden"> | <span style="color: rgb(0, 0, 0); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(246, 248, 250);">设置/返回 自动播放属性</span> | 
@@ -31,7 +31,7 @@ const players = new Player({
 |<span style="color: rgb(0, 0, 0); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; text-align: start; white-space: normal; background-color: rgb(246, 248, 250);">controls</span> | <span style="color: rgb(0, 0, 0); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; white-space: normal; background-color: rgb(246, 248, 250);">播放器控制条外层容器 DOM</span> | 
 |<span style="color: rgb(0, 0, 0); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; text-align: start; white-space: normal; background-color: rgb(255, 255, 255);">fullscreen</span> | <span style="color: rgb(0, 0, 0); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; white-space: normal;">播放器是否处于全屏状态</span> | 
 
-##4.方法
+## 4.方法
 ```javascript { .theme-peacock }
 player.play() // 播放
 player.pause() // 暂停
@@ -49,7 +49,7 @@ player.replay() //  播放器重播，重播的组件就调用了这个方法
 Player.install('play',function(){}) // 插件的安装方法
 player.emit('resourceReady', [{name: '高清', url: 'url1'}, {name: '超清', url: 'url2'}]); // 清晰读切换
 ```
-##5.事件
+## 5.事件
 |事件名 | 含义 | 
 |---|---|
 |<span style="color: rgb(0, 0, 0); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; text-align: start; white-space: normal; background-color: rgb(255, 255, 255);">play</span><input type="checkbox" class="rowselector hidden"> | 播放 | 
@@ -69,21 +69,21 @@ player.emit('resourceReady', [{name: '高清', url: 'url1'}, {name: '超清', ur
 |<span style="color: rgb(0, 0, 0); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; text-align: start; white-space: normal; background-color: rgb(246, 248, 250);">exitFullscreen</span><input type="checkbox" class="rowselector hidden"> | <span style="color: rgb(0, 0, 0); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; text-align: start; white-space: normal; background-color: rgb(246, 248, 250);">退出全屏</span> | 
 |<span style="color: rgb(0, 0, 0); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; text-align: start; white-space: normal; background-color: rgb(255, 255, 255);">requestCssFullscreen</span><input type="checkbox" class="rowselector hidden"> | <span style="color: rgb(0, 0, 0); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; text-align: start; white-space: normal; background-color: rgb(255, 255, 255);">进入样式全屏</span> | 
 |<span style="color: rgb(0, 0, 0); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; text-align: start; white-space: normal; background-color: rgb(246, 248, 250);">exitCssFullscreen</span><input type="checkbox" class="rowselector hidden"> | <span style="color: rgb(0, 0, 0); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 16px; text-align: start; white-space: normal; background-color: rgb(246, 248, 250);">退出样式全屏</span> | 
-###事件注册/注销
+### 事件注册/注销
 
-####一次注册
+#### 一次注册
 ```javascript { .theme-peacock }
 player.once('事件名',function(){
 
 })
 ```
-####事件注销
+#### 事件注销
 ```javascript { .theme-peacock }
 player.off('事件名',function(){
 
 })
 ```
-####事件触发
+#### 事件触发
 ```javascript { .theme-peacock }
 player.emit('事件名')
 ```
