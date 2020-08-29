@@ -1,4 +1,31 @@
-const polyfill = []
+/**
+ * @file webpack
+ * @author wangyingjie07
+ */
+/* eslint-disable */
+const polyfill = [];
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const threadLoader = require('thread-loader');
+const jsWorkerPool = {
+    // options
+    // 产生的 worker 的数量，默认是 (cpu 核心数 - 1)
+    // 当 require('os').cpus() 是 undefined 时，则为 1
+    workers: 2,
+    // 闲置时定时删除 worker 进程
+    // 默认为 500ms
+    // 可以设置为无穷大， 这样在监视模式(--watch)下可以保持 worker 持续存在
+    poolTimeout: 2000
+};
+const cssWorkerPool = {
+	// 一个 worker 进程中并行执行工作的数量
+	// 默认为 20
+	workerParallelJobs: 2,
+	poolTimeout: 2000
+};
+  
+threadLoader.warmup(jsWorkerPool, ['babel-loader']);
+// threadLoader.warmup(cssWorkerPool, ['css-loader', 'postcss-loader', 'sass-loader']);
+
 const umd = {
 	entry: polyfill.concat(['./src/index.js']),
 	devtool: 'source-map',
@@ -8,31 +35,49 @@ const umd = {
 		library: 'hkplayer',
 		libraryTarget: 'umd'
 	},
-	mode: 'production',
+	// mode: 'production',
 	module: {
 		rules: [{
 			test: /\.js$/,
-			loader: 'babel-loader'
+			use: [
+			  {
+				loader: 'thread-loader',
+				options: jsWorkerPool
+			  },
+			  'babel-loader'
+			]
 		}, {
 			test: /\.scss$/,
 			use: [
 				'style-loader',
+				// {
+				// 	loader: 'thread-loader',
+				// 	options: cssWorkerPool
+				// },
 				{
 					loader: 'css-loader',
 					options: {
 						importLoaders: 1,
-						minimize: true
+						// minimize: true
 					}
 				},
 				'postcss-loader',
 				'sass-loader'
 			]
-		}]
+		},{
+            test: /\.svg/,
+            loader: 'raw-loader'
+        }]
 	},
+    // plugins: [
+    //     new BundleAnalyzerPlugin({
+    //         defaultSizes: 'parsed'
+    //     })
+    // ],
 	optimization: {
 		minimize: true
 	}
-}
+};
 
 const client = {
 	entry: polyfill.concat(['./src/index.js']),
@@ -46,7 +91,13 @@ const client = {
 	module: {
 		rules: [{
 			test: /\.js$/,
-			loader: 'babel-loader'
+			use: [
+			  {
+				loader: 'thread-loader',
+				options: jsWorkerPool
+			  },
+			  'babel-loader'
+			]
 		}, {
 			test: /\.scss$/,
 			use: [
@@ -55,19 +106,20 @@ const client = {
 					loader: 'css-loader',
 					options: {
 						importLoaders: 1,
-						minimize: true
+						// minimize: true
 					}
 				},
 				'postcss-loader',
 				'sass-loader'
 			]
-		}]
+		}, {
+            test: /\.svg/,
+            loader: 'raw-loader'
+        }]
 	},
 	mode: 'production',
 	optimization: {
 		minimize: true
 	},
-
-}
-
-module.exports = [umd, client]
+};
+module.exports = [umd, client];

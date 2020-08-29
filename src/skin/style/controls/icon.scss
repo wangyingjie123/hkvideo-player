@@ -1,0 +1,13 @@
+.hkplayer-skin-default {
+    .hkplayer-icon {
+        display: block;
+        width: 40px;
+        height: $controlHeight;
+        overflow: hidden;
+        fill: $playerIconColor;
+
+        svg {
+            position: absolute;
+        }
+    }
+}

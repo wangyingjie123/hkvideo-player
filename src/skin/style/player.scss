@@ -1,0 +1,111 @@
+// order:
+// hkplayer-play  0
+// hkplayer-playNext  1
+// hkplayer-reload  1
+// hkplayer-time  2
+// hkplayer-placeholder 3
+// danmu-switch 4
+// hkplayer-playback 5
+// hkplayer-definition 6
+// hkplayer-textTrack 7
+// hkplayer-volume 8
+// hkplayer-download 9
+// hkplayer-rotate 10
+// hkplayer-screenShot 11
+// hkplayer-cssFullscreen 12
+// hkplayer-fullscreen 13
+
+// z-index:
+// hkplayer-poster 100
+// hkplayer-progress-point 100
+// hkplayer-replay 105
+// hkplayer-pip-active 110
+// hkplayer-start 115
+// hkplayer-enter 120
+// hkplayer-error 125
+// hkplayer-pip-lay 130
+// hkplayer-pip-drag 135
+// hkplayer-control-pip-hover 140
+// hkplayer-is-fullscreen 9999
+// hkplayer-is-cssfullscreen 99999
+// hkplayer-process 35
+
+.hkplayer-skin-default{
+    background: $playerBgColor;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    user-select: none;
+    -ms-user-select: none;
+    *{
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+    .hkplayer-none{
+        display: none
+    }
+    &.hkplayer-rotate-fullscreen {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        bottom: 0;
+        right: 0;
+        height: 100vw!important;
+        width: 100vh!important;
+        transform-origin: top left;
+        transform: rotate(90deg);
+    }
+    &.hkplayer-is-fullscreen{
+        width: 100%!important;
+        height: 100%!important;
+        // Undo any aspect ratio padding for fluid layouts
+        padding-top: 0 !important;
+        z-index: 9999;
+    }
+    &.hkplayer-is-fullscreen.hkplayer-inactive{
+        cursor: none;
+    }
+    video{
+        width:100%;
+        height: 100%;
+        outline: none;
+    }
+}
+
+.hkplayer-skin-default .hkplayer-none{
+    display: none;
+}
+
+@import "common/animation";
+@import "controls/play";
+@import "controls/start";
+@import "controls/enter";
+@import "controls/poster";
+@import "controls/placeholder";
+@import "controls/fullscreen";
+@import "controls/cssfullscreen";
+@import "controls/volume";
+@import "controls/definition";
+@import "controls/time";
+@import "controls/controls";
+@import "controls/live";
+@import "controls/loading";
+@import "controls/progress";
+@import "controls/replay";
+@import "controls/playbackRate";
+@import "controls/download";
+@import "controls/danmu";
+@import "controls/playNext";
+@import "controls/pip";
+@import "controls/rotate";
+@import "controls/reload";
+@import "controls/screenShot";
+@import "controls/textTrack";
+@import "controls/icon";
+@import "controls/tips";
+@import "controls/error";
+@import "controls/memoryPlay"

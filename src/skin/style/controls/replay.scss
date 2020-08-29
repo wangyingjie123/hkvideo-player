@@ -1,0 +1,52 @@
+.hkplayer-skin-default {
+    .hkplayer-replay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 50;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        background: $replayBgColor;
+        flex-direction: column;
+
+        svg {
+            background: $replaySvgBgColor;
+            border-radius: 100%;
+            cursor: pointer;
+
+            path {
+                transform: translate(20px, 21px);
+                fill: $replaySvgPathFillColor;
+            }
+
+            &:hover {
+                background: $replaySvgHoverBgColor;
+
+                path {
+                    fill: $replaySvgHoverFillColor;
+                }
+            }
+        }
+
+        .hkplayer-replay-txt {
+            display: inline-block;
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: $replayTxtColor;
+            line-height: 34px;
+        }
+    }
+}
+
+.hkplayer-skin-default.hkplayer.hkplayer-ended {
+    .hkplayer-controls {
+        display: none;
+    }
+
+    .hkplayer-replay {
+        display: flex;
+    }
+}
