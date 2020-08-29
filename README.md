@@ -104,7 +104,7 @@ player.emit('事件名')
 ## 6.自定义插件开发
 ```javascript { .theme-peacock }
 // pluginName.js
-import Player from '@baidu/hk-player';
+import Player from 'hkvideo-player';
 
 let pluginName = function(player){
   // 插件逻辑
