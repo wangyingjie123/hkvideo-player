@@ -8,8 +8,17 @@
 </head>
 
 <body>
-    <h1>你好</h1>
+    <div id="app"></div>
 </body>
-<script src="./dist/index.js"></script>
+<script src="./browser/index.js"></script>
+<script>
+    const players = new Player({
+        id: 'app',
+        url: '',
+        cssFullscreen: true, // 网页全屏
+        fluid: true, // 流式布局
+        autoplay: true,
+    });
+</script>
 
 </html>
