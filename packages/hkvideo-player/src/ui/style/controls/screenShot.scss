@@ -1,0 +1,41 @@
+.hkplayer-skin-default {
+    .hkplayer-screenshot {
+        order: 8;
+        width: 60px;
+        z-index: 18;
+        position: relative;
+        outline: none;
+        cursor: pointer;
+        margin: 14px 8px;
+        .name {
+            text-align: center;
+            font-family: PingFangSC-Regular;
+            font-size: 13px;
+            line-height: 24px;
+            width: 60px;
+            height: 24px;
+            color: rgba(255, 255, 255, .8);
+            border-radius: 3px;
+            background: rgba(0, 0, 0, .38);
+            position: absolute;
+            bottom: 0;
+            cursor: pointer;
+            &:hover {
+                background-color: $sliderDragBgColor;
+                color: $playerIconColor;
+            }
+        }
+    }
+}
+
+.lang-is-en,
+.lang-is-jp {
+    .hkplayer-screenshot {
+        .name {
+            span {
+                width: 75px;
+                height: 20px;
+            }
+        }
+    }
+}

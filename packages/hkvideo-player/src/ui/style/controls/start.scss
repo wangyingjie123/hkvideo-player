@@ -1,0 +1,84 @@
+.hkplayer-skin-default {
+    .hkplayer-start {
+        border-radius: 50%;
+        display: none;
+        width: 70px;
+        height: 70px;
+        background: $startBgColor;
+        overflow: hidden;
+        text-align: center;
+        line-height: 70px;
+        vertical-align: middle;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 115;
+        margin: -35px auto auto -35px;
+        cursor: pointer;
+        div {
+            width: 100%;
+            height: 100%;
+            svg {
+                fill: $startSvgFill;
+                margin: 21px auto;
+            }
+        }
+
+        .hkplayer-icon-play {
+            display: block;
+        }
+
+        .hkplayer-icon-pause {
+            display: none;
+        }
+        
+        &:hover {
+            opacity: 0.85;
+        }
+    }
+}
+
+.hkplayer-skin-default.hkplayer-playing {
+    .hkplayer-start-interact {
+        display: block;
+        animation: playPause 0.4s ease-out forwards;
+        .hkplayer-icon-play {
+            display: block;
+        }
+        .hkplayer-icon-pause {
+            display: none;
+        }
+    }
+}
+
+.hkplayer-skin-default.hkplayer-pause {
+    .hkplayer-start-interact {
+        display: block;
+        animation: playPause 0.4s ease-out forwards;
+
+        .hkplayer-icon-play {
+            display: none;
+        }
+        .hkplayer-icon-pause {
+            display: block;
+        }
+    }
+}
+.hkplayer-skin-default.hkplayer-nostart {
+    .hkplayer-start {
+        display: block;
+    }
+}
+.hkplayer-skin-default.replay {
+    .hkplayer-start {
+        display: none;
+
+        .hkplayer-icon-play {
+            display: block;
+        }
+
+        .hkplayer-icon-pause {
+            display: none;
+        }
+    }
+}

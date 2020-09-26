@@ -1,0 +1,161 @@
+// svg width = height = 24px
+.hkplayer-skin-default {
+    .hkplayer-volume {
+        outline: none;
+        order: 11;
+        width: 40px;
+        height: $controlHeight;
+        display: block;
+        position: relative;
+        z-index: 30;
+
+        .hkplayer-icon {
+            cursor: pointer;
+            &-large, &-small, &-muted {
+                width: 100%;
+                height: 100%;
+                svg {
+                    margin: 14px 8px;
+                }
+            }
+            .hkplayer-icon-large {
+                display: block;
+            }
+            .hkplayer-icon-small {
+                display: none;
+            }
+
+            .hkplayer-icon-muted {
+                display: none;
+            }
+        }
+    }
+
+    .hkplayer-slider {
+        display: none;
+        position: absolute;
+        width: 40px;
+        height: 108px;
+        background: rgba(0, 0, 0, .54);
+        bottom: 46px;
+        outline: none;
+        left: 0;
+        border-radius: 4px;
+
+        &:after {
+            content: " ";
+            display: block;
+            height: 15px;
+            width: 28px;
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            z-index: 20;
+        }
+    }
+
+    .hkplayer-bar,
+    .hkplayer-drag {
+        display: block;
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 255, 255, .3);
+        border-radius: 100px;
+        width: 4px;
+        height: 78px;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .hkplayer-drag {
+        bottom: 0;
+        background: #FA1F41;
+        max-height: 78px;
+
+        &:after {
+            content: " ";
+            display: inline-block;
+            left: -4px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            box-shadow: 0 0 8px 0 #fe104c;
+            background-color: #ffffff;
+            position: absolute;
+            border-radius: 50%;
+        }
+    }
+}
+
+.hkplayer-skin-default.hkplayer-volume-active {
+    .hkplayer-volume {
+        z-index: 38;
+    }
+    .hkplayer-slider {
+        display: block;
+    }
+}
+
+.hkplayer-skin-default.hkplayer-volume-large {
+    .hkplayer-volume {
+        .hkplayer-icon {
+            .hkplayer-icon-large {
+                display: block;
+            }
+
+            .hkplayer-icon-small {
+                display: none;
+            }
+
+            .hkplayer-icon-muted {
+                display: none;
+            }
+        }
+    }
+}
+
+.hkplayer-skin-default.hkplayer-volume-small {
+    .hkplayer-volume {
+        .hkplayer-icon {
+            .hkplayer-icon-large {
+                display: none;
+            }
+
+            .hkplayer-icon-small {
+                display: block;
+            }
+
+            .hkplayer-icon-muted {
+                display: none;
+            }
+        }
+    }
+}
+
+.hkplayer-skin-default.hkplayer-volume-muted {
+    .hkplayer-volume {
+        .hkplayer-icon {
+            .hkplayer-icon-large {
+                display: none;
+            }
+
+            .hkplayer-icon-small {
+                display: none;
+            }
+
+            .hkplayer-icon-muted {
+                display: block;
+            }
+        }
+    }
+}
+
+.hkplayer-skin-default.hkplayer-mobile {
+    .hkplayer-volume {
+        .hkplayer-slider {
+            display: none;
+        }
+    }
+}

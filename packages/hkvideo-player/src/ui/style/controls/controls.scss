@@ -1,0 +1,49 @@
+.hkplayer-skin-default {
+    .hkplayer-controls {
+        display: flex;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: $controlHeight;
+        background-image: $controlsBgImage;
+        z-index: 10;
+        transition: transform .3s;
+    }
+}
+
+.hkplayer-skin-default.hkplayer-nostart {
+    .hkplayer-controls {
+        display: none;
+    }
+}
+
+.hkplayer-skin-default.no-controls {
+    .hkplayer-controls {
+        display: none;
+    }
+}
+
+.hkplayer-skin-default.hkplayer-inactive {
+    &:not(.hkplayer-pip-active) {
+        .hkplayer-controls {
+            // display: none;
+            transform: translate3d(0, 120%, 0);
+        }
+    }
+}
+
+// 直播隐藏进度条和时间
+.hkplayer-skin-default.hkplayer-is-live {
+    .hkplayer-controls {
+
+        .hkplayer-time,
+        .hkplayer-progress {
+            display: none;
+        }
+
+        .hkplayer-live {
+            display: block;
+        }
+    }
+}

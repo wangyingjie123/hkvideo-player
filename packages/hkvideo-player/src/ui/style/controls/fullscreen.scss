@@ -1,0 +1,80 @@
+.hkplayer-skin-default {
+    // 全屏
+    .hkplayer-fullscreen,
+    .hkplayer-fullscreen-img {
+        position: relative;
+        order: 13;
+        display: block;
+        cursor: pointer;
+        margin-right: 7px;
+        .hkplayer-icon {
+            &-requestfull, &-exitfull {
+                width: 100%;
+                height: 100%;
+                &:hover {
+                    svg {
+                        animation: iconScale .4s ease both;
+                    }
+                }
+                svg {
+                    margin: 14px 8px;
+                }
+            }
+            .hkplayer-icon-requestfull {
+                display: block;
+            }
+
+            .hkplayer-icon-exitfull {
+                display: none;
+            }
+        }
+
+        .hkplayer-tips {
+            position: absolute;
+            right: 0;
+            left: auto;
+
+            .hkplayer-tip-requestfull {
+                display: block;
+            }
+
+            .hkplayer-tip-exitfull {
+                display: none;
+            }
+        }
+
+        &:hover {
+            opacity: 0.85;
+
+            .hkplayer-tips {
+                display: block;
+            }
+        }
+    }
+}
+
+.hkplayer-skin-default.hkplayer-is-fullscreen {
+
+    .hkplayer-fullscreen,
+    .hkplayer-fullscreen-img {
+        .hkplayer-icon {
+            .hkplayer-icon-requestfull {
+                display: none;
+            }
+
+            .hkplayer-icon-exitfull {
+                display: block;
+            }
+        }
+
+        .hkplayer-tips {
+            .hkplayer-tip-requestfull {
+                display: none;
+            }
+
+            .hkplayer-tip-exitfull {
+                display: block;
+            }
+        }
+    }
+}

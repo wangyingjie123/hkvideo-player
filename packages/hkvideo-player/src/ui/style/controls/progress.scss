@@ -1,0 +1,187 @@
+.hkplayer-skin-default {
+    .hkplayer-progress {
+        display: block;
+        position: absolute;
+        height: 20px;
+        width: 100%;
+        line-height: 20px;
+        left: 0;
+        outline: none;
+        top: -10px;
+        z-index: 35;
+    }
+
+    .hkplayer-progress-outer, .hkplayer-progress-inner {
+        background: $progressOuterBgColor;
+        display: block;
+        height: 3px;
+        line-height: 3px;
+        margin-top: 8.5px;
+        width: 100%;
+        position: relative;
+        cursor: pointer;
+    }
+    .diyduration {
+        &::after {
+            content: '';
+            display: block;
+            width: 2px;
+            height: 6px;
+            background-color: #fff;
+            position: absolute;
+            right: -2px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+    .hkplayer-progress-cache,
+    .hkplayer-progress-played {
+        display: block;
+        height: 100%;
+        line-height: 1;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .hkplayer-progress-cache {
+        width: 0;
+        background: $progressCacheBgColor;
+    }
+
+    .hkplayer-progress-played {
+        display: block;
+        width: 0;
+        background-image: $progressPlayedBgImage;
+        border-radius: 0 1.5px 1.5px 0;
+    }
+
+    .hkplayer-progress-btn {
+        display: none;
+        position: absolute;
+        left: 0px;
+        top: -5px;
+        width: 13px;
+        height: 13px;
+        border-radius: 30px;
+        background: #FFFFFF;
+        box-shadow: $progressPlayedShadow;
+        left: 100%;
+        transform: translate(-50%, 0);
+    }
+
+    .hkplayer-progress-point {
+        position: absolute;
+
+        &.hkplayer-tips {
+            margin-left: 0;
+            top: -25px;
+            display: none;
+            z-index: 100;
+        }
+    }
+
+    .hkplayer-progress-dot {
+        display: inline-block;
+        position: absolute;
+        height: 3px;
+        width: 5px;
+        top: 0px;
+        background: white;
+        border-radius: 6px;
+        z-index: 16;
+
+        .hkplayer-progress-tip {
+            position: absolute;
+            left: 0;
+            top: -40px;
+            height: auto;
+            line-height: 30px;
+            width: auto;
+            transform: scale(0.8);
+            background: rgba(0, 0, 0, .3);
+            border-radius: 6px;
+            border: 1px solid rgba(0, 0, 0, .8);
+            cursor: default;
+            white-space: nowrap;
+            display: none;
+        }
+    }
+
+    .hkplayer-progress-dot-show {
+        .hkplayer-progress-tip {
+            display: block;
+        }
+    }
+
+    .hkplayer-progress-thumbnail {
+        position: absolute;
+        box-sizing: border-box;
+
+        &.hkplayer-tips {
+            margin-left: 0;
+            display: none;
+            z-index: 99;
+        }
+    }
+
+    .hkplayer-progress:hover,
+    .hkplayer-progress:focus {
+        .hkplayer-progress-outer, .hkplayer-progress-inner {
+            height: 6px;
+            margin-top: 7px;
+        }
+
+        .hkplayer-progress-dot {
+            height: 6px;
+        }
+
+        .hkplayer-progress-btn {
+            display: block;
+            top: -3px;
+        }
+    }
+}
+
+.hkplayer-skin-default.hkplayer-volume-active {
+    .hkplayer-progress {
+        z-index: 15;
+    }
+}
+
+.hkplayer-skin-default.hkplayer-definition-active {
+    .hkplayer-progress {
+        z-index: 15;
+    }
+}
+
+.hkplayer-skin-default.hkplayer-texttrack-active {
+    .hkplayer-progress {
+        z-index: 15;
+    }
+}
+
+.hkplayer-skin-default.hkplayer-playbackrate-active {
+    .hkplayer-progress {
+        z-index: 15;
+    }
+}
+
+.hkplayer-skin-default.hkplayer-mobile {
+    .hkplayer-progress-btn {
+        display: block !important;
+    }
+
+    .hkplayer-progress:hover,
+    .hkplayer-progress:focus {
+        .hkplayer-progress-outer {
+            height: 3px !important;
+            margin-top: 8.5px !important;
+        }
+
+        .hkplayer-progress-btn {
+            display: block !important;
+            top: -5px !important;
+        }
+    }
+}

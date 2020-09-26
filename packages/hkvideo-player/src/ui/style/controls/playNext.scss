@@ -1,0 +1,51 @@
+.hkplayer-skin-default {
+    .hkplayer-playnext {
+        position: relative;
+        order: 1;
+        display: block;
+        cursor: pointer;
+        top: -2px;
+
+        .hkplayer-icon {
+            div {
+                position: absolute;
+            }
+        }
+
+        .hkplayer-tips {
+            .hkplayer-tip-playnext {
+                display: block;
+            }
+        }
+
+        &:hover {
+            opacity: 0.85;
+
+            .hkplayer-tips {
+                display: block;
+            }
+        }
+    }
+}
+
+.lang-is-en {
+    .hkplayer-playnext {
+        .hkplayer-tips {
+            margin-left: -25px;
+        }
+    }
+}
+
+.lang-is-jp {
+    .hkplayer-playnext {
+        .hkplayer-tips {
+            margin-left: -38px;
+        }
+    }
+}
+
+.hkplayer-skin-default.hkplayer-playnext-inactive {
+    .hkplayer-playnext {
+        display: none;
+    }
+}

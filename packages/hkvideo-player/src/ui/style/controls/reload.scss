@@ -1,0 +1,51 @@
+.hkplayer-skin-default {
+    .hkplayer-reload {
+        position: relative;
+        order: 1;
+        display: block;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+
+        .hkplayer-icon {
+            margin-top: 7px;
+            width: 26px;
+
+            div {
+                position: absolute;
+            }
+        }
+
+        .hkplayer-tips {
+            margin-left: -22px;
+
+            .hkplayer-tip-reload {
+                display: block;
+            }
+        }
+
+        &:hover {
+            opacity: 0.85;
+
+            .hkplayer-tips {
+                display: block;
+            }
+        }
+    }
+}
+
+.lang-is-en {
+    .hkplayer-reload {
+        .hkplayer-tips {
+            margin-left: -26px;
+        }
+    }
+}
+
+.lang-is-jp {
+    .hkplayer-reload {
+        .hkplayer-tips {
+            margin-left: -38px;
+        }
+    }
+}
