@@ -16,7 +16,7 @@
             <input type="text" id="input" class="input" placeholder="请输入要发送的弹幕">
         </div>
         <div class="btn-group">
-            <button class="btn-item" onclick="sendDanmu()">发送弹幕</button>
+            <button class="btn-item" id="sendDanmu">发送弹幕</button>
             <button id='button' class="btn-item">打开小窗</button>
         </div>
     </div>
@@ -25,43 +25,13 @@
     </div>
     <div class="right">
         <div class="danmuel">
-            <p class="danmuel-text">
-                这是一段文字
-            </p>
+            <span class="danmuel-text">
+                这是一条彩色的弹幕噢~
+            </span>
         </div>
     </div>
 </div>
 <script src="../packages/hkvideo-player/browser/index.js"></script>
-<script>
-    const Player = window.Player;
-    let player = new Player({
-        id: 'app',
-        // diyDuration: 160, // 自定义时长
-        cssFullscreen: true,
-        fluid: true, // 流式布局
-        // width: 800,
-        // height: 450,
-        ignores: ['replay'], // 禁止某个插件执行
-        // danmu: {
-        //     // comments, //弹幕数组
-        //     area: {  // 弹幕显示区域
-        //         start: 0, // 区域顶部到播放器顶部所占播放器高度的比例
-        //         end: 0.8 // 区域底部到播放器顶部所占播放器高度的比例
-        //     },
-        //     mouseControl: true,
-        //     mouseControlPause: false, // 鼠标移入暂停
-        //     closeDefaultBtn: false, // 关闭播放器提供的默认开关
-        //     defaultOff: false // 开启此项后弹幕不会初始化，默认初始化弹幕
-        // },
-        // screenShot: true, // 屏幕截图--有跨域限制，url需要是本地blob地址
-        playbackRate: [0.75, 1, 1.5, 2],
-        // enterLogo: 'https://pic.rmb.bdstatic.com/baidu-rmb-video-cover-1/2019-10/1571972106218/c91ded088044.png',
-        url: 'http://s1.pstatp.com/cdn/expire-1-M/byted-player-videos/1.0.0/xgplayer-demo.mp4'
-        // url: 'https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/cae-legoup-video-target/461b1dc0-c2e5-4bce-9c58-5ffea8f26c27.mp4'
-    });
-    document.querySelector('#button').onclick = function () {
-        player.getPIP();
-    }
-</script>
+<script type="module" src='./index.js'></script>
 </body>
 </html>

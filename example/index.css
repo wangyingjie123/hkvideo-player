@@ -45,7 +45,7 @@
     cursor: pointer;
 }
 /* 弹幕 */
-.danmuel {
+.hkplayer-skin-default .danmuel, .right .danmuel {
     font-size: 23px;
     line-height: 42px;
     height: 42px;
@@ -55,10 +55,10 @@
     background-image: linear-gradient(to right, rgb(255, 83, 253) 0px, rgb(251, 240, 118) 100%);
     -webkit-text-fill-color: transparent;
     background-repeat: repeat;
-    background-clip: text;
+    -webkit-background-clip: text;
     text-shadow: none;
 }
-.danmuel-text {
+.hkplayer-skin-default .danmuel-text, .right .danmuel-text {
     height: 100%;
     background: inherit;
     -webkit-text-fill-color: inherit;

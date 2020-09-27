@@ -483,7 +483,7 @@ class Player extends Proxy {
         // let Left = ro.left
         let dragLay = util.createDom('hk-pip-lay', '<div></div>', {}, 'hkplayer-pip-lay')
         this.root.appendChild(dragLay)
-        let dragHandle = util.createDom('hk-pip-drag', '<div class="drag-handle"><span>点击按住可拖动视频</span></div>', {
+        let dragHandle = util.createDom('hk-pip-drag', '<div class="drag-handle"><span>按住画面可移动小窗</span></div>', {
             tabindex: 9
         }, 'hkplayer-pip-drag')
         this.root.appendChild(dragHandle)
