@@ -1,8 +1,8 @@
-import { ajax, sendDanmu, initDanmu, danmu} from './tools.js';
+import { ajax, sendDanmu, initDanmu, danmu, setDefin } from './tools.js';
 const Player = window.Player;
 let player = new Player({
     id: 'app',
-    diyDuration: 500, // 自定义时长
+    // diyDuration: 300, // 自定义时长
     cssFullscreen: true,
     fluid: true, // 流式布局
     ignores: ['replay'], // 禁止某个插件执行
@@ -14,6 +14,7 @@ let player = new Player({
     // url: 'https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/cae-legoup-video-target/461b1dc0-c2e5-4bce-9c58-5ffea8f26c27.mp4'
 });
 // initDanmu(player);
+setDefin(player);
 document.querySelector('#sendDanmu').onclick = () => {
     sendDanmu(player);
 };

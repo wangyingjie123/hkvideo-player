@@ -26,6 +26,15 @@ function createDom(el = 'div', tpl = '', attrs = {}, cname = '') {
     return dom;
 }
 function sendDanmu(player) {
+    const inputs = document.querySelector('#input');
+    if (!inputs.value) {
+        alert('弹幕内容不能为空');
+        return;
+    }
+    if (!player.danmu) {
+        alert('弹幕容器还未初始化');
+        return;
+    }
     player.danmu.sendComment({
         duration: 10000, //弹幕持续显示时间,毫秒(最低为5000毫秒)
         realTime: true, // 提前插入该弹幕
@@ -46,7 +55,7 @@ function sendDanmu(player) {
         // },
         el: createDom('div', `<p class="danmuel-text">${document.querySelector('#input').value}</p>`, {}, 'danmuel')
     })
-    document.querySelector('#input').value = '';
+    inputs.value = '';
 }
 // 初始化弹幕
 function initDanmu(player) {
@@ -81,7 +90,7 @@ function initDanmu(player) {
 function setDefin(player) {
     player.emit('resourceReady', [
         {
-            name: '1080',
+            name: '标清',
             url: 'http://s1.pstatp.com/cdn/expire-1-M/byted-player-videos/1.0.0/xgplayer-demo.mp4'
         },
         {
@@ -90,7 +99,7 @@ function setDefin(player) {
         },
         {
             name: '超清',
-            url: 'https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/cae-legoup-video-target/461b1dc0-c2e5-4bce-9c58-5ffea8f26c27s.mp4'
+            url: 'https://s3.bytecdn.cn/ies/fe_app_new/musics/tvc-v3.d84159ab.mp4'
         }
     ]);
 }
