@@ -7,6 +7,8 @@ const polyfill = [];
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const threadLoader = require('thread-loader');
+const fs = require('fs');
+const path = require('path');
 const jsWorkerPool = {
     // options
     // 产生的 worker 的数量，默认是 (cpu 核心数 - 1)
@@ -33,8 +35,9 @@ const devServer = {
 	disableHostCheck: true,
 	port: 12306,
 	index: '/',
-	contentBase: '/',
-	before(app) {
+    // contentBase: '/',
+    contentBase: [path.join(__dirname, 'browser'), path.join(__dirname, 'dist'), path.join(__dirname, '../../example')],
+	after(app) {
 		app.get('/', (req, res, next) => {
 			var contentText = fs.readFileSync('../../example/index.html', 'utf-8');
 			res.write(contentText);
