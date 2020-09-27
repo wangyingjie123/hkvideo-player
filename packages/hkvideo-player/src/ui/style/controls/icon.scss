@@ -1,7 +1,7 @@
 .hkplayer-skin-default {
     .hkplayer-icon {
         display: block;
-        width: 40px;
+        width: $playerIcomWidth;
         height: $controlHeight;
         overflow: hidden;
         fill: $playerIconColor;

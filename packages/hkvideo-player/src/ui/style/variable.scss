@@ -1,18 +1,21 @@
 // player
-
 $playerBgColor: #000;
 $playerIconColor: #fff;
+// 24px
+$playerIcomWidth: 44px;
+$playerIcomMargin: 14px 10px;
 
 // controls
 $controlsBgImage:linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .7));
 $controlHeight: 52px;
+
 // progress-bar
 $progressOuterBgColor: rgba(255, 255, 255, 0.30);
 $progressCacheBgColor: rgba(255, 255, 255, 0.50);
 $progressPlayedBgImage: linear-gradient(-90deg, #ff4141 0%, #E31106 100%);
 $progressPlayedShadow: 0 0 5px 0 rgba(0, 0, 0, 0.26);
 
-// play-pause
+// play-pause-replay
 $playWidth: 56px;
 
 // time
@@ -69,6 +72,5 @@ $errorColor: #fff;
 $errorRefreshColor: #ff4141;
 
 // volume
-$volumeSlideWidth: 40px;
 $volumeSlideHeight: 150px;
 $volumeSlidebarHeight: 100px;

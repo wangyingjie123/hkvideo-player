@@ -64,8 +64,8 @@ let s_progress = function () {
 
     function onCanplay() {
         // 传入自定义时长
-		if (diyDuration && player.duration > diyDuration) {
-            outer.style.width = `${(diyDuration / player.duration) * 100}%`;
+		if (diyDuration && player.duration < diyDuration) {
+            outer.style.width = `${(player.duration / diyDuration) * 100}%`;
 		}
         if (player.config.progressDot && util.typeOf(player.config.progressDot) === 'Array') {
             player.config.progressDot.forEach(item => {
