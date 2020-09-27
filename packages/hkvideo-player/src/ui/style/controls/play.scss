@@ -7,8 +7,8 @@
         display: block;
         cursor: pointer;
         .hkplayer-icon {
-            width: $playWidth;
-            height: $controlHeight;
+            width: 100%;
+            height: 100%;
             &-play, &-pause, &-replay {
                 width: 100%;
                 height: 100%;

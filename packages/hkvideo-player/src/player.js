@@ -483,14 +483,14 @@ class Player extends Proxy {
         // let Left = ro.left
         let dragLay = util.createDom('hk-pip-lay', '<div></div>', {}, 'hkplayer-pip-lay')
         this.root.appendChild(dragLay)
-        let dragHandle = util.createDom('hk-pip-drag', '<div class="drag-handle"><span>点击按住可拖动视频</span></div>', {
+        let dragHandle = util.createDom('hk-pip-drag', '<div class="drag-handle"><span>按住画面可移动小窗</span></div>', {
             tabindex: 9
-        }, 'hkplayer-pip-drag')
+        }, 'hkplayer-pip-drag');
         this.root.appendChild(dragHandle)
         // eslint-disable-next-line no-unused-vars
         let draggie = new Draggabilly('.hkplayer', {
             handle: '.drag-handle'
-        })
+        });
         util.addClass(this.root, 'hkplayer-pip-active');
         this.root.style.bottom = '120px';
         this.root.style.top = '';
@@ -520,7 +520,7 @@ class Player extends Proxy {
             }
         }
         if (this.config.fluid) {
-            this.root.style['padding-top'] = ''
+            this.root.style['padding-top'] = '';
         }
         let player = this;
         ['click', 'touchend'].forEach(item => {

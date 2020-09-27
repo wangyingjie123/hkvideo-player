@@ -1,11 +1,11 @@
 /* eslint-disable */
 import Player from '../player';
 let volume = function () {
-    let player = this
-    let root = player.root
-    let util = Player.util
-    let container, slider, bar, selected
-
+    let player = this;
+    let root = player.root;
+    let util = Player.util;
+    let container, slider, bar, selected, volumeVal;
+    const defaultBarheight = 100;
     function onCanplay() {
         // player.volume = Player.sniffer.device === 'mobile' ? 1 : player.config.volume
         player.volume = player.config.volume;
@@ -13,6 +13,7 @@ let volume = function () {
         slider = container.querySelector('.hkplayer-slider');
         bar = container.querySelector('.hkplayer-bar');
         selected = container.querySelector('.hkplayer-drag');
+        volumeVal = container.querySelector('.hkplayer-volume-val');
         if (Player.sniffer.device === 'mobile') {
             onVolumeChange();
         }
@@ -34,21 +35,21 @@ let volume = function () {
         let onMove = function (e) {
             e.preventDefault();
             e.stopPropagation();
-            util.event(e)
-            isMove = true
+            util.event(e);
+            isMove = true;
             let w = height - e.clientY + pos.y
             let now = w / barRect.height
             selected.style.height = `${w}px`
             player.volume = Math.max(Math.min(now, 1), 0)
         }
         let onUp = function (e) {
-            e.preventDefault()
-            e.stopPropagation()
-            util.event(e)
-            window.removeEventListener('mousemove', onMove)
-            window.removeEventListener('touchmove', onMove)
-            window.removeEventListener('mouseup', onUp)
-            window.removeEventListener('touchend', onUp)
+            e.preventDefault();
+            e.stopPropagation();
+            util.event(e);
+            window.removeEventListener('mousemove', onMove);
+            window.removeEventListener('touchmove', onMove);
+            window.removeEventListener('mouseup', onUp);
+            window.removeEventListener('touchend', onUp);
 
             if (!isMove) {
                 let w = barRect.height - (e.clientY - barRect.top)
@@ -124,13 +125,13 @@ let volume = function () {
         }
         _changeTimer = setTimeout(() => {
             if (Player.sniffer.device === 'mobile') {
-                util.removeClass(root, 'hkplayer-volume-muted')
-                util.removeClass(root, 'hkplayer-volume-large')
+                util.removeClass(root, 'hkplayer-volume-muted');
+                util.removeClass(root, 'hkplayer-volume-large');
                 if (player.video.muted || player.video.defaultMuted) {
                     if (!player.video.muted) {
-                        player.video.muted = true
+                        player.video.muted = true;
                     }
-                    player.video.defaultMuted = false
+                    player.video.defaultMuted = false;
                     util.addClass(root, 'hkplayer-volume-muted');
                 } else {
                     util.addClass(root, 'hkplayer-volume-large');
@@ -147,10 +148,11 @@ let volume = function () {
                     util.addClass(root, 'hkplayer-volume-large');
                 }
                 if (!bar) return;
-                let containerHeight = bar.getBoundingClientRect().height || 78;
+                let containerHeight = bar.getBoundingClientRect().height || defaultBarheight;
                 selected.style.height = `${player.volume * containerHeight}px`;
+                volumeVal.innerText = Math.floor(player.volume * 100);
             }
-        }, 50)
+        }, 50);
     }
     player.on('volumechange', onVolumeChange)
 

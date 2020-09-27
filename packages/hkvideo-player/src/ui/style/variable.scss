@@ -45,7 +45,6 @@ $definitionNameColor: rgba(255, 255, 255, 0.80);
 $definitionNameBgColor: rgba(0, 0, 0, 0.38);
 
 // replay
-
 $replayBgColor: rgba(0, 0, 0, 0.54);
 $replaySvgBgColor: rgba(0,0,0,0.58);
 $replaySvgPathFillColor: #ddd;
@@ -65,7 +64,11 @@ $liveColor: #fff;
 $pipPlayHeight: 48px;
 
 // error
-
 $errorBgColor: #000;
 $errorColor: #fff;
 $errorRefreshColor: #ff4141;
+
+// volume
+$volumeSlideWidth: 40px;
+$volumeSlideHeight: 150px;
+$volumeSlidebarHeight: 100px;
