@@ -72,8 +72,6 @@ $pipRight: 83px;
         position: fixed !important;
         width: $pipWidth;
         height: $pipHeight;
-        right: $pipRight;
-        bottom: $pipBottom;
         z-index: 999 !important;
         box-shadow: 0 20px 40px 0 rgba(0,0,0,0.20);
         &:hover {
@@ -96,7 +94,7 @@ $pipRight: 83px;
         .hkplayer-controls {
             z-index: 140;
             .hkplayer-placeholder, .hkplayer-fullscreen,
-            .hkplayer-cssfullscreen, .hkplayer-volume,
+            .hkplayer-cssfullscreen, .hkplayer-volume, .hkplayer-videopip,
             .danmu-switch, .hkplayer-playback, .hkplayer-definition {
                 display: none;
             }

@@ -21,4 +21,4 @@ let pip = function () {
     player.once('destroy', onDestroy)
 }
 
-Player.install('pip', pip)
+Player.install('pip', pip);

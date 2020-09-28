@@ -25,17 +25,17 @@
                 color: $playerIconColor;
             }
         }
-    }
-}
-
-.lang-is-en,
-.lang-is-jp {
-    .hkplayer-screenshot {
-        .name {
-            span {
-                width: 75px;
-                height: 20px;
-            }
+        &-ani {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            opacity: 0;
+            animation: fadeOut .2s ease-in-out;
+            z-index: 9999;
         }
     }
 }
+

@@ -12,8 +12,9 @@
 // hkplayer-download 9
 // hkplayer-rotate 10
 // hkplayer-volume 11
-// hkplayer-cssFullscreen 12
-// hkplayer-fullscreen 13
+// hkplayer-picture 12
+// hkplayer-cssFullscreen 13
+// hkplayer-fullscreen 14
 
 // z-index:
 // hkplayer-poster 100
@@ -111,4 +112,5 @@
 @import "controls/icon";
 @import "controls/tips";
 @import "controls/error";
-@import "controls/memoryPlay"
+@import "controls/memoryPlay";
+@import "controls/videopip.scss";

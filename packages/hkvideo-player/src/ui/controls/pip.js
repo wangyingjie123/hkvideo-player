@@ -6,7 +6,7 @@ let s_pip = function () {
     if (!player.config.pip) {
         return
     }
-    let pip = player.lang.PIP
+    let pip = player.lang.SMALL_WINDOW
     let btn = util.createDom('hk-pip', `<p class="name"><span>${pip}</span></p>`, {
         tabindex: 9
     }, 'hkplayer-pip')

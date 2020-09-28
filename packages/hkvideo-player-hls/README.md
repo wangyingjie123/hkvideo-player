@@ -2,13 +2,13 @@
 用于播放hls形式的直播、点播
 ### 开发
 ```
-1、cd packages/hkplayer-hls
+1、cd packages/hkvideo-player-hls
 2、npm i
 3、npm run dev
 ```
 ### 使用
 ```
-import HlsJsPlayer from '@baidu/hkplayer-hls';
+import HlsJsPlayer from 'hkvideo-player-hls';
 const player = new HlsJsPlayer({
     id: 'mse',
     autoplay: true,

@@ -382,7 +382,7 @@ class Player extends Proxy {
     }
 
     getFullscreen(el) {
-        let player = this
+        let player = this;
         if (el.requestFullscreen) {
             el.requestFullscreen()
         } else if (el.mozRequestFullScreen) {
@@ -397,7 +397,7 @@ class Player extends Proxy {
             util.addClass(el, 'hkplayer-is-cssfullscreen')
         }
     }
-
+    // 退出全屏
     exitFullscreen(el) {
         if (document.exitFullscreen) {
             document.exitFullscreen()
@@ -410,14 +410,27 @@ class Player extends Proxy {
         }
         util.removeClass(el, 'hkplayer-is-cssfullscreen')
     }
-
+    // 开启原生画中画
+    getVideoPip() {
+        let player = this;
+        if (player.video.requestPictureInPicture) {
+            this.video.requestPictureInPicture().catch(err => {});
+        }
+        util.addClass(player.root, 'hkplayer-is-videopip');
+    }
+    // 退出原生画中画
+    exitVideoPip() {
+        let player = this;
+        if (document.exitPictureInPicture) {
+            document.exitPictureInPicture();
+        }
+        util.removeClass(player.root, 'hkplayer-is-videopip');
+    }
+    // css全屏
     getCssFullscreen() {
-        let player = this
-        // if (player.config.fluid) {
-        //     player.root.style['padding-top'] = ''
-        // }
-        util.addClass(player.root, 'hkplayer-is-cssfullscreen')
-        player.emit('requestCssFullscreen')
+        let player = this;
+        util.addClass(player.root, 'hkplayer-is-cssfullscreen');
+        player.emit('requestCssFullscreen');
     }
 
     exitCssFullscreen() {
@@ -432,13 +445,13 @@ class Player extends Proxy {
     }
 
     getRotateFullscreen() {
-        let player = this
-        document.documentElement.style.width = '100%'
-        document.documentElement.style.height = '100%'
+        let player = this;
+        document.documentElement.style.width = '100%';
+        document.documentElement.style.height = '100%';
         if (player.root && !Player.util.hasClass(player.root, 'hkplayer-rotate-fullscreen')) {
-            Player.util.addClass(player.root, 'hkplayer-rotate-fullscreen')
+            Player.util.addClass(player.root, 'hkplayer-rotate-fullscreen');
         }
-        player.emit('getRotateFullscreen')
+        player.emit('getRotateFullscreen');
     }
 
     exitRotateFullscreen() {
@@ -452,8 +465,8 @@ class Player extends Proxy {
     }
 
     download() {
-        const url = getAbsoluteURL(this.config.url)
-        downloadUtil(url)
+        const url = getAbsoluteURL(this.config.url);
+        downloadUtil(url);
     }
 
     pluginsCall() {
@@ -478,45 +491,52 @@ class Player extends Proxy {
     }
 
     getPIP() {
-        // let ro = this.root.getBoundingClientRect()
-        // let Top = ro.top
-        // let Left = ro.left
-        let dragLay = util.createDom('hk-pip-lay', '<div></div>', {}, 'hkplayer-pip-lay')
+        // 原生画中画开启的时候不允许小窗
+        if (util.hasClass(this.root, 'hkplayer-is-videopip')) {
+            return;
+        }
+        let dragLay = util.createDom('hk-pip-lay', '<div></div>', {}, 'hkplayer-pip-lay');
         this.root.appendChild(dragLay)
         let dragHandle = util.createDom('hk-pip-drag', '<div class="drag-handle"><span>按住画面可移动小窗</span></div>', {
             tabindex: 9
         }, 'hkplayer-pip-drag');
-        this.root.appendChild(dragHandle)
+        this.root.appendChild(dragHandle);
         // eslint-disable-next-line no-unused-vars
         let draggie = new Draggabilly('.hkplayer', {
             handle: '.drag-handle'
         });
+        draggie.on('dragEnd', (e) => {
+            console.log(e);
+        });
+        const clientWidth = document.body.clientWidth;
+        const clientHeight = document.body.clientHeight;
+        const pipWidth = 420;
+        const pipHeight = 236.25;
         util.addClass(this.root, 'hkplayer-pip-active');
-        this.root.style.bottom = '120px';
-        this.root.style.top = '';
-        this.root.style.left = '';
-        this.root.style.width = '420px';
-        this.root.style.height = '236.25px';
+        this.root.style.top = (clientHeight - pipHeight) + 'px';
+        this.root.style.left = (clientWidth - pipWidth) + 'px';
+        this.root.style.width = pipWidth + 'px';
+        this.root.style.height = pipHeight + 'px';
         if (this.config.pipConfig) {
             if (this.config.pipConfig.top !== undefined) {
-                this.root.style.top = this.config.pipConfig.top + 'px'
-                this.root.style.bottom = ''
+                this.root.style.top = this.config.pipConfig.top + 'px';
+                this.root.style.bottom = '';
             }
             if (this.config.pipConfig.bottom !== undefined) {
-                this.root.style.bottom = this.config.pipConfig.bottom + 'px'
+                this.root.style.bottom = this.config.pipConfig.bottom + 'px';
             }
             if (this.config.pipConfig.left !== undefined) {
-                this.root.style.left = this.config.pipConfig.left + 'px'
+                this.root.style.left = this.config.pipConfig.left + 'px';
                 this.root.style.right = ''
             }
             if (this.config.pipConfig.right !== undefined) {
-                this.root.style.right = this.config.pipConfig.right + 'px'
+                this.root.style.right = this.config.pipConfig.right + 'px';
             }
             if (this.config.pipConfig.width !== undefined) {
-                this.root.style.width = this.config.pipConfig.width + 'px'
+                this.root.style.width = this.config.pipConfig.width + 'px';
             }
             if (this.config.pipConfig.height !== undefined) {
-                this.root.style.height = this.config.pipConfig.height + 'px'
+                this.root.style.height = this.config.pipConfig.height + 'px';
             }
         }
         if (this.config.fluid) {
@@ -525,9 +545,9 @@ class Player extends Proxy {
         let player = this;
         ['click', 'touchend'].forEach(item => {
             dragLay.addEventListener(item, function (e) {
-                e.preventDefault()
-                e.stopPropagation()
-                player.exitPIP()
+                e.preventDefault();
+                e.stopPropagation();
+                player.exitPIP();
                 // player.root.style.top = `${Top}px`
                 // player.root.style.left = `${Left}px`
             })
@@ -535,7 +555,7 @@ class Player extends Proxy {
     }
 
     exitPIP() {
-        util.removeClass(this.root, 'hkplayer-pip-active')
+        util.removeClass(this.root, 'hkplayer-pip-active');
         this.root.style.right = ''
         this.root.style.bottom = ''
         this.root.style.top = ''

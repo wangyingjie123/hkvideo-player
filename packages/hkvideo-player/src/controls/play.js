@@ -18,11 +18,7 @@ let play = function () {
             if (playPromise !== undefined && playPromise) {
                 playPromise.catch(err => {});
             }
-        }
-        // else if (player.ended) {
-        //     player.emit('replayBtnClick');
-        // }
-        else {
+        } else {
             player.pause();
         }
     }
