@@ -1,0 +1,29 @@
+{
+    "name": "hkvideo-player",
+    "version": "1.0.0",
+    "description": "a powerful video player",
+    "main": "index.js",
+    "directories": {
+        "example": "example"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wangyingjie123/hkvideo-player.git"
+    },
+    "keywords": [
+        "video",
+        "player",
+        "hls",
+        "mp4",
+        "flv"
+    ],
+    "author": "wangyingjie159@gmail.com",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/wangyingjie123/hkvideo-player/issues"
+    },
+    "homepage": "https://github.com/wangyingjie123/hkvideo-player#readme"
+}
