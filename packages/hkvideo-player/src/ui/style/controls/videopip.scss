@@ -1,14 +1,11 @@
 .hkplayer-skin-default {
-    // 全屏
-    .hkplayer-fullscreen,
-    .hkplayer-fullscreen-img {
+    .hkplayer-videopip {
         position: relative;
-        order: 14;
+        order: 12;
         display: block;
         cursor: pointer;
-        margin-right: 7px;
         .hkplayer-icon {
-            &-requestfull, &-exitfull {
+            &-openpip {
                 width: 100%;
                 height: 100%;
                 &:hover {
@@ -20,21 +17,14 @@
                     margin: $playerIcomMargin;
                 }
             }
-            .hkplayer-icon-requestfull {
-                display: block;
-            }
-
-            .hkplayer-icon-exitfull {
-                display: none;
-            }
         }
 
         .hkplayer-tips {
-            .hkplayer-tip-requestfull {
+            .hkplayer-tip-openpip {
                 display: block;
             }
 
-            .hkplayer-tip-exitfull {
+            .hkplayer-tip-exitpip {
                 display: none;
             }
         }
@@ -49,26 +39,15 @@
     }
 }
 
-.hkplayer-skin-default.hkplayer-is-fullscreen {
-
-    .hkplayer-fullscreen,
-    .hkplayer-fullscreen-img {
-        .hkplayer-icon {
-            .hkplayer-icon-requestfull {
-                display: none;
-            }
-
-            .hkplayer-icon-exitfull {
-                display: block;
-            }
-        }
-
+.hkplayer-skin-default.hkplayer-is-videopip {
+    
+    .hkplayer-videopip  {
         .hkplayer-tips {
-            .hkplayer-tip-requestfull {
+            .hkplayer-tip-openpip {
                 display: none;
             }
 
-            .hkplayer-tip-exitfull {
+            .hkplayer-tip-exitpip {
                 display: block;
             }
         }

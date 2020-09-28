@@ -2,7 +2,7 @@
     .hkplayer-cssfullscreen,
     .hkplayer-cssfullscreen-img {
         position: relative;
-        order: 12;
+        order: 13;
         display: block;
         cursor: pointer;
 
@@ -30,8 +30,6 @@
         }
 
         .hkplayer-tips {
-            margin-left: -40px;
-
             .hkplayer-tip-requestfull {
                 display: block;
             }

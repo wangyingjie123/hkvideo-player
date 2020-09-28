@@ -72,3 +72,11 @@
         transform-origin: center center;
     }
 }
+@keyframes fadeOut{
+    0%, 50% {
+        opacity: 1
+    }
+    to { 
+        opacity: 0
+    }
+}
