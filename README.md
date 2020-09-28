@@ -5,9 +5,7 @@ npm install hkvideo-player
 ```
 ## 2.使用
 ```javascript { .theme-peacock } 
-// 1、import
 import Player from 'hkvideo-player'
-
 const players = new Player({
     id: 'app',
     url: '',
@@ -102,7 +100,7 @@ player.emit('事件名')
 
 
 ## 6.自定义插件开发
-```javascript { .theme-peacock }
+```javascript { .theme-dark }
 // pluginName.js
 import Player from 'hkvideo-player';
 

@@ -14,7 +14,6 @@ let player = new Player({
     // url: 'https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/cae-legoup-video-target/461b1dc0-c2e5-4bce-9c58-5ffea8f26c27.mp4'
 });
 // initDanmu(player);
-setDefin(player);
 document.querySelector('#sendDanmu').onclick = () => {
     sendDanmu(player);
 };

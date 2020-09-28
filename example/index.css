@@ -56,6 +56,7 @@
     -webkit-text-fill-color: transparent;
     background-repeat: repeat;
     -webkit-background-clip: text;
+    background-clip: text;
     text-shadow: none;
 }
 .hkplayer-skin-default .danmuel-text, .right .danmuel-text {
