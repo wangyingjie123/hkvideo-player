@@ -3,6 +3,7 @@
     width: 100%;
     display: flex;
     position: relative;
+    height: 1600px;
 }
 * {
     box-sizing: border-box;

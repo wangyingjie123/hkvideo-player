@@ -1,5 +1,6 @@
 /* eslint-disable */
 import Player from '../player';
+import util from '../utils/util';
 let screenShot = function () {
     let player = this;
     let root = player.root;
@@ -20,8 +21,9 @@ let screenShot = function () {
     let img = new Image();
     canvas.width = this.config.width || 600;
     canvas.height = this.config.height || 337.5;
+    let flashTimer = 0;
     // 保存到本地
-    let saveScreenShot = function (data, filename) {
+    const saveScreenShot = function (data, filename) {
         let saveLink = document.createElement('a');
         saveLink.href = data;
         saveLink.download = filename;
@@ -29,8 +31,20 @@ let screenShot = function () {
         event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
         saveLink.dispatchEvent(event);
     }
-
-    function onScreenShotBtnClick(save = true) {
+    // 创建闪光动画
+    const screenFlash = () => {
+        let ani = util.createDom('div', '', {}, 'hkplayer-rightslide-ani');
+        root.appendChild(ani);
+        flashTimer = setTimeout(_ => {
+            root.removeChild(ani);
+        }, 500);
+    }
+    // 创建预览图
+    const createPreview = () => {
+        
+    }
+    // 按钮点击事件
+    const onScreenShotBtnClick = (save = true)  => {
         canvas.width = player.video.videoWidth || 600;
         canvas.height = player.video.videoHeight || 337.5;
         img.onload = (function () {
@@ -39,13 +53,15 @@ let screenShot = function () {
             img.src = canvas.toDataURL(type, encoderOptions).replace(type, 'image/octet-stream');
             let screenShotImg = img.src.replace(/^data:image\/[^;]+/, 'data:application/octet-stream');
             player.emit('screenShot', screenShotImg);
-            save && saveScreenShot(screenShotImg, '截图' + format);
+            // save && saveScreenShot(screenShotImg, '截图' + format);
         })();
+        screenFlash();
     }
     player.on('screenShotBtnClick', onScreenShotBtnClick);
 
     function onDestroy() {
         player.off('screenShotBtnClick', onScreenShotBtnClick);
+        clearTimeout(flashTimer);
         player.off('destroy', onDestroy);
     }
     player.once('destroy', onDestroy);

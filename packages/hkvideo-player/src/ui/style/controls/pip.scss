@@ -1,7 +1,5 @@
-$pipWidth: 420px;
-$pipHeight: 236.25px;
-$pipBottom: 120px;
-$pipRight: 83px;
+$pipWidth: 426px;
+$pipHeight: 240px;
 .hkplayer-skin-default {
     .hkplayer-pip {
         order: 9;
@@ -72,6 +70,8 @@ $pipRight: 83px;
         position: fixed !important;
         width: $pipWidth;
         height: $pipHeight;
+        right: 83px;
+        bottom: 120px;
         z-index: 999 !important;
         box-shadow: 0 20px 40px 0 rgba(0,0,0,0.20);
         &:hover {
@@ -93,6 +93,7 @@ $pipRight: 83px;
         }
         .hkplayer-controls {
             z-index: 140;
+            transition: none;
             .hkplayer-placeholder, .hkplayer-fullscreen,
             .hkplayer-cssfullscreen, .hkplayer-volume, .hkplayer-videopip,
             .danmu-switch, .hkplayer-playback, .hkplayer-definition {
@@ -102,8 +103,8 @@ $pipRight: 83px;
                 position: absolute;
                 width: $pipPlayHeight;
                 height: $pipPlayHeight;
-                bottom: ($pipHeight - $pipPlayHeight) / 2;
-                left: ($pipWidth - $pipPlayHeight) / 2;
+                left: 50%;
+                margin-left: -($pipPlayHeight / 2);
                 background: rgba(0, 0, 0, .5);
                 border-radius: 50%;
                 .hkplayer-tips {

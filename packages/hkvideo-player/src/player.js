@@ -505,40 +505,70 @@ class Player extends Proxy {
         let draggie = new Draggabilly('.hkplayer', {
             handle: '.drag-handle'
         });
-        draggie.on('dragEnd', (e) => {
-            console.log(e);
+        let scrollEvent = null;
+        draggie.on('pointerDown', _ => {
+            let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            // 拖拽的时候禁止页面滚动
+            scrollEvent = () => window.scrollTo(0, scrollTop);
+            window.addEventListener('scroll', scrollEvent, false);
+        })
+        draggie.on('pointerUp', (e) => {
+            let moveendLeft = (e.x - e.offsetX).toFixed(3);
+            let moveendTop = (e.y - e.offsetY).toFixed(3);
+            window.removeEventListener('scroll', scrollEvent);
+            // 记录上次移动位置
+            sessionStorage.setItem('dragPos', JSON.stringify({
+                left: moveendLeft,
+                top: moveendTop
+            }));
         });
-        const clientWidth = document.body.clientWidth;
-        const clientHeight = document.body.clientHeight;
-        const pipWidth = 420;
-        const pipHeight = 236.25;
+        // 小窗默认宽高，左右位置
+        let pipWidth = 426, pipHeight = 240, top = 0, left = 0;
+        let prevPos = sessionStorage.getItem('dragPos');
         util.addClass(this.root, 'hkplayer-pip-active');
-        this.root.style.top = (clientHeight - pipHeight) + 'px';
-        this.root.style.left = (clientWidth - pipWidth) + 'px';
-        this.root.style.width = pipWidth + 'px';
-        this.root.style.height = pipHeight + 'px';
+        if (this.config.pipConfig) {
+            if (this.config.pipConfig.width !== undefined) {
+                pipWidth = this.config.pipConfig.width;
+            }
+            if (this.config.pipConfig.height !== undefined) {
+                pipHeight = this.config.pipConfig.height;
+            }
+        }
+        if (prevPos) {
+            let prevPosObj = JSON.parse(prevPos);
+            top = prevPosObj.top;
+            left = prevPosObj.left;
+        }
+        //  else {
+        //     const clientWidth = document.documentElement.clientWidth;
+        //     const clientHeight = document.documentElement.clientHeight;
+        //     console.log(clientHeight, clientWidth);
+        //     top = clientHeight - pipHeight - offset;
+        //     left = clientWidth - pipWidth - offset;
+        // }
         if (this.config.pipConfig) {
             if (this.config.pipConfig.top !== undefined) {
-                this.root.style.top = this.config.pipConfig.top + 'px';
+                top = this.config.pipConfig.top;
                 this.root.style.bottom = '';
             }
             if (this.config.pipConfig.bottom !== undefined) {
                 this.root.style.bottom = this.config.pipConfig.bottom + 'px';
             }
             if (this.config.pipConfig.left !== undefined) {
-                this.root.style.left = this.config.pipConfig.left + 'px';
-                this.root.style.right = ''
+                left = this.config.pipConfig.left;
+                this.root.style.right = '';
             }
             if (this.config.pipConfig.right !== undefined) {
                 this.root.style.right = this.config.pipConfig.right + 'px';
             }
-            if (this.config.pipConfig.width !== undefined) {
-                this.root.style.width = this.config.pipConfig.width + 'px';
-            }
-            if (this.config.pipConfig.height !== undefined) {
-                this.root.style.height = this.config.pipConfig.height + 'px';
-            }
         }
+        this.root.style.top = top ? top + 'px' : '';
+        this.root.style.left = left ? left + 'px' : '';
+        this.root.style.width = pipWidth + 'px';
+        this.root.style.height = pipHeight + 'px';
+        let pipactivePlay = util.findDom(this.controls, '.hkplayer-play');
+        // 100 是控制条高度 + playicon高度， 居中显示playicon
+        pipactivePlay.style.top = `${-(pipHeight - 52) / 2}px`;
         if (this.config.fluid) {
             this.root.style['padding-top'] = '';
         }
@@ -556,14 +586,14 @@ class Player extends Proxy {
 
     exitPIP() {
         util.removeClass(this.root, 'hkplayer-pip-active');
-        this.root.style.right = ''
-        this.root.style.bottom = ''
-        this.root.style.top = ''
-        this.root.style.left = ''
+        this.root.style.right = '';
+        this.root.style.bottom = '';
+        this.root.style.top = '';
+        this.root.style.left = '';
         if (this.config.fluid) {
-            this.root.style['width'] = '100%'
-            this.root.style['height'] = '0'
-            this.root.style['padding-top'] = `${this.config.height * 100 / this.config.width}%`
+            this.root.style['width'] = '100%';
+            this.root.style['height'] = '0';
+            this.root.style['padding-top'] = `${this.config.height * 100 / this.config.width}%`;
         } else {
             if (this.config.width) {
                 if (typeof this.config.width !== 'number') {

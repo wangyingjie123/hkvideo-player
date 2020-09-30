@@ -21,9 +21,9 @@ let s_start = function () {
             }
             if (!player.config.enableContextmenu) {
                 player.video.addEventListener('contextmenu', e => {
-                    e.preventDefault()
-                    e.stopPropagation()
-                })
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
             }
         }
     }
