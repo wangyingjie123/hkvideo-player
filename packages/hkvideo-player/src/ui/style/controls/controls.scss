@@ -27,7 +27,6 @@
 .hkplayer-skin-default.hkplayer-inactive {
     &:not(.hkplayer-pip-active) {
         .hkplayer-controls {
-            // display: none;
             transform: translate3d(0, 120%, 0);
         }
     }

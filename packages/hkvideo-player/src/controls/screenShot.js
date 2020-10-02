@@ -1,6 +1,7 @@
 /* eslint-disable */
 import Player from '../player';
 import util from '../utils/util';
+import closeIcon from '../ui/assets/close.svg';
 let screenShot = function () {
     let player = this;
     let root = player.root;
@@ -8,14 +9,15 @@ let screenShot = function () {
     if (!screenShotOptions) {
         return;
     }
-
+    // 屏幕截图预览
+    let preview = null, screenShotImg = '';
     let encoderOptions = 0.92;
     if (screenShotOptions.quality || screenShotOptions.quality === 0) {
         encoderOptions = screenShotOptions.quality;
     }
     let type = screenShotOptions.type === undefined ? 'image/png' : screenShotOptions.type;
     let format = screenShotOptions.format === undefined ? '.png' : screenShotOptions.format;
-
+    // canvas
     let canvas = document.createElement('canvas');
     let canvasCtx = canvas.getContext('2d');
     let img = new Image();
@@ -40,19 +42,50 @@ let screenShot = function () {
         }, 500);
     }
     // 创建预览图
-    const createPreview = () => {
-        
+    const createPreview = (img) => {
+        const slide = document.querySelector('.hkplayer-rightslide');
+        screenShotImg = img.replace(/^data:image\/[^;]+/, 'data:application/octet-stream');
+        if (preview) {
+            const prevImg = util.findDom(preview, '.screenshot-prev-img');
+            prevImg.src = img;
+            preview.style.display = 'block';
+            return;
+        }
+        preview = util.createDom('div', `
+            <div class="screenshot-close">
+                <span class="screenshot-close-bg"></span>
+                <svg class="screenshot-close-btn">
+                    <use xlink:href="#hk-svg-close">${closeIcon}</use>
+                </svg>
+            </div>
+            <div class="screenshot-prev-top">
+                <img class="screenshot-prev-img" src=${img} alt="屏幕截图" />
+            </div>
+        `, {}, 'screenshot-prev');
+        const saveBtn = util.createDom('div',
+            '<div class="screenshot-btn-save">保存</div>', {}, 'screenshot-btn');
+        preview.appendChild(saveBtn);
+        slide.appendChild(preview);
+        const closeBtn = util.findDom(preview, '.screenshot-close');
+        const saveBtnevent = util.findDom(saveBtn, '.screenshot-btn-save');
+        saveBtnevent.addEventListener('click', () => {
+            saveScreenShot(screenShotImg, 'hkvideo截图' + format);
+        });
+        closeBtn.addEventListener('click', () => {
+            preview.style.display = 'none';
+        });
     }
     // 按钮点击事件
-    const onScreenShotBtnClick = (save = true)  => {
+    const onScreenShotBtnClick = ()  => {
         canvas.width = player.video.videoWidth || 600;
         canvas.height = player.video.videoHeight || 337.5;
         img.onload = (function () {
             canvasCtx.drawImage(player.video, 0, 0, canvas.width, canvas.height);
             img.setAttribute('crossOrigin', 'anonymous');
-            img.src = canvas.toDataURL(type, encoderOptions).replace(type, 'image/octet-stream');
-            let screenShotImg = img.src.replace(/^data:image\/[^;]+/, 'data:application/octet-stream');
-            player.emit('screenShot', screenShotImg);
+            const imgsrc = canvas.toDataURL(type, encoderOptions).replace(type, 'image/octet-stream');
+            img.src = imgsrc;
+            createPreview(imgsrc);
+            // player.emit('screenShot', screenShotImg);
             // save && saveScreenShot(screenShotImg, '截图' + format);
         })();
         screenFlash();

@@ -92,7 +92,7 @@ const umd = {
         // new BundleAnalyzerPlugin({
         //     defaultSizes: 'parsed'
         // })
-        new HardSourceWebpackPlugin()
+        // new HardSourceWebpackPlugin()
     ],
     devServer,
 	optimization: {
@@ -140,7 +140,7 @@ const client = {
 	},
     mode: 'production',
     plugins: [
-        new HardSourceWebpackPlugin()
+        // new HardSourceWebpackPlugin()
     ],
 	optimization: {
 		minimize: true
