@@ -7,6 +7,9 @@ let s_screenShot = function () {
     if (!player.config.screenShot) {
         return
     }
+    if (player.config.url.indexOf('blob:') < 0) {
+        return;
+    }
     let screenShotText = player.lang.SCREENSHOT;
     let rightControl = util.createDom('hk-right-slide', '', {
         tabindex: 11

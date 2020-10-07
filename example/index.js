@@ -1,14 +1,15 @@
 import { ajax, sendDanmu, initDanmu, danmu, setDefin } from './tools.js';
 const Player = window.Player;
+let player;
 ajax('./haokan.mp4', 'blob', function(res){
     const src = URL.createObjectURL(res);
-    let player = new Player({
+    player = new Player({
         id: 'app',
         // diyDuration: 300, // 自定义时长
         cssFullscreen: true,
         fluid: true, // 流式布局
         ignores: ['replay'], // 禁止某个插件执行
-        // danmu, // 弹幕选项
+        danmu, // 弹幕选项
         screenShot: true, // 屏幕截图--有跨域限制，url需要是本地blob地址
         playbackRate: [0.75, 1, 1.5, 2], // 倍速播放
         videopip: true, // 原生画中画

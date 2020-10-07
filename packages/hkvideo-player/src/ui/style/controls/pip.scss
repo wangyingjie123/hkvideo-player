@@ -30,7 +30,8 @@ $pipHeight: 240px;
         }
     }
     .hkplayer-pip-lay {
-        display: none;
+        opacity: 0;
+        transition: opacity .2s;
         width: 12px;
         height: 12px;
         position: absolute;
@@ -50,13 +51,14 @@ $pipHeight: 240px;
         height: 100%;
         line-height: 26px;
         z-index: 30;
-        display: none;
+        opacity: 0;
+        transition: opacity .2s;
         .drag-handle {
             width: 100%;
             height: 100%;
             background-image: linear-gradient(0deg,transparent 70%,rgba(0,0,0,0.5));
             color: #fff;
-            padding: 8px;
+            padding: 0 8px;
             box-sizing: border-box;
         }
         @at-root .hkplayer.hkplayer-inactive & {
@@ -75,11 +77,8 @@ $pipHeight: 240px;
         z-index: 999 !important;
         box-shadow: 0 20px 40px 0 rgba(0,0,0,0.20);
         &:hover {
-            .hkplayer-pip-drag {
-                display: flex;
-            }
-            .hkplayer-pip-lay {
-                display: block;
+            .hkplayer-pip-drag, .hkplayer-pip-lay {
+                opacity: 1;
             }
         }
         &.hkplayer-playing {
@@ -87,7 +86,7 @@ $pipHeight: 240px;
                 display: none;
             }
         }
-        //  小窗下关闭弹幕
+        //  小窗下关闭弹幕、屏幕截图功能
         .hkplayer-danmu {
             display: none;
         }

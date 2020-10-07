@@ -496,7 +496,7 @@ class Player extends Proxy {
             return;
         }
         let dragLay = util.createDom('hk-pip-lay', '<div></div>', {}, 'hkplayer-pip-lay');
-        this.root.appendChild(dragLay)
+        this.root.appendChild(dragLay);
         let dragHandle = util.createDom('hk-pip-drag', '<div class="drag-handle"><span>按住画面可移动小窗</span></div>', {
             tabindex: 9
         }, 'hkplayer-pip-drag');
@@ -597,44 +597,47 @@ class Player extends Proxy {
         } else {
             if (this.config.width) {
                 if (typeof this.config.width !== 'number') {
-                    this.root.style.width = this.config.width
+                    this.root.style.width = this.config.width;
                 } else {
-                    this.root.style.width = `${this.config.width}px`
+                    this.root.style.width = `${this.config.width}px`;
                 }
             }
             if (this.config.height) {
                 if (typeof this.config.height !== 'number') {
-                    this.root.style.height = this.config.height
+                    this.root.style.height = this.config.height;
                 } else {
-                    this.root.style.height = `${this.config.height}px`
+                    this.root.style.height = `${this.config.height}px`;
                 }
             }
         }
 
-        let dragLay = util.findDom(this.root, '.hkplayer-pip-lay')
+        let dragLay = util.findDom(this.root, '.hkplayer-pip-lay');
         if (dragLay && dragLay.parentNode) {
-            dragLay.parentNode.removeChild(dragLay)
+            dragLay.parentNode.removeChild(dragLay);
         }
-        let dragHandle = util.findDom(this.root, '.hkplayer-pip-drag')
+        let dragHandle = util.findDom(this.root, '.hkplayer-pip-drag');
         if (dragHandle && dragHandle.parentNode) {
-            dragHandle.parentNode.removeChild(dragHandle)
+            dragHandle.parentNode.removeChild(dragHandle);
         }
+        let pipactivePlay = util.findDom(this.controls, '.hkplayer-play');
+        // 100 是控制条高度 + playicon高度， 居中显示playicon
+        pipactivePlay.style.top = '';
     }
 
     updateRotateDeg() {
         let player = this;
         if (!player.rotateDeg) {
-            player.rotateDeg = 0
+            player.rotateDeg = 0;
         }
 
-        let width = player.root.offsetWidth
-        let height = player.root.offsetHeight
-        let targetWidth = player.video.videoWidth
-        let targetHeight = player.video.videoHeight
+        let width = player.root.offsetWidth;
+        let height = player.root.offsetHeight;
+        let targetWidth = player.video.videoWidth;
+        let targetHeight = player.video.videoHeight;
 
         if (!player.config.rotate.innerRotate && player.config.rotate.controlsFix) {
-            player.root.style.width = height + 'px'
-            player.root.style.height = width + 'px'
+            player.root.style.width = height + 'px';
+            player.root.style.height = width + 'px';
         }
 
         let scale
