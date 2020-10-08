@@ -31,6 +31,7 @@
 // hkplayer-is-cssfullscreen 99999
 // hkplayer-process 35
 // hkplayer-rightslide 11
+// hkplayer-contextmenu 150
 
 .hkplayer-skin-default{
     background: $playerBgColor;
@@ -115,3 +116,4 @@
 @import "controls/error";
 @import "controls/memoryPlay";
 @import "controls/videopip.scss";
+@import "controls/contextmenu.scss";

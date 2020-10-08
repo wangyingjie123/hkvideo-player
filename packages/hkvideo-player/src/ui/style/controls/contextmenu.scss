@@ -1,0 +1,27 @@
+.hkplayer-skin-default {
+    .hkvideo-ctxmenu {
+        width: 170px;
+        padding: 10px 0;
+        font-size: 14px;
+        color: #ddd;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background-color: $contextmenubg;
+        border-radius: 5px;
+        z-index: 3002;
+    }
+    .hkvideo-ctxmenulist, .hkvideo-ctxmenuitem {
+        list-style: none;
+    }
+    .hkvideo-ctxmenuitem {
+        height: 42px;
+        line-height: 42px;
+        padding-left: 24px;
+        opacity: .8;
+        cursor: pointer;
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
