@@ -11,30 +11,31 @@ let s_start = function () {
         <div class="hkplayer-icon-pause">${StartPauseIcon}</div>`, {}, 'hkplayer-start');
 
     function onPlayerReady(player) {
-        util.addClass(player.root, 'hkplayer-skin-default')
+        util.addClass(player.root, 'hkplayer-skin-default');
         if (player.config) {
-            player.config.autoplay && !util.isWeiXin() && util.addClass(player.root, 'hkplayer-is-enter')
+            player.config.autoplay && !util.isWeiXin() && util.addClass(player.root, 'hkplayer-is-enter');
             if (player.config.lang && player.config.lang === 'en') {
-                util.addClass(player.root, 'lang-is-en')
+                util.addClass(player.root, 'lang-is-en');
             } else if (player.config.lang === 'jp') {
-                util.addClass(player.root, 'lang-is-jp')
+                util.addClass(player.root, 'lang-is-jp');
             }
             if (!player.config.enableContextmenu) {
-                player.video.addEventListener('contextmenu', e => {
+                player.root.addEventListener('contextmenu', e => {
                     e.preventDefault();
                     e.stopPropagation();
+                    player.emit('showCtxMenu', e);
                 });
             }
         }
     }
 
     if (player.isReady) {
-        root.appendChild(btn)
-        onPlayerReady(player)
+        root.appendChild(btn);
+        onPlayerReady(player);
     } else {
         player.once('ready', () => {
-            root.appendChild(btn)
-            onPlayerReady(player)
+            root.appendChild(btn);
+            onPlayerReady(player);
         });
     }
     player.on('play', () => {

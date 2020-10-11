@@ -1,7 +1,8 @@
 // player
 $playerBgColor: #000;
 $playerIconColor: #fff;
-// 24px
+
+// Icon 24px
 $playerIcomWidth: 44px;
 $playerIcomMargin: 14px 10px;
 
@@ -55,7 +56,6 @@ $replaySvgHoverBgColor: rgba(0, 0, 0, .38);
 $replaySvgHoverFillColor: #fff;
 $replayTxtColor: #fff;
 
-
 // enter-logo
 $enterTipsBgColor: -webkit-linear-gradient(right, #000, red, red, red, #000);
 $ieEnterTipsBgColor: linear-gradient(to right, #000, red, red, red, #000);
@@ -74,3 +74,6 @@ $errorRefreshColor: #ff4141;
 // volume
 $volumeSlideHeight: 150px;
 $volumeSlidebarHeight: 100px;
+
+// contextmenu
+$contextmenubg: rgba(26, 26, 26, .96);

@@ -6,12 +6,12 @@ let pc = function () {
     let controls = player.controls;
     let root = player.root;
     let clk = 0;
-    let _click_
+    let _click_;
     player.onElementClick = function (e, element) {
         e.preventDefault();
-        if (!this.config.closeVideoStopPropagation) {
-            e.stopPropagation();
-        }
+        // if (!this.config.closeVideoStopPropagation) {
+            // e.stopPropagation();
+        // }
         let player = this;
         if (!player.config.closeVideoClick) {
             clk++
@@ -41,7 +41,7 @@ let pc = function () {
     }
     player.video.addEventListener('click', function (e) {
         player.onElementClick(e, player.video)
-    }, false);
+    });
 
     player.onElementDblclick = function (e, element) {
         e.preventDefault()
