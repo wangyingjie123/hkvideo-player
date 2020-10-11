@@ -1,5 +1,50 @@
 .hkplayer-skin-default {
     .hkvideo-ctxmenu {
+        width: 100%;
+        display: block;
+    }
+    .hkvideo-ctxmenuhelp {
+        position: absolute;
+        width: 360px;
+        height: 400px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(26,26,26,.96);
+        padding: 25px 20px;
+        border-radius: 5px;
+        &-title {
+            margin-left: 10px;
+            margin-bottom: 12px;
+            font-size: 16px;
+            color: #fff;
+        }
+        &-list {
+            font-size: 14px;
+        }
+        &-item {
+            padding: 0 15px;
+            height: 32px;
+            line-height: 32px;
+            display: inline-block;
+            border-radius: 14px;
+            margin-bottom: 2px;
+            color: #999;
+            cursor: pointer;
+            .menuhelp-label {
+                color: $playerIconColor;
+            }
+            &:hover {
+                color: $playerIconColor;
+                background-color: #2a2a2a;
+                .menuhelp-label {
+                    color: $sliderDragBgColor;
+                }
+            }
+        }
+    }
+    .hkvideo-ctxmenulist {
+        list-style: none;
         width: 170px;
         padding: 10px 0;
         font-size: 14px;
@@ -9,12 +54,10 @@
         left: 50%;
         background-color: $contextmenubg;
         border-radius: 5px;
-        z-index: 3002;
-    }
-    .hkvideo-ctxmenulist, .hkvideo-ctxmenuitem {
-        list-style: none;
+        z-index: 150;
     }
     .hkvideo-ctxmenuitem {
+        list-style: none;
         height: 42px;
         line-height: 42px;
         padding-left: 24px;

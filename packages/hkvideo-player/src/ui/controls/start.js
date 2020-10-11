@@ -23,7 +23,7 @@ let s_start = function () {
                 player.root.addEventListener('contextmenu', e => {
                     e.preventDefault();
                     e.stopPropagation();
-                    // player.emit('showCtxMenu', e);
+                    player.emit('showCtxMenu', e);
                 });
             }
         }
