@@ -137,7 +137,7 @@ let s_progress = function () {
     if (typeof player.config.disableSwipeHandler === 'function' && typeof player.config.enableSwipeHandler === 'function') {
         player.root.addEventListener('touchmove', e => {
             e.preventDefault();
-            // e.stopPropagation();
+            e.stopPropagation();
             if (!player.disableSwipe) {
                 player.disableSwipe = true
                 player.config.disableSwipeHandler.call(player);
@@ -181,7 +181,7 @@ let s_progress = function () {
 
             let move = function (e) {
                 // e.preventDefault()
-                e.stopPropagation()
+                // e.stopPropagation()
                 util.event(e)
                 player.isProgressMoving = true
                 let w = (isRotate ? e.clientY : e.clientX) - left
@@ -203,7 +203,7 @@ let s_progress = function () {
             }
             let up = function (e) {
                 // e.preventDefault()
-                e.stopPropagation()
+                e.stopPropagation();
                 util.event(e)
                 window.removeEventListener('mousemove', move)
                 window.removeEventListener('touchmove', move, {

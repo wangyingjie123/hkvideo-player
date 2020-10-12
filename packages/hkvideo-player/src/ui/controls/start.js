@@ -23,6 +23,7 @@ let s_start = function () {
                 player.root.addEventListener('contextmenu', e => {
                     e.preventDefault();
                     e.stopPropagation();
+                    if (util.hasClass(root, 'hkplayer-pip-active') || util.hasClass(root, 'hkplayer-nostart')) return; 
                     player.emit('showCtxMenu', e);
                 });
             }

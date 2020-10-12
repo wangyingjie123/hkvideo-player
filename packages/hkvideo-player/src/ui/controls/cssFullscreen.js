@@ -25,8 +25,8 @@ let s_cssFullscreen = function () {
 
     ['click', 'touchend'].forEach(item => {
         btn.addEventListener(item, function (e) {
-            e.preventDefault()
-            e.stopPropagation()
+            e.preventDefault();
+            e.stopPropagation();
             player.emit('cssFullscreenBtnClick')
         })
     })

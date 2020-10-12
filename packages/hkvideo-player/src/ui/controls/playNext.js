@@ -18,8 +18,8 @@ let s_playNext = function () {
 
     ['click', 'touchend'].forEach(item => {
         btn.addEventListener(item, e => {
-            e.preventDefault()
-            e.stopPropagation()
+            e.preventDefault();
+            e.stopPropagation();
             Player.util.addClass(player.root, 'hkplayer-is-enter')
             player.emit('playNextBtnClick')
         })
