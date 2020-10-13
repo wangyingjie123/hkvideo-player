@@ -124,7 +124,8 @@ const danmu = {
         start: 0, // 区域顶部到播放器顶部所占播放器高度的比例
         end: 0.8 // 区域底部到播放器顶部所占播放器高度的比例
     },
-    mouseControl: true,
+    panel: true, // 弹幕设置面板
+    mouseControl: true, // 戍边控制
     mouseControlPause: true, // 鼠标移入暂停
     closeDefaultBtn: false, // 关闭播放器提供的默认开关
     defaultOff: false // 开启此项后弹幕不会初始化，默认初始化弹幕

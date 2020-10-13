@@ -8,7 +8,6 @@ let pc = function () {
     let clk = 0;
     let _click_;
     player.onElementClick = function (e, element) {
-        e.preventDefault();
         // if (!this.config.closeVideoStopPropagation) {
             // e.stopPropagation();
         // }
@@ -38,6 +37,8 @@ let pc = function () {
                 clk = 0
             }
         }
+        e.preventDefault();
+        // e.stopPropagation();
     }
     player.video.addEventListener('click', function (e) {
         player.onElementClick(e, player.video)

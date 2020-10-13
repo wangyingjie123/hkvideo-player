@@ -5,16 +5,17 @@
 // hkplayer-time  2
 // hkplayer-placeholder 3
 // danmu-switch 4
-// hkplayer-playback 5
-// hkplayer-definition 6
-// hkplayer-textTrack 7
-// hkplayer-screenShot 8
-// hkplayer-download 9
-// hkplayer-rotate 10
-// hkplayer-volume 11
-// hkplayer-picture 12
-// hkplayer-cssFullscreen 13
-// hkplayer-fullscreen 14
+// hkplayer-panel 6
+// hkplayer-playback 8
+// hkplayer-definition 10
+// hkplayer-textTrack 12
+// hkplayer-screenShot 14
+// hkplayer-download 16
+// hkplayer-rotate 18
+// hkplayer-volume 20
+// // hkplayer-videopip 22
+// hkplayer-cssFullscreen 24
+// hkplayer-fullscreen 26
 
 // z-index:
 // hkplayer-poster 100
@@ -72,7 +73,7 @@
         padding-top: 0 !important;
         z-index: 9999;
     }
-    &.hkplayer-is-fullscreen.hkplayer-inactive{
+    &.hkplayer-is-fullscreen.hkplayer-inactive {
         cursor: none;
     }
     video{
@@ -80,10 +81,9 @@
         height: 100%;
         outline: none;
     }
-}
-
-.hkplayer-skin-default .hkplayer-none{
-    display: none;
+    .hkplayer-none{
+        display: none;
+    }
 }
 
 @import "common/animation";

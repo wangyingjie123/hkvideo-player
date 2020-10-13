@@ -108,8 +108,8 @@ let s_definition = function () {
     };
     ['touchend', 'click'].forEach(item => {
         container.addEventListener(item, function (e) {
-            e.preventDefault()
-            e.stopPropagation()
+            e.preventDefault();
+            e.stopPropagation();
             let list = player.definitionList
             let li = e.target || e.srcElement,
                 a = document.createElement('a')

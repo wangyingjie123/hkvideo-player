@@ -17,8 +17,8 @@ let s_pip = function () {
 
     ['click', 'touchend'].forEach(item => {
         btn.addEventListener(item, e => {
-            e.preventDefault()
-            e.stopPropagation()
+            e.preventDefault();
+            e.stopPropagation();
             player.emit('pipBtnClick')
         })
     })

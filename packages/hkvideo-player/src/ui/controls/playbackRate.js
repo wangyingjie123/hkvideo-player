@@ -46,18 +46,18 @@ let s_playbackRate = function () {
                 }
             }
             util.addClass(li, 'selected');
-            ul.querySelector('p').innerHTML = `<span>${rateTpl[selected]}x</span>`;
+            ul.querySelector('p').innerHTML = `<span>${rateTpl[selected] == 1 ? '倍速' : rateTpl[selected] + 'x'}</span>`;
             player.video.playbackRate = rateTpl[selected] * 1;
         }
     }, false);
     ul.querySelector('.name').addEventListener('mouseenter', (e) => {
         e.preventDefault();
-        e.stopPropagation();
+        // e.stopPropagation();
         util.addClass(ul, 'hkplayer-playback-active');
     });
     ul.addEventListener('mouseleave', (e) => {
         e.preventDefault();
-        e.stopPropagation();
+        // e.stopPropagation();
         util.removeClass(ul, 'hkplayer-playback-active');
     });
     player.on('play', () => {
