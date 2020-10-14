@@ -1,4 +1,15 @@
 .hkplayer-skin-default {
+    &.hkplayer-rotate-fullscreen {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        bottom: 0;
+        right: 0;
+        height: 100vw!important;
+        width: 100vh!important;
+        transform-origin: top left;
+        transform: rotate(90deg);
+    }
     .hkplayer-rotate {
         position: relative;
         order: 18;

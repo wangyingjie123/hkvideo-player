@@ -47,10 +47,19 @@
             }
         }
     }
+    &.hkplayer-is-fullscreen {
+        width: 100%!important;
+        height: 100%!important;
+        // Undo any aspect ratio padding for fluid layouts
+        padding-top: 0 !important;
+        z-index: 9999;
+    }
+    &.hkplayer-is-fullscreen.hkplayer-inactive {
+        cursor: none;
+    }
 }
 
 .hkplayer-skin-default.hkplayer-is-fullscreen {
-
     .hkplayer-fullscreen,
     .hkplayer-fullscreen-img {
         .hkplayer-icon {

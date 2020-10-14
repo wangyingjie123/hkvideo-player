@@ -31,16 +31,7 @@ $pipHeight: 240px;
     }
     .hkplayer-pip-lay {
         opacity: 0;
-        transition: opacity .2s;
-        width: 12px;
-        height: 12px;
-        position: absolute;
-        top: 8px;
-        right: 8px; 
         z-index: 105;
-        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYBAMAAAASWSDLAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAPUExURf///0dwTP///////////2JNjWwAAAAFdFJOU/4AV+NNIaJNugAAAGZJREFUGNNlkNENwCAIBS+2C9gJ6gb9cIAm7r9TjecHpH6AD/AEGL3uMzoPzfvFMUVR3FO8mLrgZJpigsayK1EqOkPojWCFtfhWClLls7EL/xOpLAISOn6a2omNphHScGnstJC4qg9kXhEBJSaJRgAAAABJRU5ErkJggg==') no-repeat;
-        background-size: contain;
-        cursor: pointer;
     }
     .hkplayer-pip-drag {
         cursor: move;
@@ -86,9 +77,14 @@ $pipHeight: 240px;
                 display: none;
             }
         }
-        //  小窗下关闭弹幕、屏幕截图功能
-        .hkplayer-danmu {
+        //  小窗下关闭弹幕、右键菜单
+        .hkplayer-danmu, .hkvideo-ctxmenu {
             display: none;
+        }
+        &.hkplayer-inactive {
+            .hkplayer-controls {
+                opacity: 0;
+            }
         }
         .hkplayer-controls {
             z-index: 140;
@@ -124,5 +120,15 @@ $pipHeight: 240px;
                 left: 6px;
             }
         }
+    }
+}
+.hkplayer-dragrange {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    &.hiderange {
+        display: none;
     }
 }

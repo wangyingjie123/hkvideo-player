@@ -55,34 +55,21 @@
     .hkplayer-none{
         display: none
     }
-    &.hkplayer-rotate-fullscreen {
-        position: absolute;
-        top: 0;
-        left: 100%;
-        bottom: 0;
-        right: 0;
-        height: 100vw!important;
-        width: 100vh!important;
-        transform-origin: top left;
-        transform: rotate(90deg);
-    }
-    &.hkplayer-is-fullscreen{
-        width: 100%!important;
-        height: 100%!important;
-        // Undo any aspect ratio padding for fluid layouts
-        padding-top: 0 !important;
-        z-index: 9999;
-    }
-    &.hkplayer-is-fullscreen.hkplayer-inactive {
-        cursor: none;
-    }
     video{
         width:100%;
         height: 100%;
         outline: none;
     }
-    .hkplayer-none{
-        display: none;
+    .hkplayer-close {
+        transition: opacity .2s;
+        width: 12px;
+        height: 12px;
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYBAMAAAASWSDLAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAPUExURf///0dwTP///////////2JNjWwAAAAFdFJOU/4AV+NNIaJNugAAAGZJREFUGNNlkNENwCAIBS+2C9gJ6gb9cIAm7r9TjecHpH6AD/AEGL3uMzoPzfvFMUVR3FO8mLrgZJpigsayK1EqOkPojWCFtfhWClLls7EL/xOpLAISOn6a2omNphHScGnstJC4qg9kXhEBJSaJRgAAAABJRU5ErkJggg==') no-repeat;
+        background-size: contain;
+        cursor: pointer;
     }
 }
 
