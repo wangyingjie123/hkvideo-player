@@ -492,78 +492,79 @@ class Player extends Proxy {
 
     getPIP() {
         // 原生画中画开启的时候不允许小窗
-        if (util.hasClass(this.root, 'hkplayer-is-videopip')) {
-            return;
-        }
-        let dragLay = util.createDom('hk-pip-lay', '<div></div>', {}, 'hkplayer-pip-lay');
+        if (util.hasClass(this.root, 'hkplayer-pip-active') || util.hasClass(this.root, 'hkplayer-is-videopip')) return;
+        const dragLay = util.createDom('hk-pip-lay', '<div></div>', {}, 'hkplayer-pip-lay hkplayer-close');
+        const dragRange = util.createDom('div', '', {}, 'hkplayer-dragrange hiderange');
         this.root.appendChild(dragLay);
-        let dragHandle = util.createDom('hk-pip-drag', '<div class="drag-handle"><span>按住画面可移动小窗</span></div>', {
-            tabindex: 9
+        const dragHandle = util.createDom('hk-pip-drag', '<div class="drag-handle"><span>按住画面可移动小窗</span></div>', {
+            tabindex: 22
         }, 'hkplayer-pip-drag');
         this.root.appendChild(dragHandle);
+        if (!util.findDom(document.body, '.hkplayer-dragrange')) {
+            document.body.appendChild(dragRange);
+        }
         // eslint-disable-next-line no-unused-vars
         let draggie = new Draggabilly('.hkplayer', {
-            handle: '.drag-handle'
+            handle: '.drag-handle',
+            containment: '.hkplayer-dragrange'
         });
         let scrollEvent = null;
+        // 鼠标按下
         draggie.on('pointerDown', _ => {
+            util.removeClass(document.querySelector('.hkplayer-dragrange'), 'hiderange');
             let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
             // 拖拽的时候禁止页面滚动
             scrollEvent = () => window.scrollTo(0, scrollTop);
             window.addEventListener('scroll', scrollEvent, false);
-        })
+        });
+        // 鼠标抬起
         draggie.on('pointerUp', (e) => {
-            let moveendLeft = (e.x - e.offsetX).toFixed(3);
-            let moveendTop = (e.y - e.offsetY).toFixed(3);
+            const rect = this.root.getBoundingClientRect()
+            const { top, left } = rect;
             window.removeEventListener('scroll', scrollEvent);
             // 记录上次移动位置
             sessionStorage.setItem('dragPos', JSON.stringify({
-                left: moveendLeft,
-                top: moveendTop
+                left,
+                top
             }));
+            util.addClass(document.querySelector('.hkplayer-dragrange'), 'hiderange');
         });
         // 小窗默认宽高，左右位置
-        let pipWidth = 426, pipHeight = 240, top = 0, left = 0;
+        let pipWidth = 426, pipHeight = 240, top, left;
         let prevPos = sessionStorage.getItem('dragPos');
         util.addClass(this.root, 'hkplayer-pip-active');
-        if (this.config.pipConfig) {
-            if (this.config.pipConfig.width !== undefined) {
-                pipWidth = this.config.pipConfig.width;
+        const { pipConfig } = this.config;
+        if (pipConfig) {
+            if (pipConfig.width !== undefined) {
+                pipWidth = pipConfig.width;
             }
-            if (this.config.pipConfig.height !== undefined) {
-                pipHeight = this.config.pipConfig.height;
+            if (pipConfig.height !== undefined) {
+                pipHeight = pipConfig.height;
             }
         }
-        if (prevPos) {
-            let prevPosObj = JSON.parse(prevPos);
-            top = prevPosObj.top;
-            left = prevPosObj.left;
-        }
-        //  else {
-        //     const clientWidth = document.documentElement.clientWidth;
-        //     const clientHeight = document.documentElement.clientHeight;
-        //     console.log(clientHeight, clientWidth);
-        //     top = clientHeight - pipHeight - offset;
-        //     left = clientWidth - pipWidth - offset;
-        // }
-        if (this.config.pipConfig) {
-            if (this.config.pipConfig.top !== undefined) {
-                top = this.config.pipConfig.top;
+        if (pipConfig) {
+            if (prevPos && pipConfig.prevPos) {
+                let prevPosObj = JSON.parse(prevPos);
+                top = prevPosObj.top;
+                left = prevPosObj.left;
+            }
+            if (pipConfig.top !== undefined) {
+                top = pipConfig.top;
                 this.root.style.bottom = '';
             }
-            if (this.config.pipConfig.bottom !== undefined) {
-                this.root.style.bottom = this.config.pipConfig.bottom + 'px';
+            if (pipConfig.bottom !== undefined) {
+                this.root.style.bottom = pipConfig.bottom + 'px';
             }
-            if (this.config.pipConfig.left !== undefined) {
-                left = this.config.pipConfig.left;
+            if (pipConfig.left !== undefined) {
+                left = pipConfig.left;
                 this.root.style.right = '';
             }
-            if (this.config.pipConfig.right !== undefined) {
-                this.root.style.right = this.config.pipConfig.right + 'px';
+            if (pipConfig.right !== undefined) {
+                this.root.style.right = pipConfig.right + 'px';
             }
         }
-        this.root.style.top = top ? top + 'px' : '';
-        this.root.style.left = left ? left + 'px' : '';
+        this.root.style.top = top || top == 0 ? top + 'px' : '';
+        this.root.style.left = left || left == 0 ? left + 'px' : '';
         this.root.style.width = pipWidth + 'px';
         this.root.style.height = pipHeight + 'px';
         let pipactivePlay = util.findDom(this.controls, '.hkplayer-play');

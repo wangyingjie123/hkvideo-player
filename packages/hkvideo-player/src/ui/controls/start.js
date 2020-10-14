@@ -19,14 +19,6 @@ let s_start = function () {
             } else if (player.config.lang === 'jp') {
                 util.addClass(player.root, 'lang-is-jp');
             }
-            if (!player.config.enableContextmenu) {
-                player.root.addEventListener('contextmenu', e => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (util.hasClass(root, 'hkplayer-pip-active') || util.hasClass(root, 'hkplayer-nostart')) return; 
-                    player.emit('showCtxMenu', e);
-                });
-            }
         }
     }
 
