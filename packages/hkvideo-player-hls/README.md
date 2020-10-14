@@ -8,6 +8,7 @@
 ```
 ### 使用
 ```
+import 'hkvideo-player';
 import HlsJsPlayer from 'hkvideo-player-hls';
 const player = new HlsJsPlayer({
     id: 'mse',

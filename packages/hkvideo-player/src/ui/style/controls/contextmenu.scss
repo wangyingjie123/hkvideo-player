@@ -3,16 +3,16 @@
         width: 100%;
         display: block;
     }
-    .hkvideo-ctxmenuhelp, .hkvideo-ctxpldetail {
+    .hkvideo-ctxmenuhelp, .hkvideo-ctxvideoex {
         position: absolute;
         top: 10px;
         left: 10px;
         background-color: rgba(26,26,26,.96);
         border-radius: 5px;
-    }
-    .hkvideo-ctxmenuhelp {
         width: 360px;
         padding: 20px 20px 25px;
+    }
+    .hkvideo-ctxmenuhelp {
         &-title {
             margin-left: 10px;
             margin-bottom: 12px;
@@ -43,12 +43,9 @@
                 }
             }
         }
-        &-close {
-            opacity: 1;
-        }
     }
-    .hkvideo-ctxpldetail {
-        padding: 15px 0;
+    .hkvideo-ctxvideoex {
+        z-index: 1;
         &-row {
             line-height: 22px;
         }
