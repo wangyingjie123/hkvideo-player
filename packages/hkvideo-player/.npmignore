@@ -1,10 +1,8 @@
 node_modules
 src
 scripts
-README.md
 .idea
 .gitignore
 .editorconfig
-test
 webpack.config.*
 postcss.config.js
