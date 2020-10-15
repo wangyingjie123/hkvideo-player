@@ -2,7 +2,7 @@ import { ajax, sendDanmu, initDanmu, danmu, setDefin } from './tools.js';
 const Player = window.Player;
 let player;
 // ajax('./haokan.mp4', 'blob', function(res){
-    // const src = URL.createObjectURL(res);
+//     const src = URL.createObjectURL(res);
     player = new Player({
         id: 'app',
         // diyDuration: 300, // 自定义时长
@@ -22,8 +22,8 @@ let player;
             // right: 100,
             // prevPos: true 
         },
-        // enterLogo: 'https://pic.rmb.bdstatic.com/baidu-rmb-video-cover-1/2019-10/1571972106218/c91ded088044.png',
-        url: 'http://s1.pstatp.com/cdn/expire-1-M/byted-player-videos/1.0.0/xgplayer-demo.mp4'
+        enterLogo: 'https://pic.rmb.bdstatic.com/baidu-rmb-video-cover-1/2019-10/1571972106218/c91ded088044.png',
+        url: 'https://storage.googleapis.com/media-session/caminandes/short.mp4'
         // url: src
     });
 // });

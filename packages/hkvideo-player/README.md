@@ -18,4 +18,4 @@ const players = new Player({
 <script src="../browser/index.js" type="text/javascript"></script>
 ```
 ## 3.使用文档见
-[hkvideo-player使用文档及API，戳这里😄](https://github.com/wangyingjie123/hkvideo-player/blob/master/README.md)
+[hkvideo-player使用文档及API，戳这里😄](https://juejin.im/post/6883423886927462413)
