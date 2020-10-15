@@ -40,12 +40,13 @@
     ],
     "dependencies": {
         "danmu.js": "^0.2.23",
+        "deepmerge": "^4.2.2",
         "downloadjs": "^1.4.7",
         "draggabilly": "^2.3.0",
+        "event-emitter": "^0.3.5",
         "pasition": "^1.0.1",
         "request-frame": "^1.5.3",
-        "deepmerge": "^4.2.2",
-        "event-emitter": "^0.3.5"
+        "ua-parser-js": "^0.7.22"
     },
     "devDependencies": {
         "autoprefixer": "^9.1.5",

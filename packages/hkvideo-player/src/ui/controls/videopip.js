@@ -3,13 +3,14 @@
 * @file 画中画
 */
 import Player from '../../player';
+import sniffer from '../../utils/sniffer';
 import RequestFullIcon from '../assets/videopip.svg';
 // import ExitFullIcon from '../assets/exitFull.svg';
 let s_videopip = function () {
     let player = this;
     let util = Player.util;
-    if (!player.config.videopip) return;
-    if (!('pictureInPictureEnabled' in document)) return;
+    if (!player.config.videopip || !('pictureInPictureEnabled' in document)) return;
+    if (sniffer.browser.name !== 'Chrome' && sniffer.browser.name !== 'Safari') return;
     let btn = util.createDom('hk-videopip',
         `<hk-icon class="hkplayer-icon">
             <div class="hkplayer-icon-openpip">${RequestFullIcon}</div>
