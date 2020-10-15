@@ -20,7 +20,7 @@ let player;
             // top: 80,
             // bottom: 100,
             // right: 100,
-            // prevPos: true 
+            prevPos: true
         },
         // enterLogo: 'https://pic.rmb.bdstatic.com/baidu-rmb-video-cover-1/2019-10/1571972106218/c91ded088044.png',
         url: 'https://storage.googleapis.com/media-session/caminandes/short.mp4'
@@ -35,3 +35,18 @@ document.querySelector('#sendDanmu').onclick = () => {
 document.querySelector('#button').onclick = function () {
     player.getPIP();
 }
+let getpiped = false;
+const pip = () => {
+    const windowScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    if (windowScroll > 600) {
+        if (getpiped) return;
+        player.getPIP();
+        getpiped = true;
+    } else {
+        if (!getpiped) return;
+        player.exitPIP();
+        getpiped = false;
+    }
+};
+window.addEventListener('scroll', pip);
+window.scrollTo(0, 601);

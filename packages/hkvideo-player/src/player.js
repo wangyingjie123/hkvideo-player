@@ -533,6 +533,9 @@ class Player extends Proxy {
         let pipWidth = 426, pipHeight = 240, top, left;
         let prevPos = sessionStorage.getItem('dragPos');
         util.addClass(this.root, 'hkplayer-pip-active');
+        if (this.config.fluid) {
+            this.root.style['padding-top'] = '';
+        }
         const { pipConfig } = this.config;
         if (pipConfig) {
             if (pipConfig.width !== undefined) {
@@ -541,8 +544,6 @@ class Player extends Proxy {
             if (pipConfig.height !== undefined) {
                 pipHeight = pipConfig.height;
             }
-        }
-        if (pipConfig) {
             if (prevPos && pipConfig.prevPos) {
                 let prevPosObj = JSON.parse(prevPos);
                 top = prevPosObj.top;
@@ -567,20 +568,17 @@ class Player extends Proxy {
         this.root.style.left = left || left == 0 ? left + 'px' : '';
         this.root.style.width = pipWidth + 'px';
         this.root.style.height = pipHeight + 'px';
-        let pipactivePlay = util.findDom(this.controls, '.hkplayer-play');
-        // 100 是控制条高度 + playicon高度， 居中显示playicon
-        pipactivePlay.style.top = `${-(pipHeight - 52) / 2}px`;
-        if (this.config.fluid) {
-            this.root.style['padding-top'] = '';
-        }
         let player = this;
+        // player.on('ready', () => {
+        //     let pipactivePlay = util.findDom(this.controls, '.hkplayer-play');
+        //     // 100 是控制条高度 + playicon高度， 居中显示playicon
+        //     pipactivePlay.style.top = `${-(pipHeight - 52) / 2}px`;
+        // });
         ['click', 'touchend'].forEach(item => {
             dragLay.addEventListener(item, function (e) {
                 e.preventDefault();
                 e.stopPropagation();
                 player.exitPIP();
-                // player.root.style.top = `${Top}px`
-                // player.root.style.left = `${Left}px`
             })
         })
     }
