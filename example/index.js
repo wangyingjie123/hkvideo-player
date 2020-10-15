@@ -1,7 +1,7 @@
 import { ajax, sendDanmu, initDanmu, danmu, setDefin } from './tools.js';
 const Player = window.Player;
 let player;
-// ajax('./haokan.mp4', 'blob', function(res){
+// ajax('./demo.mp4', 'blob', function(res){
 //     const src = URL.createObjectURL(res);
     player = new Player({
         id: 'app',
@@ -22,7 +22,7 @@ let player;
             // right: 100,
             // prevPos: true 
         },
-        enterLogo: 'https://pic.rmb.bdstatic.com/baidu-rmb-video-cover-1/2019-10/1571972106218/c91ded088044.png',
+        // enterLogo: 'https://pic.rmb.bdstatic.com/baidu-rmb-video-cover-1/2019-10/1571972106218/c91ded088044.png',
         url: 'https://storage.googleapis.com/media-session/caminandes/short.mp4'
         // url: src
     });

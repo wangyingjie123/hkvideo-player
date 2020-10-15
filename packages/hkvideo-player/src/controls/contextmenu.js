@@ -40,11 +40,11 @@ let contextMenu = function () {
     const bindEvent = () => {
         // 点击快捷键说明
         const EventArr = [
-            {
-                close: util.findDom(ctxVideoInfo, '.hkplayer-close'),
-                box: util.findDom(ctxBox, '.hkvideo-ctxvideoex'),
-                btn: util.findDom(ctxList, '#videoexplain')
-            },
+            // {
+            //     close: util.findDom(ctxVideoInfo, '.hkplayer-close'),
+            //     box: util.findDom(ctxBox, '.hkvideo-ctxvideoex'),
+            //     btn: util.findDom(ctxList, '#videoexplain')
+            // },
             {
                 close: util.findDom(ctxKeyHelp, '.hkplayer-close'),
                 box: util.findDom(ctxBox, '.hkvideo-ctxmenuhelp'),

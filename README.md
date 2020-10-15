@@ -103,9 +103,6 @@ player.off('事件名',function(){
 player.emit('事件名')
 ```
 
-
-
-
 ## 6.自定义插件开发
 ```javascript { .theme-dark }
 // pluginName.js

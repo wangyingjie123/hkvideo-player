@@ -31,8 +31,9 @@ let s_contextmenu = function () {
     // 右键菜单dom
     const ctxList = util.createDom('ul', `
         <li class="hkvideo-ctxmenuitem" id="keyexplain">快捷键说明</li>
-        <li class="hkvideo-ctxmenuitem" id="videoexplain">视频统计信息</li>`, 
+        `, 
     {}, 'hkvideo-ctxmenulist');
+    // <li class="hkvideo-ctxmenuitem" id="videoexplain">视频统计信息</li>
     // 播放器版本及视频详情
     const ctxPlayer = util.createDom('div', `
         <p class="hkvideo-ctxvideoex-row">
