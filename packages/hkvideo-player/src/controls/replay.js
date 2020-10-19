@@ -7,7 +7,7 @@ let replay = function () {
 
     function onReplayBtnClick() {
         util.removeClass(root, 'replay')
-        player.replay()
+        player.replay();
     }
     player.on('replayBtnClick', onReplayBtnClick)
 

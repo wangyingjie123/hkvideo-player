@@ -24,13 +24,13 @@ let player;
         },
         // closeFocusVideoFocus: true,
         // enterLogo: 'https://pic.rmb.bdstatic.com/baidu-rmb-video-cover-1/2019-10/1571972106218/c91ded088044.png',
-        url: 'https://storage.googleapis.com/media-session/caminandes/short.mp4'
-        // url: './demo.mp4'
+        // url: 'https://storage.googleapis.com/media-session/caminandes/short.mp4'
+        url: './demo.mp4'
     });
 // });
 
 // initDanmu(player);
-setDefin(player);
+// setDefin(player);
 document.querySelector('#sendDanmu').onclick = () => {
     sendDanmu(player);
 };
