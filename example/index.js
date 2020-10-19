@@ -1,5 +1,6 @@
 import { ajax, sendDanmu, initDanmu, danmu, setDefin } from './tools.js';
-const Player = window.Player;
+// const Player = window.Player;
+import Player from ''
 let player;
 // ajax('./demo.mp4', 'blob', function(res){
 //     const src = URL.createObjectURL(res);
@@ -23,8 +24,8 @@ let player;
             prevPos: true
         },
         // enterLogo: 'https://pic.rmb.bdstatic.com/baidu-rmb-video-cover-1/2019-10/1571972106218/c91ded088044.png',
-        url: 'https://storage.googleapis.com/media-session/caminandes/short.mp4'
-        // url: src
+        // url: 'https://storage.googleapis.com/media-session/caminandes/short.mp4'
+        url: './demo.mp4'
     });
 // });
 
@@ -35,18 +36,18 @@ document.querySelector('#sendDanmu').onclick = () => {
 document.querySelector('#button').onclick = function () {
     player.getPIP();
 }
-let getpiped = false;
-const pip = () => {
-    const windowScroll = document.documentElement.scrollTop || document.body.scrollTop;
-    if (windowScroll > 600) {
-        if (getpiped) return;
-        player.getPIP();
-        getpiped = true;
-    } else {
-        if (!getpiped) return;
-        player.exitPIP();
-        getpiped = false;
-    }
-};
-window.addEventListener('scroll', pip);
-window.scrollTo(0, 601);
+// let getpiped = false;
+// const pip = () => {
+//     const windowScroll = document.documentElement.scrollTop || document.body.scrollTop;
+//     if (windowScroll > 600) {
+//         if (getpiped) return;
+//         player.getPIP();
+//         getpiped = true;
+//     } else {
+//         if (!getpiped) return;
+//         player.exitPIP();
+//         getpiped = false;
+//     }
+// };
+// window.addEventListener('scroll', pip);
+// window.scrollTo(0, 601);

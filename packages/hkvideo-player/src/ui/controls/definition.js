@@ -155,7 +155,7 @@ let s_definition = function () {
                         }
                     })
                     if (curRUL.href !== a.href && !player.ended) {
-                        player.switchURL(a.href);
+                        player.switchURL(a.href, to);
                     }
                 } else {
                     if (player['hls']) {

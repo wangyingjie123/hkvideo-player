@@ -1,0 +1,31 @@
+$tipsHeight: 32px;
+.hkplayer-skin-default {
+    .hkvideo-inject {
+        position: absolute;
+        height: $tipsHeight;
+        bottom: 62px;
+        right: 8px;
+        color: #fff;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        box-shadow: 0 0 5px 0 rgba(0,0,0,0.20);
+        border-radius: 8px;
+        transition: bottom .3s;
+        visibility: hidden;
+        &.showTips {
+            visibility: visible;
+        }
+        &-text {
+            line-height: 1;
+            .define-text {
+                color: #ff4141;
+            }
+        }
+    }
+    @at-root .hkplayer.hkplayer-inactive .hkvideo-inject {
+        bottom: 8px;
+    }
+    @at-root .hkplayer.hkplayer-pip-active .hkvideo-inject {
+        opacity: 0;
+    }
+}
