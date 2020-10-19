@@ -1,6 +1,5 @@
 import { ajax, sendDanmu, initDanmu, danmu, setDefin } from './tools.js';
-// const Player = window.Player;
-import Player from ''
+const Player = window.Player;
 let player;
 // ajax('./demo.mp4', 'blob', function(res){
 //     const src = URL.createObjectURL(res);
@@ -23,13 +22,15 @@ let player;
             // right: 100,
             prevPos: true
         },
+        // closeFocusVideoFocus: true,
         // enterLogo: 'https://pic.rmb.bdstatic.com/baidu-rmb-video-cover-1/2019-10/1571972106218/c91ded088044.png',
-        // url: 'https://storage.googleapis.com/media-session/caminandes/short.mp4'
-        url: './demo.mp4'
+        url: 'https://storage.googleapis.com/media-session/caminandes/short.mp4'
+        // url: './demo.mp4'
     });
 // });
 
 // initDanmu(player);
+setDefin(player);
 document.querySelector('#sendDanmu').onclick = () => {
     sendDanmu(player);
 };

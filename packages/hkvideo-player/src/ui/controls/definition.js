@@ -60,8 +60,8 @@ let s_definition = function () {
                 return a.href === src
             }
         })
-        tmp.push(`</ul><p class='name'>${(cursrc[0] || {name: ''}).name}</p>`)
-        let urlInRoot = root.querySelector('.hkplayer-definition')
+        tmp.push(`</ul><p class='name'>${(cursrc[0] || {name: ''}).name}</p>`);
+        let urlInRoot = root.querySelector('.hkplayer-definition');
         if (urlInRoot) {
             urlInRoot.innerHTML = tmp.join('')
             let cur = urlInRoot.querySelector('.name')
@@ -69,8 +69,8 @@ let s_definition = function () {
                 cur.addEventListener('mouseenter', (e) => {
                     e.preventDefault()
                     e.stopPropagation()
-                    util.addClass(player.root, 'hkplayer-definition-active')
-                    urlInRoot.focus()
+                    util.addClass(player.root, 'hkplayer-definition-active');
+                    // urlInRoot.focus(); 
                 })
             }
         } else {
@@ -81,7 +81,7 @@ let s_definition = function () {
                     e.preventDefault()
                     e.stopPropagation()
                     util.addClass(player.root, 'hkplayer-definition-active')
-                    container.focus()
+                    // container.focus()
                 })
             }
             player.controls.appendChild(container)
@@ -183,7 +183,7 @@ let s_definition = function () {
                 } else {
                     util.addClass(player.root, 'hkplayer-definition-active')
                 }
-                container.focus()
+                // container.focus()
             }
             player.emit('focus')
         }, false)

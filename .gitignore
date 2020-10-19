@@ -70,9 +70,10 @@ Thumbs.db
 .idea
 
 # build assets
-/output
-/dll
-/build
+output/
+dist/
+dll/
+browser/
 
 
 .project
