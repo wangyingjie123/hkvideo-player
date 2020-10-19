@@ -1,5 +1,5 @@
 /* eslint-disable */
-import Player from '../../hkvideo-player/dist';
+import Player from 'hkvideo-player';
 import Hls from 'hls.js';
 import utils from './utils';
 
