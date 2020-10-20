@@ -70,7 +70,7 @@ let s_definition = function () {
                     e.preventDefault()
                     e.stopPropagation()
                     util.addClass(player.root, 'hkplayer-definition-active');
-                    // urlInRoot.focus(); 
+                    // urlInRoot.focus();
                 })
             }
         } else {
