@@ -1,3 +1,4 @@
+$ctxmenuHeight: 36px;
 .hkplayer-skin-default {
     .hkvideo-ctxmenu {
         width: 100%;
@@ -81,8 +82,8 @@
     }
     .hkvideo-ctxmenuitem {
         list-style: none;
-        height: 42px;
-        line-height: 42px;
+        height: $ctxmenuHeight;
+        line-height: $ctxmenuHeight;
         padding-left: 24px;
         opacity: .8;
         cursor: pointer;

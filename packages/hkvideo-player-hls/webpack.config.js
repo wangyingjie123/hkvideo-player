@@ -31,9 +31,9 @@ const umd = {
             ]
         }]
     },
-    // externals: {
-    //     'hkvideo-player': 'hkvideo-player'
-    // },
+    externals: {
+        'hkvideo-player': 'hkvideo-player'
+    },
     plugins: [
         new HardSourceWebpackPlugin()
     ],
@@ -71,9 +71,9 @@ const client = {
             ]
         }]
     },
-    // externals: {
-    //     'hkvideo-player': 'hkvideo-player'
-    // },
+    externals: {
+        'hkvideo-player': 'hkvideo-player'
+    },
     plugins: [
         new HardSourceWebpackPlugin()
     ],
