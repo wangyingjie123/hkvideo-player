@@ -91,7 +91,7 @@ function setDefin(player) {
     player.emit('resourceReady', [
         {
             name: '标清',
-            url: 'http://s1.pstatp.com/cdn/expire-1-M/byted-player-videos/1.0.0/xgplayer-demo.mp4'
+            url: 'http://h5player.bytedance.com/video/mp4/xgplayer-demo-720p.mp4'
         },
         {
             name: '高清',
