@@ -5,10 +5,11 @@
 /* eslint-disable */
 const polyfill = [];
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+// const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const threadLoader = require('thread-loader');
 const fs = require('fs');
 const path = require('path');
+// js-thread-loader
 const jsWorkerPool = {
     // options
     // 产生的 worker 的数量，默认是 (cpu 核心数 - 1)
@@ -19,65 +20,31 @@ const jsWorkerPool = {
     // 可以设置为无穷大， 这样在监视模式(--watch)下可以保持 worker 持续存在
     poolTimeout: 2000
 };
-const cssWorkerPool = {
-	// 一个 worker 进程中并行执行工作的数量
-	// 默认为 20
-	workerParallelJobs: 2,
-	poolTimeout: 2000
-};
-  
 threadLoader.warmup(jsWorkerPool, ['babel-loader']);
-// threadLoader.warmup(cssWorkerPool, ['css-loader', 'postcss-loader', 'sass-loader']);
-const devServer = {
-	open: true,  //自动打开页面
-	host: '0.0.0.0',
-	hotOnly: true,
-	disableHostCheck: true,
-	port: 12306,
-	index: '/',
-    // contentBase: '/',
-    contentBase: [path.join(__dirname, 'browser'), path.join(__dirname, 'dist'), path.join(__dirname, '../../example')],
-	after(app) {
-		app.get('/', (req, res, next) => {
-			var contentText = fs.readFileSync('../../example/index.html', 'utf-8');
-			res.write(contentText);
-			res.end();
-		});
-	},
-};
-const umd = {
-	entry: polyfill.concat(['./src/index.js']),
-	devtool: 'source-map',
-	output: {
-		path: `${__dirname}/dist`,
-		filename: 'index.js',
-		library: 'hkplayer',
-		libraryTarget: 'umd'
-	},
-	mode: 'production',
-	module: {
+
+const isProd = process.env.NODE_ENV === 'production'
+const globConfig = {
+    entry: polyfill.concat(['./src/index.js']),
+    devtool: isProd ? false : 'cheap-module-source-map',
+    mode: isProd ? 'production' : 'development',
+    module: {
 		rules: [{
 			test: /\.js$/,
 			use: [
-			  {
-				loader: 'thread-loader',
-				options: jsWorkerPool
-			  },
+			//   {
+			// 	loader: 'thread-loader',
+			// 	options: jsWorkerPool
+			//   },
 			  'babel-loader'
 			]
 		}, {
 			test: /\.scss$/,
 			use: [
 				'style-loader',
-				// {
-				// 	loader: 'thread-loader',
-				// 	options: cssWorkerPool
-				// },
 				{
 					loader: 'css-loader',
 					options: {
-						importLoaders: 1,
-						// minimize: true
+						importLoaders: 1
 					}
 				},
 				'postcss-loader',
@@ -87,63 +54,53 @@ const umd = {
             test: /\.svg/,
             loader: 'raw-loader'
         }]
-	},
+    },
     plugins: [
         // new BundleAnalyzerPlugin({
         //     defaultSizes: 'parsed'
         // })
-        new HardSourceWebpackPlugin()
+        // new HardSourceWebpackPlugin()
     ],
-    devServer,
-	optimization: {
-		minimize: true
-	}
+    optimization: {
+		minimize: isProd
+    }
+}
+const cacheConfig = {
+    // 磁盘存储
+    type: 'filesystem',    // 'memory' | 'filesystem'
+    buildDependencies: {
+        // 当配置修改时，缓存失效
+        config: [__filename]
+    },
+}
+const umd = {
+	output: {
+		path: `${__dirname}/dist`,
+		filename: 'index.js',
+		library: 'hkplayer',
+		libraryTarget: 'umd'
+    },
+    cache: {
+        ...cacheConfig,
+        name: 'umd-cache'
+    },
+    ...globConfig
 };
 
 const client = {
-	entry: polyfill.concat(['./src/index.js']),
-	devtool: 'source-map',
+    ...globConfig,
+    // 配置缓存
+    cache: {
+        ...cacheConfig,
+        name: 'client-cache'
+    },
 	output: {
 		path: `${__dirname}/browser`,
 		filename: 'index.js',
 		library: 'Player',
 		libraryTarget: 'window'
-	},
-	module: {
-		rules: [{
-			test: /\.js$/,
-			use: [
-			  {
-				loader: 'thread-loader',
-				options: jsWorkerPool
-			  },
-			  'babel-loader'
-			]
-		}, {
-			test: /\.scss$/,
-			use: [
-				'style-loader',
-				{
-					loader: 'css-loader',
-					options: {
-						importLoaders: 1,
-						// minimize: true
-					}
-				},
-				'postcss-loader',
-				'sass-loader'
-			]
-		}, {
-            test: /\.svg/,
-            loader: 'raw-loader'
-        }]
-	},
-    mode: 'production',
-    plugins: [
-        new HardSourceWebpackPlugin()
-    ],
-	optimization: {
-		minimize: true
-	},
+    }
 };
+// 开发的时候可以去掉umd，打包更快
+// module.exports = client;
 module.exports = [umd, client];

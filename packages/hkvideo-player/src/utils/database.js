@@ -1,7 +1,7 @@
 /* eslint-disable */
 class INDEXDB {
     constructor(mydb = {
-        name: 'hkplayer',
+        name: 'hkvideo-player',
         version: 1,
         db: null,
         ojstore: {
