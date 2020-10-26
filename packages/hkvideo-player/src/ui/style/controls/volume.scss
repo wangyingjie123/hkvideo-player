@@ -35,7 +35,7 @@
         width: $playerIcomWidth;
         height: $volumeSlideHeight;
         background: rgba(0, 0, 0, .54);
-        bottom: 46px;
+        bottom: $controlHeight + 5px;
         outline: none;
         left: 0;
         border-radius: 4px;
@@ -98,9 +98,6 @@
 }
 
 .hkplayer-skin-default.hkplayer-volume-active {
-    .hkplayer-volume {
-        z-index: 38;
-    }
     .hkplayer-slider {
         display: block;
     }

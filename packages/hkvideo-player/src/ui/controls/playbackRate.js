@@ -52,14 +52,18 @@ let s_playbackRate = function () {
     }, false);
     ul.querySelector('.name').addEventListener('mouseenter', (e) => {
         e.preventDefault();
-        // e.stopPropagation();
+        e.stopPropagation();
         util.addClass(ul, 'hkplayer-playback-active');
     });
     ul.addEventListener('mouseleave', (e) => {
         e.preventDefault();
-        // e.stopPropagation();
+        e.stopPropagation();
         util.removeClass(ul, 'hkplayer-playback-active');
     });
+    function onBlur() {
+        util.removeClass(ul, 'hkplayer-playback-active');
+    }
+    player.on('blur', onBlur);
     player.on('play', () => {
         let rateNow = parseFloat(rateTpl[selected]);
         if (player.video.playbackRate.toFixed(1) !== rateNow.toFixed(1)) {

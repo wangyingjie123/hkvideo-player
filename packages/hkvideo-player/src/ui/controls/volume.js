@@ -51,13 +51,12 @@ let s_volume = function () {
         player.emit('volumeIconEnter');
     });
 
-    ['blur', 'mouseleave'].forEach(item => {
-        container.addEventListener(item, e => {
-            e.preventDefault();
-            e.stopPropagation();
-            player.emit('volumeIconLeave');
-        })
-    })
+    container.addEventListener('mouseleave', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        player.emit('volumeIconLeave');
+    });
+    player.on('blur', () => player.emit('volumeIconLeave'));
 }
 
 Player.install('s_volume', s_volume);
