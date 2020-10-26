@@ -129,13 +129,13 @@ class Player extends Proxy {
             this.on(item, this['on' + item.charAt(0).toUpperCase() + item.slice(1)]);
         })
         let player = this;
-        this.mousemoveFunc = function () {
-            player.emit('focus');
+        this.mousemoveFunc = function (e) {
+            player.emit('focus', e);
             if (!player.config.closeFocusVideoFocus) {
                 player.video.focus();
             }
         }
-        this.root.addEventListener('mousemove', this.mousemoveFunc);
+        this.video.addEventListener('mousemove', this.mousemoveFunc);
         this.playFunc = function () {
             player.emit('focus');
             if (!player.config.closePlayVideoFocus) {
@@ -199,13 +199,13 @@ class Player extends Proxy {
         }
         this.logParams.playSrc = url;
         this.canPlayFunc = function () {
-            player.off('canplay', player.canPlayFunc)
+            player.off('canplay', player.canPlayFunc);
         }
         if (util.typeOf(url) === 'String') {
             if (url.indexOf('blob:') > -1 && url === this.video.src) {
                 // 在Chromium环境下用mse url给video二次赋值会导致错误
             } else {
-                this.video.src = url
+                this.video.src = url;
             }
         } else {
             url.forEach(item => {
@@ -213,7 +213,7 @@ class Player extends Proxy {
                     src: `${item.src}`,
                     type: `${item.type || ''}`
                 }))
-            })
+            });
         }
         this.logParams.pt = new Date().getTime()
         this.logParams.vt = this.logParams.pt
@@ -701,15 +701,15 @@ class Player extends Proxy {
         player.emit('rotate', player.rotateDeg * 360)
     }
 
-    onFocus() {
+    onFocus(e) {
         let player = this
         util.removeClass(this.root, 'hkplayer-inactive')
         if (player.userTimer) {
             clearTimeout(player.userTimer)
         }
         player.userTimer = setTimeout(function () {
-            player.emit('blur')
-        }, player.config.inactive)
+            player.emit('blur');
+        }, player.config.inactive);
     }
 
     onBlur() {

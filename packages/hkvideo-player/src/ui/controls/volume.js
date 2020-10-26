@@ -47,13 +47,13 @@ let s_volume = function () {
 
     icon.addEventListener('mouseenter', e => {
         e.preventDefault();
-        e.stopPropagation();
+        // e.stopPropagation();
         player.emit('volumeIconEnter');
     });
 
     container.addEventListener('mouseleave', e => {
         e.preventDefault();
-        e.stopPropagation();
+        // e.stopPropagation();
         player.emit('volumeIconLeave');
     });
     player.on('blur', () => player.emit('volumeIconLeave'));
