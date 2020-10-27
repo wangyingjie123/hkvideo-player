@@ -1,6 +1,7 @@
 /* eslint-disable */
 import Player from '../../player';
-import { version, name } from '../../../package.json';
+// import { version, name } from '../../../package.json';
+const version = '2.20.2';
 let s_contextmenu = function () {
     let player = this;
     let util = Player.util;

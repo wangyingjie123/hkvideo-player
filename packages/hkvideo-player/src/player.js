@@ -9,9 +9,10 @@ import Database from './utils/database';
 import sniffer from './utils/sniffer';
 import Errors from './error';
 import Draggabilly from 'draggabilly';
+import * as downloadUtil from 'downloadjs';
 import { getAbsoluteURL } from './utils/url';
-import downloadUtil from 'downloadjs';
-import { version } from '../package.json';
+// import { version } from '../package.json';
+const version = '2.20.2';
 class Player extends Proxy {
     constructor(options) {
         super(options);

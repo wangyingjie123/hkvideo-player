@@ -1,6 +1,6 @@
 /* eslint-disable */
 import Player from '../../player';
-import DanmuJs from 'danmu.js';
+import * as DanmuJs from 'danmu.js';
 import PanelIcon from '../assets/panel.svg';
 let s_danmu = function () {
     let player = this

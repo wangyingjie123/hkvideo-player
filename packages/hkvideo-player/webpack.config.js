@@ -8,6 +8,15 @@ const polyfill = [];
 const threadLoader = require('thread-loader');
 const fs = require('fs');
 const path = require('path');
+const browsers = [
+    '> 1%',
+    'last 2 versions',
+    'Firefox ESR',
+    'Opera 12.1',
+    'not ie <= 9',
+    'Android >= 4.0',
+    'iOS >=9'
+];
 // js-thread-loader
 const jsWorkerPool = {
     // options
@@ -27,16 +36,40 @@ const globConfig = {
     devtool: isProd ? false : 'cheap-module-source-map',
     mode: isProd ? 'production' : 'development',
     module: {
-		rules: [{
-			test: /\.js$/,
-			use: [
-			//   {
-			// 	loader: 'thread-loader',
-			// 	options: jsWorkerPool
-			//   },
-			  'babel-loader'
-			]
-		}, {
+		rules: [
+            {
+                test: /\.js$/,
+                // loader: 'babel-loader',
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            babelrc: false,
+                            configFile: false,
+                            presets: [
+                                ['@babel/preset-env', {
+                                    modules: false,
+                                    targets: {
+                                        browsers
+                                    }
+                                }]
+                            ],
+                            plugins: [
+                                // 转义api，synix
+                                '@babel/plugin-transform-runtime',
+                                // 用来转义类, loose: 装饰器
+                                ['@babel/plugin-proposal-class-properties',  {loose: true}],
+                                // 转义import()
+                                '@babel/plugin-syntax-dynamic-import'
+                            ],
+                            cacheDirectory: true,
+                            cacheCompression: isProd,
+                            compact: isProd
+                        }
+                    }
+                ]
+            }, 
+        {
 			test: /\.scss$/,
 			use: [
 				'style-loader',

@@ -1,5 +1,6 @@
 /* eslint-disable */
-import { version } from '../package.json';
+// import { version } from '../package.json';
+const version = '2.20.2';
 const ErrorTypes = {
     network: {
         code: 1,

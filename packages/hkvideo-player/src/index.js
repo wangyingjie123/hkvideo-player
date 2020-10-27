@@ -1,5 +1,26 @@
 /* eslint-disable */
 import Player from './player';
-import * as Controls from './controls/*.js';
+import './controls/contextmenu';
+import './controls/cssFullscreen';
+import './controls/danmu';
+import './controls/definition';
+import './controls/download';
+import './controls/errorRetry';
+import './controls/fullscreen';
+import './controls/i18n';
+import './controls/localPreview';
+import './controls/memoryPlay';
+import './controls/mobile';
+import './controls/pc';
+import './controls/pip';
+import './controls/play';
+import './controls/playNext';
+import './controls/reload';
+import './controls/replay';
+import './controls/rotate';
+import './controls/screenShot';
+import './controls/start';
+import './controls/videopip';
+import './controls/volume';
 import ui from './ui';
 export default Player;
