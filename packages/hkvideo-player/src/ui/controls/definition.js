@@ -15,7 +15,7 @@ let s_definition = function () {
 
     function onCanplayResourceReady() {
         let list = player.definitionList
-        let tmp = ['<ul>'],
+        let tmp = ['<ul class="hkplayer-definition-list">'],
             src = player.config.url,
             a = document.createElement('a')
         if (player.switchURL) {
@@ -69,7 +69,7 @@ let s_definition = function () {
                 cur.addEventListener('mouseenter', (e) => {
                     e.preventDefault()
                     e.stopPropagation()
-                    util.addClass(player.root, 'hkplayer-definition-active');
+                    util.addClass(container, 'hkplayer-definition-active');
                     // urlInRoot.focus();
                 })
             }
@@ -80,7 +80,7 @@ let s_definition = function () {
                 cur.addEventListener('mouseenter', (e) => {
                     e.preventDefault()
                     e.stopPropagation()
-                    util.addClass(player.root, 'hkplayer-definition-active')
+                    util.addClass(container, 'hkplayer-definition-active')
                     // container.focus()
                 })
             }
@@ -91,7 +91,6 @@ let s_definition = function () {
     function onResourceReady(list) {
         player.definitionList = list
         if (list && list instanceof Array && list.length > 1) {
-            util.addClass(root, 'hkplayer-is-definition')
             player.on('canplay', onCanplayResourceReady)
         }
     }
@@ -175,13 +174,13 @@ let s_definition = function () {
                     to
                 });
                 if (sniffer.device === 'mobile') {
-                    util.removeClass(player.root, 'hkplayer-definition-active')
+                    util.removeClass(container, 'hkplayer-definition-active')
                 }
             } else if (player.config.definitionActive === 'click' && li && (li.tagName.toLocaleLowerCase() === 'p' || li.tagName.toLocaleLowerCase() === 'em')) {
                 if (sniffer.device === 'mobile') {
-                    util.toggleClass(player.root, 'hkplayer-definition-active')
+                    util.toggleClass(container, 'hkplayer-definition-active')
                 } else {
-                    util.addClass(player.root, 'hkplayer-definition-active')
+                    util.addClass(container, 'hkplayer-definition-active')
                 }
                 // container.focus()
             }
@@ -192,11 +191,11 @@ let s_definition = function () {
     container.addEventListener('mouseleave', e => {
         e.preventDefault()
         e.stopPropagation()
-        util.removeClass(root, 'hkplayer-definition-active')
+        util.removeClass(container, 'hkplayer-definition-active')
     })
 
     function onBlur() {
-        util.removeClass(root, 'hkplayer-definition-active')
+        util.removeClass(container, 'hkplayer-definition-active')
     }
     player.on('blur', onBlur)
 
