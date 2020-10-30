@@ -11,7 +11,7 @@ class INDEXDB {
     }) {
         this.indexedDB = window.indexedDB || window.webkitindexedDB
         this.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange // 键范围
-        this.myDB = mydb
+        this.myDB = mydb;
     }
 
     openDB(callback) {

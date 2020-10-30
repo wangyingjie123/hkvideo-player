@@ -1,39 +1,57 @@
+$definitionWidth: 60px;
+$definitionLIWidth: 80px;
+$definitionDefColor: rgba(255, 255, 255, .8);
 .hkplayer-skin-default {
     .hkplayer-definition {
         order: 10;
-        width: 60px;
+        width: $definitionWidth;
+        height: 100%;
         z-index: 18;
         position: relative;
         outline: none;
-        display: none;
-        cursor: default;
-        margin: -119px 8px 14px;
-
-        ul {
+        display: flex;
+        align-items: center;
+        margin: 0 8px;
+        &-list {
             display: none;
             list-style: none;
-            width: 60px;
-            background: rgba(0, 0, 0, .54);
+            width: $definitionLIWidth;
+            background: $sliderBgColor;
             position: absolute;
-            bottom: 30px;
-            left: 0;
+            bottom: $controlHeight;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
             white-space: nowrap;
             z-index: 26;
             cursor: pointer;
             border-radius: 3px;
-            cursor: pointer;
+            padding: 6px 0;
+            &:after {
+                content: '';
+                display: block;
+                position: absolute;
+                bottom: -15px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 0;
+                border: 8px solid transparent;
+                border-top-color: $sliderBgColor;
+            }
             li {
                 opacity: 0.7;
                 font-family: PingFangSC-Regular;
                 font-size: 11px;
-                color: rgba(255, 255, 255, .8);
+                color: $definitionDefColor;
                 padding: 6px 13px;
-                &.selected {
-                    color: $definitionLiActiveColor;
-                    opacity: 1;
-                }
+                transition: transform .2s;
                 &:hover {
+                    color: $playerIconColor;
+                    opacity: 1;
+                    transform: scale(1.2);
+                }
+                &.selected {
                     color: $definitionLiActiveColor;
                     opacity: 1;
                 }
@@ -45,13 +63,11 @@
             font-family: PingFangSC-Regular;
             font-size: 13px;
             cursor: pointer;
-            color: rgba(255, 255, 255, .8);
-            position: absolute;
-            bottom: 0;
-            width: 60px;
+            color: $definitionDefColor;
+            width: $definitionWidth;
             height: 24px;
             line-height: 24px;
-            background: rgba(0, 0, 0, .38);
+            background: $sliderBgColor;
             border-radius: 3px;
             display: inline-block;
             vertical-align: middle;
@@ -60,19 +76,11 @@
                 color: $playerIconColor;
             }
         }
-    }
-}
-
-.hkplayer-skin-default.hkplayer-definition-active {
-    .hkplayer-definition {
-        ul {
-            display: block;
+        &.hkplayer-definition-active {
+            z-index: 41;
+            .hkplayer-definition-list {
+                display: block;
+            }
         }
-    }
-}
-
-.hkplayer-skin-default.hkplayer-is-definition {
-    .hkplayer-definition {
-        display: block;
     }
 }

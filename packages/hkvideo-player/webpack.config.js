@@ -4,8 +4,7 @@
  */
 /* eslint-disable */
 const polyfill = [];
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-// const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');\
 const threadLoader = require('thread-loader');
 const fs = require('fs');
 const path = require('path');
@@ -59,7 +58,6 @@ const globConfig = {
         // new BundleAnalyzerPlugin({
         //     defaultSizes: 'parsed'
         // })
-        // new HardSourceWebpackPlugin()
     ],
     optimization: {
 		minimize: isProd
