@@ -1,6 +1,6 @@
 {
     "name": "hkvideo-player",
-    "version": "1.0.3",
+    "version": "1.0.3-1",
     "description": "video player",
     "main": "./dist/index.js",
     "scripts": {
