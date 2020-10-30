@@ -1,7 +1,6 @@
 /* eslint-disable */
 import Player from '../../player';
-// import { version, name } from '../../../package.json';
-const version = '2.20.2';
+import packages from '../../../package.json';
 let s_contextmenu = function () {
     let player = this;
     let util = Player.util;
@@ -55,7 +54,7 @@ let s_contextmenu = function () {
         </p>
         <p class="hkvideo-ctxvideoex-row">
             <label class="hkvideo-ctxvideoex-label">播放器版本：</label>
-            <span class="hkvideo-ctxvideoex-text">${name}@${version}</span>
+            <span class="hkvideo-ctxvideoex-text">${packages.name}@${packages.version}</span>
         </p>
         <div class="hkplayer-close"></div>
     `, {}, 'hkvideo-ctxvideoex hkplayer-none');

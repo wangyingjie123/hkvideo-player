@@ -1,5 +1,5 @@
 /* eslint-disable */
-import * as UAParser from 'ua-parser-js';
+import UAParser from 'ua-parser-js';
 let sniffer = {
     get device() {
         let r = sniffer.os

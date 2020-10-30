@@ -8,17 +8,8 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const threadLoader = require('thread-loader');
 const fs = require('fs');
 const path = require('path');
-const browsers = [
-    '> 1%',
-    'last 2 versions',
-    'Firefox ESR',
-    'Opera 12.1',
-    'not ie <= 9',
-    'Android >= 4.0',
-    'iOS >=9'
-];
 
-const isProd = process.env.NODE_ENV === 'production'
+const isProd = process.env.NODE_ENV === 'production';
 const globConfig = {
     entry: polyfill.concat(['./src/index.js']),
     devtool: isProd ? false : 'cheap-module-source-map',
@@ -92,9 +83,10 @@ const client = {
 		path: `${__dirname}/browser`,
 		filename: 'index.js',
 		library: 'Player',
-		libraryTarget: 'window'
+        libraryTarget: 'window',
+        libraryExport: 'default'
     }
 };
 // 开发的时候可以去掉umd，打包更快
-module.exports = umd;
-// module.exports = [umd, client];
+// module.exports = umd;
+module.exports = [umd, client];

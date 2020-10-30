@@ -3,7 +3,7 @@
 * @author wangyingjie07
 */
 /* eslint-disable */
-import * as EventEmitter from 'event-emitter';
+import EventEmitter from 'event-emitter';
 import util from './utils/util';
 import Errors from './error';
 class Proxy {

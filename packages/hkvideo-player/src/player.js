@@ -3,17 +3,16 @@
 * @author wangyingjie07
 */
 /* eslint-disable */
-import Proxy from './proxy';
+import myProxy from './proxy';
 import util from './utils/util';
 import Database from './utils/database';
 import sniffer from './utils/sniffer';
 import Errors from './error';
 import Draggabilly from 'draggabilly';
-import * as downloadUtil from 'downloadjs';
+import downloadUtil from 'downloadjs';
 import { getAbsoluteURL } from './utils/url';
-// import { version } from '../package.json';
-const version = '2.20.2';
-class Player extends Proxy {
+import packages from '../package.json';
+class Player extends myProxy {
     constructor(options) {
         super(options);
         this.config = util.deepCopy({
@@ -27,7 +26,7 @@ class Player extends Proxy {
             controls: true,
             controlsList: ['nodownload']
         }, options);
-        this.version = version;
+        this.version = packages.version;
         this.userTimer = null;
         this.waitTimer = null;
         this.database = new Database();
