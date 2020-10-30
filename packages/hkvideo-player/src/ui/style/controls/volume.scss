@@ -8,7 +8,6 @@
         display: block;
         position: relative;
         z-index: 30;
-        // 
         .hkplayer-icon {
             cursor: pointer;
             &-large, &-small, &-muted {
@@ -29,26 +28,34 @@
                 display: none;
             }
         }
+        &.hkplayer-volume-active {
+            z-index: 41;
+            .hkplayer-slider {
+                display: block;
+            }
+        }
     }
     .hkplayer-slider {
         display: none;
         position: absolute;
         width: $playerIcomWidth;
         height: $volumeSlideHeight;
-        background: rgba(0, 0, 0, .54);
-        bottom: $controlHeight + 5px;
+        background: $sliderBgColor;
+        bottom: $controlHeight;
         outline: none;
         left: 0;
         border-radius: 4px;
         &:after {
-            content: " ";
+            content: '';
             display: block;
-            height: 15px;
-            width: 28px;
             position: absolute;
             bottom: -15px;
-            left: 0;
-            z-index: 20;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border: 8px solid transparent;
+            border-top-color: $sliderBgColor;
         }
     }
     .hkplayer-volume-val {
@@ -98,14 +105,8 @@
     }
 }
 
-.hkplayer-skin-default.hkplayer-volume-active {
-    .hkplayer-slider {
-        display: block;
-    }
-}
-
-.hkplayer-skin-default.hkplayer-volume-large {
-    .hkplayer-volume {
+.hkplayer-skin-default .hkplayer-volume {
+    &.hkplayer-volume-large{
         .hkplayer-icon {
             .hkplayer-icon-large {
                 display: block;
@@ -120,37 +121,31 @@
             }
         }
     }
-}
-
-.hkplayer-skin-default.hkplayer-volume-small {
-    .hkplayer-volume {
+    &.hkplayer-volume-small {
         .hkplayer-icon {
             .hkplayer-icon-large {
                 display: none;
             }
-
+    
             .hkplayer-icon-small {
                 display: block;
             }
-
+    
             .hkplayer-icon-muted {
                 display: none;
             }
         }
     }
-}
-
-.hkplayer-skin-default.hkplayer-volume-muted {
-    .hkplayer-volume {
+    &.hkplayer-volume-muted {
         .hkplayer-icon {
             .hkplayer-icon-large {
                 display: none;
             }
-
+    
             .hkplayer-icon-small {
                 display: none;
             }
-
+    
             .hkplayer-icon-muted {
                 display: block;
             }

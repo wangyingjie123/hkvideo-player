@@ -4,7 +4,7 @@
  */
 /* eslint-disable */
 const polyfill = [];
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');\
 const threadLoader = require('thread-loader');
 const fs = require('fs');
 const path = require('path');

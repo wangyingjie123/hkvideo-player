@@ -105,15 +105,15 @@ let volume = function () {
     player.on('volumeIconClick', onVolumeIconClick)
 
     function onVolumeIconEnter() {
-        util.addClass(root, 'hkplayer-volume-active')
-        if (container) {
-            container.focus()
-        }
+        util.addClass(container, 'hkplayer-volume-active');
+        // if (container) {
+        //     container.focus()
+        // }
     }
     player.on('volumeIconEnter', onVolumeIconEnter);
 
     function onVolumeIconLeave() {
-        util.removeClass(root, 'hkplayer-volume-active')
+        util.removeClass(container, 'hkplayer-volume-active');
     }
     player.on('volumeIconLeave', onVolumeIconLeave);
 
@@ -125,27 +125,27 @@ let volume = function () {
         }
         _changeTimer = setTimeout(() => {
             if (Player.sniffer.device === 'mobile') {
-                util.removeClass(root, 'hkplayer-volume-muted');
-                util.removeClass(root, 'hkplayer-volume-large');
+                util.removeClass(container, 'hkplayer-volume-muted');
+                util.removeClass(container, 'hkplayer-volume-large');
                 if (player.video.muted || player.video.defaultMuted) {
                     if (!player.video.muted) {
                         player.video.muted = true;
                     }
                     player.video.defaultMuted = false;
-                    util.addClass(root, 'hkplayer-volume-muted');
+                    util.addClass(container, 'hkplayer-volume-muted');
                 } else {
-                    util.addClass(root, 'hkplayer-volume-large');
+                    util.addClass(container, 'hkplayer-volume-large');
                 }
             } else {
-                util.removeClass(root, 'hkplayer-volume-muted');
-                util.removeClass(root, 'hkplayer-volume-small');
-                util.removeClass(root, 'hkplayer-volume-large');
+                util.removeClass(container, 'hkplayer-volume-muted');
+                util.removeClass(container, 'hkplayer-volume-small');
+                util.removeClass(container, 'hkplayer-volume-large');
                 if (player.volume === 0) {
-                    util.addClass(root, 'hkplayer-volume-muted');
+                    util.addClass(container, 'hkplayer-volume-muted');
                 } else if (player.volume < 0.5) {
-                    util.addClass(root, 'hkplayer-volume-small');
+                    util.addClass(container, 'hkplayer-volume-small');
                 } else {
-                    util.addClass(root, 'hkplayer-volume-large');
+                    util.addClass(container, 'hkplayer-volume-large');
                 }
                 if (!bar) return;
                 let containerHeight = bar.getBoundingClientRect().height || defaultBarheight;
