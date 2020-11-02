@@ -1,6 +1,5 @@
 /* eslint-disable */
 import Player from '../../player';
-import * as DanmuJs from 'danmu.js';
 import PanelIcon from '../assets/panel.svg';
 let s_danmu = function () {
     let player = this
@@ -102,114 +101,120 @@ let s_danmu = function () {
             player.controls.appendChild(panelBtn)
         });
     }
-    player.once('complete', () => {
-        let danmujs = new DanmuJs(config);
-        player.emit('initDefaultDanmu', danmujs);
-        player.danmu = danmujs;
+    player.once('complete', async () => {
+        try {
+            const Danmujs = await import('danmu.js');
+            const Danmu = Danmujs.default;
+            let danmujs = new Danmu(config);
+            player.emit('initDefaultDanmu', danmujs);
+            player.danmu = danmujs;
 
-        if (!player.config.danmu.panel) {
-            return
-        }
-
-        const slider = panelBtn.querySelector('.hkplayer-panel-slider');
-        const PanelIconbtn = panelBtn.querySelector('.hkplayer-panel-icon');
-        let focusStatus
-        let focusarray = ['mouseenter', 'touchend', 'click'];
-        focusarray.forEach(item => {
-            PanelIconbtn.addEventListener(item, function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                Player.util.addClass(slider, 'hkplayer-panel-active')
-                panelBtn.focus();
-                focusStatus = true;
-            })
-        })
-        panelBtn.addEventListener('mouseleave', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            Player.util.removeClass(slider, 'hkplayer-panel-active');
-            focusStatus = false;
-        })
-        slider.addEventListener('mouseleave', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            if (focusStatus === false) {
-                Player.util.removeClass(slider, 'hkplayer-panel-active');
+            if (!player.config.danmu.panel) {
+                return
             }
-        })
 
-        let danmuConfig = player.config.danmu;
-        let hidemodeScroll = panelBtn.querySelector('.hkplayer-hidemode-scroll');
-        let hidemodeTop = panelBtn.querySelector('.hkplayer-hidemode-top');
-        let hidemodeBottom = panelBtn.querySelector('.hkplayer-hidemode-bottom');
-        let hidemodeColor = panelBtn.querySelector('.hkplayer-hidemode-color')
-        let hidemodeArray = {
-            'scroll': hidemodeScroll,
-            'top': hidemodeTop,
-            'bottom': hidemodeBottom,
-            'color': hidemodeColor
-        }
-        for (let key in hidemodeArray) {
-            let keys = key
-            let ev = ['touchend', 'click']
-            ev.forEach(item => {
-                hidemodeArray[keys].addEventListener(item, function (e) {
-                    if (hidemodeArray[keys].getAttribute('id') !== 'true') {
-                        hidemodeArray[keys].style.color = '#f85959'
-                        hidemodeArray[keys].setAttribute('id', 'true')
-                        player.danmu.hide(keys)
-                    } else {
-                        hidemodeArray[keys].style.color = '#aaa'
-                        hidemodeArray[keys].setAttribute('id', 'false')
-                        player.danmu.show(keys)
-                    }
+            const slider = panelBtn.querySelector('.hkplayer-panel-slider');
+            const PanelIconbtn = panelBtn.querySelector('.hkplayer-panel-icon');
+            let focusStatus
+            let focusarray = ['mouseenter', 'touchend', 'click'];
+            focusarray.forEach(item => {
+                PanelIconbtn.addEventListener(item, function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    Player.util.addClass(slider, 'hkplayer-panel-active')
+                    panelBtn.focus();
+                    focusStatus = true;
                 })
             })
-        }
-        let transparency = panelBtn.querySelector('.hkplayer-transparency-line')
-        let transparencyGradient = panelBtn.querySelector('.hkplayer-transparency-gradient')
-        let transparencyValue = 50
-        transparencyGradient.style.background = 'linear-gradient(to right, #f85959 0%, #f85959 ' + transparencyValue + '%, #aaa ' + transparencyValue + '%, #aaa)'
-        transparency.addEventListener('input', function (e) {
-            e.preventDefault()
-            e.stopPropagation()
-            transparencyValue = e.target.value
-            transparencyGradient.style.background = 'linear-gradient(to right, #f85959 0%, #f85959 ' + transparencyValue + '%, #aaa ' + transparencyValue + '%, #aaa)'
-            danmuConfig.comments.forEach(item => {
-                item.style.opacity = transparencyValue / 100
+            panelBtn.addEventListener('mouseleave', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                Player.util.removeClass(slider, 'hkplayer-panel-active');
+                focusStatus = false;
             })
-        })
-        let showarea = panelBtn.querySelector('.hkplayer-showarea-line')
-        showarea.addEventListener('input', function (e) {
-            e.preventDefault()
-            e.stopPropagation()
-            let showareaValue = e.target.value
-            player.danmu.config.area.end = showareaValue / 100
-            player.config.danmu.area.end = showareaValue / 100
-            player.danmu.bulletBtn.main.channel.resize()
-        })
-        let danmuspeed = panelBtn.querySelector('.hkplayer-danmuspeed-line')
-        danmuspeed.addEventListener('input', function (e) {
-            e.preventDefault()
-            e.stopPropagation()
-            let danmuspeedValue = e.target.value
-            danmuConfig.comments.forEach(item => {
-                item.duration = (200 - danmuspeedValue) * 100
+            slider.addEventListener('mouseleave', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (focusStatus === false) {
+                    Player.util.removeClass(slider, 'hkplayer-panel-active');
+                }
             })
-        })
-        let danmufont = panelBtn.querySelector('.hkplayer-danmufont-line');
-        danmufont.addEventListener('input', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            let danmufontValue = e.target.value
-            danmuConfig.comments.forEach(item => {
-                item.style.fontSize = danmufontValue + 'px'
-            })
-        })
-        if (navigator.userAgent.indexOf("Firefox") > -1) {
-            for (let i = 0; i < slider.querySelectorAll('input').length; i++) {
-                slider.querySelectorAll('input')[i].style.marginTop = '10px'
+
+            let danmuConfig = player.config.danmu;
+            let hidemodeScroll = panelBtn.querySelector('.hkplayer-hidemode-scroll');
+            let hidemodeTop = panelBtn.querySelector('.hkplayer-hidemode-top');
+            let hidemodeBottom = panelBtn.querySelector('.hkplayer-hidemode-bottom');
+            let hidemodeColor = panelBtn.querySelector('.hkplayer-hidemode-color')
+            let hidemodeArray = {
+                'scroll': hidemodeScroll,
+                'top': hidemodeTop,
+                'bottom': hidemodeBottom,
+                'color': hidemodeColor
             }
+            for (let key in hidemodeArray) {
+                let keys = key
+                let ev = ['touchend', 'click']
+                ev.forEach(item => {
+                    hidemodeArray[keys].addEventListener(item, function (e) {
+                        if (hidemodeArray[keys].getAttribute('id') !== 'true') {
+                            hidemodeArray[keys].style.color = '#f85959'
+                            hidemodeArray[keys].setAttribute('id', 'true')
+                            player.danmu.hide(keys)
+                        } else {
+                            hidemodeArray[keys].style.color = '#aaa'
+                            hidemodeArray[keys].setAttribute('id', 'false')
+                            player.danmu.show(keys)
+                        }
+                    })
+                })
+            }
+            let transparency = panelBtn.querySelector('.hkplayer-transparency-line')
+            let transparencyGradient = panelBtn.querySelector('.hkplayer-transparency-gradient')
+            let transparencyValue = 50
+            transparencyGradient.style.background = 'linear-gradient(to right, #f85959 0%, #f85959 ' + transparencyValue + '%, #aaa ' + transparencyValue + '%, #aaa)';
+            transparency.addEventListener('input', function (e) {
+                e.preventDefault()
+                e.stopPropagation()
+                transparencyValue = e.target.value
+                transparencyGradient.style.background = 'linear-gradient(to right, #f85959 0%, #f85959 ' + transparencyValue + '%, #aaa ' + transparencyValue + '%, #aaa)'
+                danmuConfig.comments.forEach(item => {
+                    item.style.opacity = transparencyValue / 100
+                })
+            })
+            let showarea = panelBtn.querySelector('.hkplayer-showarea-line')
+            showarea.addEventListener('input', function (e) {
+                e.preventDefault()
+                e.stopPropagation()
+                let showareaValue = e.target.value
+                player.danmu.config.area.end = showareaValue / 100
+                player.config.danmu.area.end = showareaValue / 100
+                player.danmu.bulletBtn.main.channel.resize()
+            })
+            let danmuspeed = panelBtn.querySelector('.hkplayer-danmuspeed-line')
+            danmuspeed.addEventListener('input', function (e) {
+                e.preventDefault()
+                e.stopPropagation()
+                let danmuspeedValue = e.target.value
+                danmuConfig.comments.forEach(item => {
+                    item.duration = (200 - danmuspeedValue) * 100
+                })
+            })
+            let danmufont = panelBtn.querySelector('.hkplayer-danmufont-line');
+            danmufont.addEventListener('input', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                let danmufontValue = e.target.value
+                danmuConfig.comments.forEach(item => {
+                    item.style.fontSize = danmufontValue + 'px'
+                })
+            })
+            if (navigator.userAgent.indexOf("Firefox") > -1) {
+                for (let i = 0; i < slider.querySelectorAll('input').length; i++) {
+                    slider.querySelectorAll('input')[i].style.marginTop = '10px'
+                }
+            }
+        } catch(err) {
+            console.error('danmu.js加载失败');
         }
     })
 }
