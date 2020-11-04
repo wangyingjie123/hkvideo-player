@@ -87,7 +87,7 @@ let mp4player = function () {
             });
         });
     }
-    if (['Chrome', 'Firfox', 'Safari'].some(item => item === sniffer.browser.name) && MSE.isSupported('video/mp4; codecs="avc1.64001E, mp4a.40.5"')) {
+    if (MSE.isSupported('video/mp4; codecs="avc1.64001E, mp4a.40.5"')) {
         player._start = player.start;
         if (!rule.call(player)) {
             return false;
