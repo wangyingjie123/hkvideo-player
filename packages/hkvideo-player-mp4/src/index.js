@@ -26,6 +26,7 @@ let mp4player = function () {
     let preloadTime = player.config.preloadTime || 15;
     let waiterTimer;
     let url = player.config.url;
+    let BrowserList = ['Chrome', 'Firefox', , 'QQBrowser', 'MetaSr', 'Edge', 'Safari', 'QQBrowserLite'];
     let rule = player.config.pluginRule || function () {
         return true;
     }
@@ -87,7 +88,7 @@ let mp4player = function () {
             });
         });
     }
-    if (['Chrome', 'Firfox', 'Safari'].some(item => item === sniffer.browser.name) && MSE.isSupported('video/mp4; codecs="avc1.64001E, mp4a.40.5"')) {
+    if (BrowserList.some(item => item === sniffer.browser.name) && MSE.isSupported('video/mp4; codecs="avc1.64001E, mp4a.40.5"')) {
         player._start = player.start;
         if (!rule.call(player)) {
             return false;
@@ -230,12 +231,25 @@ let mp4player = function () {
                 player.mp4 = mp5;
                 player.mse.appendBuffer(mp5.packMeta());
                 let timer = setInterval(() => {
-                    if (player.currentTime >= start - 0.1) {
-                        player.currentTime = start + 0.1;
+                    if (sniffer.browser.name !== 'Safari' && player.currentTime >= start - 0.1) {
+                        player.currentTime += 0.2;
                         player.emit('showTips', `已为您切换<span class="define-text">${to}</span>清晰度`, true);
                         player.mse.removeBuffer(0, start);
                         clearInterval(timer);
+                    } else if (player.currentTime >= end) {
+                        player.emit('showTips', `已为您切换<span class="define-text">${to}</span>清晰度`, true);
+                        const buffered = player.video.buffered;
+                        let mse = player.mse;
+                        mse.updating = true;
+                        player.mse.removeBuffer(0, buffered.start(buffered.length - 1));
+                        player.mp4.clear()
+                        mse.once('updateend', () => {
+                            mse.updating = false;
+                        });
+                        clearInterval(timer);
                     }
+
+
                 }, 10)
 
                 player.logParams.pt = new Date().getTime();
@@ -353,9 +367,24 @@ let mp4player = function () {
             Task.clear();
             if (buffered.length) {
                 for (let i = 0, len = buffered.length; i < len; i++) {
-                    if (curTime >= buffered.start(i) && curTime <= buffered.end(i)) {
-                        hasBuffered = true
-                        break
+                    const start = buffered.start(i);
+                    const end = buffered.end(i);
+                    if (curTime >= start && curTime <= end) {
+                        hasBuffered = true;
+                    } else if (curTime <= start){
+                        let mse = player.mse;
+                        let timer = setInterval(() => {
+                            if (mse.updating) {
+                                return
+                            }
+                            clearInterval(timer)
+                            mse.updating = true;
+                            player.mse.removeBuffer(start, end);
+                            player.mp4.clear()
+                            mse.once('updateend', () => {
+                                mse.updating = false;
+                            });
+                        }, 10)
                     }
                 }
                 if (!hasBuffered) {
