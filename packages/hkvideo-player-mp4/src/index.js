@@ -230,12 +230,18 @@ let mp4player = function () {
                 player.mp4 = mp5;
                 player.mse.appendBuffer(mp5.packMeta());
                 let timer = setInterval(() => {
-                    if (player.currentTime >= start - 0.1) {
+                    if (sniffer.browser.name !== 'Safari' && player.currentTime >= start - 0.1) {
                         player.currentTime = start + 0.1;
                         player.emit('showTips', `已为您切换<span class="define-text">${to}</span>清晰度`, true);
                         player.mse.removeBuffer(0, start);
                         clearInterval(timer);
+                    } else if (player.currentTime >= end) {
+                        player.emit('showTips', `已为您切换<span class="define-text">${to}</span>清晰度`, true);
+                        player.mse.removeBuffer(0, start);
+                        clearInterval(timer);
                     }
+
+
                 }, 10)
 
                 player.logParams.pt = new Date().getTime();
@@ -355,7 +361,7 @@ let mp4player = function () {
                 for (let i = 0, len = buffered.length; i < len; i++) {
                     if (curTime >= buffered.start(i) && curTime <= buffered.end(i)) {
                         hasBuffered = true;
-                    } else if (hasBuffered) {
+                    } else if (curTime <= buffered.start(i)){
                         player.mp4.clear()
                         player.mse.removeBuffer(buffered.start(i), buffered.end(i));
                     }
