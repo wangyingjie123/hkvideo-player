@@ -236,6 +236,7 @@ let mp4player = function () {
                         player.mse.removeBuffer(0, start);
                         clearInterval(timer);
                     } else if (player.currentTime >= end) {
+                        player.mp4.clear()
                         player.emit('showTips', `已为您切换<span class="define-text">${to}</span>清晰度`, true);
                         player.mse.removeBuffer(0, start);
                         clearInterval(timer);
