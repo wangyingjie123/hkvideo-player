@@ -354,8 +354,10 @@ let mp4player = function () {
             if (buffered.length) {
                 for (let i = 0, len = buffered.length; i < len; i++) {
                     if (curTime >= buffered.start(i) && curTime <= buffered.end(i)) {
-                        hasBuffered = true
-                        break
+                        hasBuffered = true;
+                    } else if (hasBuffered) {
+                        player.mp4.clear()
+                        player.mse.removeBuffer(buffered.start(i), buffered.end(i));
                     }
                 }
                 if (!hasBuffered) {

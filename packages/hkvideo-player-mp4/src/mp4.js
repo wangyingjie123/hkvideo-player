@@ -380,6 +380,9 @@ class MP4 {
             return this.loadFragment(fragIndex)
         }
     }
+    clear() {
+        this.bufferCache.clear();
+    }
     loadFragment(fragIndex) {
         let start,
             end
