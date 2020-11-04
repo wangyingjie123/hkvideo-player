@@ -26,6 +26,7 @@ let mp4player = function () {
     let preloadTime = player.config.preloadTime || 15;
     let waiterTimer;
     let url = player.config.url;
+    let BrowserList = ['Chrome', 'Firefox', , 'QQBrowser', 'MetaSr', 'Edge', 'Safari', 'QQBrowserLite'];
     let rule = player.config.pluginRule || function () {
         return true;
     }
@@ -87,7 +88,7 @@ let mp4player = function () {
             });
         });
     }
-    if (MSE.isSupported('video/mp4; codecs="avc1.64001E, mp4a.40.5"')) {
+    if (BrowserList.some(item => item === sniffer.browser.name) && MSE.isSupported('video/mp4; codecs="avc1.64001E, mp4a.40.5"')) {
         player._start = player.start;
         if (!rule.call(player)) {
             return false;
