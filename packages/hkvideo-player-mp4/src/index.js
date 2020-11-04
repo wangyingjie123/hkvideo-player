@@ -231,14 +231,20 @@ let mp4player = function () {
                 player.mse.appendBuffer(mp5.packMeta());
                 let timer = setInterval(() => {
                     if (sniffer.browser.name !== 'Safari' && player.currentTime >= start - 0.1) {
-                        player.currentTime = start + 0.1;
+                        player.currentTime += 0.2;
                         player.emit('showTips', `已为您切换<span class="define-text">${to}</span>清晰度`, true);
                         player.mse.removeBuffer(0, start);
                         clearInterval(timer);
                     } else if (player.currentTime >= end) {
-                        player.mp4.clear()
                         player.emit('showTips', `已为您切换<span class="define-text">${to}</span>清晰度`, true);
-                        player.mse.removeBuffer(0, start);
+                        const buffered = player.video.buffered;
+                        let mse = player.mse;
+                        mse.updating = true;
+                        player.mse.removeBuffer(0, buffered.start(buffered.length - 1));
+                        player.mp4.clear()
+                        mse.once('updateend', () => {
+                            mse.updating = false;
+                        });
                         clearInterval(timer);
                     }
 
@@ -360,11 +366,24 @@ let mp4player = function () {
             Task.clear();
             if (buffered.length) {
                 for (let i = 0, len = buffered.length; i < len; i++) {
-                    if (curTime >= buffered.start(i) && curTime <= buffered.end(i)) {
+                    const start = buffered.start(i);
+                    const end = buffered.end(i);
+                    if (curTime >= start && curTime <= end) {
                         hasBuffered = true;
-                    } else if (curTime <= buffered.start(i)){
-                        player.mp4.clear()
-                        player.mse.removeBuffer(buffered.start(i), buffered.end(i));
+                    } else if (curTime <= start){
+                        let mse = player.mse;
+                        let timer = setInterval(() => {
+                            if (mse.updating) {
+                                return
+                            }
+                            clearInterval(timer)
+                            mse.updating = true;
+                            player.mse.removeBuffer(start, end);
+                            player.mp4.clear()
+                            mse.once('updateend', () => {
+                                mse.updating = false;
+                            });
+                        }, 10)
                     }
                 }
                 if (!hasBuffered) {
