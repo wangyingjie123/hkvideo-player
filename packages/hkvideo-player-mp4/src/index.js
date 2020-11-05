@@ -9,7 +9,7 @@ import Task from './media/task';
 import Buffer from './fmp4/buffer';
 
 let isEnded = (player, mp4) => {
-    if (mp4.meta.endTime - player.currentTime < 2) {
+    if (mp4.meta.endTime - player.currentTime < 0.5) {
         let range = player.getBufferedRange();
         if (player.currentTime - range[1] < 0.1) {
             player.mse.endOfStream();
@@ -26,7 +26,7 @@ let mp4player = function () {
     let preloadTime = player.config.preloadTime || 15;
     let waiterTimer;
     let url = player.config.url;
-    let BrowserList = ['Chrome', 'Firefox', , 'QQBrowser', 'MetaSr', 'Edge', 'Safari', 'QQBrowserLite'];
+    const BrowserList = ['Chrome', 'Firefox', , 'QQBrowser', 'MetaSr', 'Edge', 'Safari', 'QQBrowserLite'];
     let rule = player.config.pluginRule || function () {
         return true;
     }
@@ -88,7 +88,8 @@ let mp4player = function () {
             });
         });
     }
-    if (BrowserList.some(item => item === sniffer.browser.name) && MSE.isSupported('video/mp4; codecs="avc1.64001E, mp4a.40.5"')) {
+    if (BrowserList.some(item => item === sniffer.browser.name)
+    && MSE.isSupported('video/mp4; codecs="avc1.64001E, mp4a.40.5"')) {
         player._start = player.start;
         if (!rule.call(player)) {
             return false;
