@@ -1,6 +1,6 @@
 {
     "name": "hkvideo-player-mp4",
-    "version": "1.0.0-3",
+    "version": "1.0.0-4",
     "description": "hkvideo-player plugin for mp4 transform to fmp4",
     "main": "./dist/index.js",
     "scripts": {
