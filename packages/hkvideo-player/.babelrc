@@ -11,13 +11,13 @@
                         "Firefox > 20"
                     ]
                 },
+                "modules": false,
                 "useBuiltIns": "usage",
                 "corejs": 3
             }
         ]
     ],
     "plugins": [
-        ["@babel/plugin-transform-runtime", {"corejs": false}],
-        "@babel/plugin-syntax-dynamic-import"
+        ["@babel/plugin-transform-runtime", {"corejs": false}]
     ]
 }

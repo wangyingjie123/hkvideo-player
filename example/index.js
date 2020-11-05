@@ -25,7 +25,7 @@ let player;
         // closeFocusVideoFocus: true,
         // enterLogo: 'https://pic.rmb.bdstatic.com/baidu-rmb-video-cover-1/2019-10/1571972106218/c91ded088044.png',
         // url: 'https://storage.googleapis.com/media-session/caminandes/short.mp4'
-        url: 'http://sf1-hscdn-tos.pstatp.com/obj/media-fe/xgplayer_doc_video/mp4/xgplayer-demo-720p.mp4'
+        url: 'https://haokanupdate.cdn.bcebos.com/hk-intro-video.mp4'
     });
 // });
 

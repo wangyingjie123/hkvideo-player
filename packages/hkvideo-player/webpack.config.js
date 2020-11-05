@@ -4,8 +4,7 @@
  */
 /* eslint-disable */
 const polyfill = [];
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');\
-const threadLoader = require('thread-loader');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const fs = require('fs');
 const path = require('path');
 
@@ -37,7 +36,19 @@ const globConfig = {
             },
             {
                 test: /\.svg/,
-                loader: 'raw-loader'
+                use: [
+                    {loader: 'raw-loader'},
+                    {
+                        loader: 'svgo-loader',
+                        options: {
+                            plugins: [
+                                {removeTitle: true},
+                                {convertColors: {shorthex: false}},
+                                {convertPathData: false}
+                            ]
+                        }
+                    }
+                ]
             }
         ]
     },
