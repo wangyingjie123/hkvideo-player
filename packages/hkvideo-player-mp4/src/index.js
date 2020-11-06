@@ -26,7 +26,7 @@ let mp4player = function () {
     let preloadTime = player.config.preloadTime || 15;
     let waiterTimer;
     let url = player.config.url;
-    const BrowserList = ['Chrome', 'Firefox', , 'QQBrowser', 'MetaSr', 'Edge', 'Safari', 'QQBrowserLite'];
+    const BrowserList = ['Chrome', 'Firefox', 'LBBROWSER', 'QQBrowser', 'MetaSr', 'Edge', 'Safari', 'QQBrowserLite'];
     let rule = player.config.pluginRule || function () {
         return true;
     }
