@@ -22,6 +22,18 @@ let player;
             // right: 100,
             prevPos: true
         },
+        playNext: {
+            urlList: [
+                'https://s3.bytecdn.cn/ies/fe_app_new/musics/tvc-v3.d84159ab.mp4',
+                {
+                    url: 'https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/cae-legoup-video-target/461b1dc0-c2e5-4bce-9c58-5ffea8f26c27.mp4',
+                    img: 'https://p3-xg.byteimg.com/img/tos-cn-i-0000/4b14415a387a4e348b585d632d5be45a~tplv-crop-center:336:188.webp',
+                    title: '细纹退散，38岁拥有迷人星星眼，最全眼部保养干货',
+                    duration: '03:40'
+                }
+            ],
+            // playNextFun: () => window.location.reload()
+        },
         // closeFocusVideoFocus: true,
         // enterLogo: 'https://pic.rmb.bdstatic.com/baidu-rmb-video-cover-1/2019-10/1571972106218/c91ded088044.png',
         // url: 'https://storage.googleapis.com/media-session/caminandes/short.mp4'
