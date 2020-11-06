@@ -7,7 +7,7 @@ let s_rotate = function () {
     if (!player.config.rotate) {
         return
     }
-    let btn = util.createDom('hk-rotate', `<hk-icon class="hkplayer-icon">${RotateIcon}</hk-icon>`, {}, 'hkplayer-rotate')
+    let btn = util.createDom('hk-rotate', `<hk-icon class="hkplayer-icon">${RotateIcon}</hk-icon>`, {}, 'hkplayer-rotate control');
 
     let tipsText = player.lang.ROTATE_TIPS
     let tips = util.createDom('hk-tips', `<span class="hkplayer-tip-rotate">${tipsText}</span>`, {}, 'hkplayer-tips')

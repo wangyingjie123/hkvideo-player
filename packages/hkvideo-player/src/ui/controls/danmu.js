@@ -9,7 +9,7 @@ let s_danmu = function () {
     if (!player.config.danmu) {
         return
     }
-    let container = util.createDom('hk-danmu', '', {}, 'hkplayer-danmu')
+    let container = util.createDom('hk-danmu', '', {}, 'hkplayer-danmu control');
     player.once('ready', () => {
         root.appendChild(container)
     })

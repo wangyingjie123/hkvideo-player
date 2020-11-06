@@ -14,7 +14,7 @@ let s_fullscreen = function () {
         `<hk-icon class="hkplayer-icon">
             <div class="hkplayer-icon-requestfull">${RequestFullIcon}</div>
             <div class="hkplayer-icon-exitfull">${ExitFullIcon}</div>
-        </hk-icon>`, {}, 'hkplayer-fullscreen');
+        </hk-icon>`, {}, 'hkplayer-fullscreen control');
     }
     let tipsText = {};
     tipsText.requestfull = player.lang.FULLSCREEN_TIPS;

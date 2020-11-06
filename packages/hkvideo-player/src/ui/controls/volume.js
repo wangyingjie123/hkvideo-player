@@ -18,7 +18,7 @@ let s_volume = function () {
                 <hk-drag class="hkplayer-drag"></hk-drag>
             </hk-bar>
         </hk-slider>`,
-    {}, 'hkplayer-volume');
+    {}, 'hkplayer-volume control');
     player.once('ready', () => {
         player.controls.appendChild(container);
     });

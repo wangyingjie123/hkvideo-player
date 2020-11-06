@@ -4,7 +4,7 @@ let s_flex = function () {
     let player = this
     let root = player.root
     let util = Player.util
-    let playceholder = util.createDom('hk-placeholder', '', {}, 'hkplayer-placeholder')
+    let playceholder = util.createDom('hk-placeholder', '', {}, 'hkplayer-placeholder control');
     player.controls.appendChild(playceholder)
 }
 

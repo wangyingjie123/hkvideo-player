@@ -7,7 +7,7 @@ let s_download = function () {
     if (!player.config.download) {
         return
     }
-    let btn = util.createDom('hk-download', `<hk-icon class="hkplayer-icon">${DownloadIcon}</hk-icon>`, {}, 'hkplayer-download')
+    let btn = util.createDom('hk-download', `<hk-icon class="hkplayer-icon">${DownloadIcon}</hk-icon>`, {}, 'hkplayer-download control');
 
     let tipsText = player.lang.DOWNLOAD_TIPS
     let tips = util.createDom('hk-tips', `<span class="hkplayer-tip-download">${tipsText}</span>`, {}, 'hkplayer-tips')

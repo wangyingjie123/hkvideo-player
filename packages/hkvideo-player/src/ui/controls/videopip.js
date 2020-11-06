@@ -14,7 +14,7 @@ let s_videopip = function () {
     let btn = util.createDom('hk-videopip',
         `<hk-icon class="hkplayer-icon">
             <div class="hkplayer-icon-openpip">${RequestFullIcon}</div>
-        </hk-icon>`, {}, 'hkplayer-videopip');
+        </hk-icon>`, {}, 'hkplayer-videopip control');
     let tipsText = {};
     tipsText.requestpip = player.lang.OPEN_PIP;
     tipsText.exitpip = player.lang.EXIT_PIP;

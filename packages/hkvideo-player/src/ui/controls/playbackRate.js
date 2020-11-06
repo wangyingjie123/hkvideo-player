@@ -30,7 +30,7 @@ let s_playbackRate = function () {
     });
     list += '</ul>';
     let ul = util.createDom('hk-playback',
-    `${list}<p class='name'><span>${tipsSpeed}</span></p>`, {}, 'hkplayer-playback');
+    `${list}<p class='name'><span>${tipsSpeed}</span></p>`, {}, 'hkplayer-playback control');
     let root = player.controls;
     root.appendChild(ul);
     ul.addEventListener('click', function (e) {

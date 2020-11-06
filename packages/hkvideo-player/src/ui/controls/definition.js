@@ -8,7 +8,7 @@ let s_definition = function () {
     let paused
     let container = util.createDom('hk-definition', '', {
         tabindex: 3
-    }, 'hkplayer-definition')
+    }, 'hkplayer-definition control')
     if (sniffer.device === 'mobile') {
         player.config.definitionActive = 'click'
     }

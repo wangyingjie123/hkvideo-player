@@ -9,7 +9,7 @@ let s_pip = function () {
     let pip = player.lang.SMALL_WINDOW
     let btn = util.createDom('hk-pip', `<p class="name"><span>${pip}</span></p>`, {
         tabindex: 9
-    }, 'hkplayer-pip')
+    }, 'hkplayer-pip control');
 
     player.once('ready', () => {
         player.controls.appendChild(btn);

@@ -89,9 +89,12 @@ $pipHeight: 240px;
         .hkplayer-controls {
             z-index: 140;
             transition: none;
-            .hkplayer-placeholder, .hkplayer-fullscreen,
-            .hkplayer-cssfullscreen, .hkplayer-volume, .hkplayer-videopip,
-            .danmu-switch, .hkplayer-playback, .hkplayer-definition {
+            // .hkplayer-placeholder, .hkplayer-fullscreen,
+            // .hkplayer-cssfullscreen, .hkplayer-volume, .hkplayer-videopip,
+            // .danmu-switch, .hkplayer-playback, .hkplayer-definition {
+            //     display: none;
+            // }
+            .control {
                 display: none;
             }
             .hkplayer-play {
