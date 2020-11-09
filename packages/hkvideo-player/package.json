@@ -3,6 +3,7 @@
     "version": "1.0.3-1",
     "description": "video player",
     "main": "./dist/index.js",
+    "typings": "./types/index.d.ts",
     "scripts": {
         "build": "NODE_ENV=production webpack --progress",
         "dev": "NODE_ENV=development webpack --progress --watch",
