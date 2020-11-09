@@ -68,7 +68,6 @@ Thumbs.db
 
 # IDE configurations
 .idea
-.vscode
 
 # build assets
 output/
