@@ -1,8 +1,8 @@
 {
     "name": "hkvideo-player-flv",
-    "version": "1.0.1-0",
-    "description": "",
-    "main": "index.js",
+    "version": "1.0.1-1",
+    "description": "flv.js",
+    "main": "./dist/index.js",
     "scripts": {
         "prepare": "npm run build",
         "build": "NODE_ENV=production webpack --progress",
