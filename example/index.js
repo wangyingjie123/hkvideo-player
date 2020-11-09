@@ -1,10 +1,11 @@
 import { ajax, sendDanmu, initDanmu, danmu, setDefin } from './tools.js';
-const Player = window.FlvJsPlayer;
+const Player = window.Player;
 let player;
 // ajax('./demo.mp4', 'blob', function(res){
 //     const src = URL.createObjectURL(res);
     player = new Player({
         id: 'app',
+        // diyDuration: 300, // 自定义时长
         cssFullscreen: true,
         fluid: true, // 流式布局
         ignores: ['replay'], // 禁止某个插件执行
@@ -22,15 +23,14 @@ let player;
             prevPos: true
         },
         // closeFocusVideoFocus: true,
-        // diyDuration: 300, // 自定义时长
         // enterLogo: 'https://pic.rmb.bdstatic.com/baidu-rmb-video-cover-1/2019-10/1571972106218/c91ded088044.png',
-        url: 'https://sf1-hscdn-tos.pstatp.com/obj/media-fe/xgplayer_doc_video/flv/xgplayer-demo-720p.flv',
-        // isLive: true
+        url: 'https://storage.googleapis.com/media-session/caminandes/short.mp4'
+        // url: './demo.mp4'
     });
 // });
 
-// initDanmu(player); // 弹幕初始化
-// setDefin(player); // 设置清晰度
+// initDanmu(player);
+// setDefin(player);
 document.querySelector('#sendDanmu').onclick = () => {
     sendDanmu(player);
 };
