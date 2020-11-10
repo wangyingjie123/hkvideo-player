@@ -24,7 +24,7 @@ let player;
         // closeFocusVideoFocus: true,
         // diyDuration: 300, // 自定义时长
         // enterLogo: 'https://pic.rmb.bdstatic.com/baidu-rmb-video-cover-1/2019-10/1571972106218/c91ded088044.png',
-        url: 'https://sf1-hscdn-tos.pstatp.com/obj/media-fe/xgplayer_doc_video/flv/xgplayer-demo-720p.flv',
+        url: 'https://haokanupdate.cdn.bcebos.com/hk-intro-video.mp4',
         // isLive: true
     });
 // });
