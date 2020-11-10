@@ -51,7 +51,19 @@ const globConfig = {
 			]
 		},{
             test: /\.svg/,
-            loader: 'raw-loader'
+            use: [
+                {loader: 'raw-loader'},
+                {
+                    loader: 'svgo-loader',
+                    options: {
+                        plugins: [
+                            {removeTitle: true},
+                            {convertColors: {shorthex: false}},
+                            {convertPathData: false}
+                        ]
+                    }
+                }
+            ]
         }]
     },
     plugins: [
