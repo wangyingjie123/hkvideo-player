@@ -4,7 +4,7 @@
  */
 /* eslint-disable */
 const polyfill = [];
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');\
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const threadLoader = require('thread-loader');
 const fs = require('fs');
 const path = require('path');
@@ -30,11 +30,11 @@ const globConfig = {
 		rules: [{
 			test: /\.js$/,
 			use: [
-			//   {
-			// 	loader: 'thread-loader',
-			// 	options: jsWorkerPool
-			//   },
-			  'babel-loader'
+                // {
+                //     loader: 'thread-loader',
+                //     options: jsWorkerPool
+                // },
+                'babel-loader'
 			]
 		}, {
 			test: /\.scss$/,
