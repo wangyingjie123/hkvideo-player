@@ -10,7 +10,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "http://icode.baidu.com/repos/baidu/haokan-fe/haokan-pc-player/tree/master:packages/hkplayer-hls"
+        "url": "https://github.com/wangyingjie123/hkvideo-player/tree/master/packages/hkvideo-player-hls"
     },
     "babel": {
         "presets": [
