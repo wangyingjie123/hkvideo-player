@@ -1,6 +1,6 @@
 /**
  * @file webpack
- * @author wangyingjie07
+ * @author wyj007
  */
 /* eslint-disable */
 const polyfill = [];

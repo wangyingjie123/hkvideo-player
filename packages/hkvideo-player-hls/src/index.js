@@ -2,7 +2,6 @@
 import Player from 'hkvideo-player';
 import Hls from 'hls.js';
 import utils from './utils';
-
 class HlsJsPlayer extends Player {
     constructor(options) {
         super(options);
