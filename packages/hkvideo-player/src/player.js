@@ -800,9 +800,9 @@ class Player extends Proxy {
 
     onKeydown(event, player) {
         // let player = this
-        let e = event || window.event
+        let e = event || window.event;
         if (e && (e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40 || e.keyCode === 32)) {
-            player.emit('focus')
+            player.emit('focus');
         }
         if (e && (e.keyCode === 40 || e.keyCode === 38)) {
             if (player.controls) {
@@ -847,14 +847,16 @@ class Player extends Proxy {
         } else if (e && e.keyCode === 32) { // 按 spacebar
             if (player.paused) {
                 // eslint-disable-next-line handle-callback-err
-                let playPromise = player.play()
+                let playPromise = player.play();
                 if (playPromise !== undefined && playPromise) {
                     playPromise.catch(err => {})
                 }
             } else {
-                player.pause()
+                player.pause();
             }
         }
+        e.stopPropagation();
+        e.preventDefault();
     }
 
     get cumulateTime() {

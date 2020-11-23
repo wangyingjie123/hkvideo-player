@@ -1,11 +1,5 @@
 ## hkplayer-hls插件
 用于播放flv形式的直播、点播
-### 开发
-```
-1、cd packages/hkvideo-player-flv
-2、npm i
-3、npm run dev
-```
 ### 使用
 ```
 // 1、cdny引入

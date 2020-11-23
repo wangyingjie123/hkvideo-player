@@ -25,6 +25,7 @@ let player;
         // diyDuration: 300, // 自定义时长
         // enterLogo: 'xxx',
         url: 'https://haokanupdate.cdn.bcebos.com/hk-intro-video.mp4',
+        // url: 'https://sf1-hscdn-tos.pstatp.com/obj/media-fe/xgplayer_doc_video/flv/xgplayer-demo-360p.flv',
         // isLive: true
     });
 // });
