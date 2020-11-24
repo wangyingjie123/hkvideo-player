@@ -492,11 +492,21 @@ class Player extends Proxy {
 
     getPIP() {
         // 原生画中画开启的时候不允许小窗
-        if (util.hasClass(this.root, 'hkplayer-pip-active') || util.hasClass(this.root, 'hkplayer-is-videopip')) return;
-        const dragLay = util.createDom('hk-pip-lay', '<div></div>', {}, 'hkplayer-pip-lay hkplayer-close');
+        if (util.hasClass(this.root, 'hkplayer-pip-active')
+        || util.hasClass(this.root, 'hkplayer-is-videopip')
+        || localStorage.getItem('pipFlag') === '0') {
+            return;
+        }
+        const dragLay = util.createDom('hk-pip-lay', 
+        `
+        <label class="pip-label">
+            <span>不再出现</span>
+            <div class="pip-label-tips">可在播放器设置中重新打开</div>
+        </label>
+        <div class="pip-close"></div>`, {}, 'hkplayer-pip-lay');
         const dragRange = util.createDom('div', '', {}, 'hkplayer-dragrange hiderange');
         this.root.appendChild(dragLay);
-        const dragHandle = util.createDom('hk-pip-drag', '<div class="drag-handle"><span>按住画面可移动小窗</span></div>', {
+        const dragHandle = util.createDom('hk-pip-drag', '<p class="pip-text">按住画面可移动小窗</p>', {
             tabindex: 22
         }, 'hkplayer-pip-drag');
         this.root.appendChild(dragHandle);
@@ -505,7 +515,7 @@ class Player extends Proxy {
         }
         // eslint-disable-next-line no-unused-vars
         let draggie = new Draggabilly('.hkplayer', {
-            handle: '.drag-handle',
+            handle: '.hkplayer-pip-drag',
             containment: '.hkplayer-dragrange'
         });
         let scrollEvent = null;
@@ -568,19 +578,21 @@ class Player extends Proxy {
         this.root.style.left = left || left == 0 ? left + 'px' : '';
         this.root.style.width = pipWidth + 'px';
         this.root.style.height = pipHeight + 'px';
-        let player = this;
         // player.on('ready', () => {
         //     let pipactivePlay = util.findDom(this.controls, '.hkplayer-play');
         //     // 100 是控制条高度 + playicon高度， 居中显示playicon
         //     pipactivePlay.style.top = `${-(pipHeight - 52) / 2}px`;
         // });
-        ['click', 'touchend'].forEach(item => {
-            dragLay.addEventListener(item, function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                player.exitPIP();
-            })
-        })
+        dragLay.addEventListener('click', (e) => {
+            const curtentTar = e.target.tagName.toLocaleLowerCase();
+            if (curtentTar === 'span' || curtentTar === 'label') {
+                const pipSwitch = util.findDom(this.controls, '#pipSwitch');
+                this.emit('pipBtnClick', pipSwitch);
+            }
+            e.preventDefault();
+            e.stopPropagation();
+            this.exitPIP();
+        });
     }
 
     exitPIP() {
@@ -618,9 +630,6 @@ class Player extends Proxy {
         if (dragHandle && dragHandle.parentNode) {
             dragHandle.parentNode.removeChild(dragHandle);
         }
-        let pipactivePlay = util.findDom(this.controls, '.hkplayer-play');
-        // 100 是控制条高度 + playicon高度， 居中显示playicon
-        pipactivePlay.style.top = '';
     }
 
     updateRotateDeg() {

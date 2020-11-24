@@ -7,7 +7,7 @@ let s_reload = function () {
     if (!player.config.reload) {
         return
     }
-    let btn = util.createDom('hk-reload', `<hk-icon class="hkplayer-icon">${ReloadIcon}</hk-icon>`, {}, 'hkplayer-reload')
+    let btn = util.createDom('hk-reload', `<hk-icon class="hkplayer-icon">${ReloadIcon}</hk-icon>`, {}, 'hkplayer-reload pipnone');
 
     let tipsText = player.lang.RELOAD_TIPS
     let tips = util.createDom('hk-tips', `<span class="hkplayer-tip-reload">${tipsText}</span>`, {}, 'hkplayer-tips')

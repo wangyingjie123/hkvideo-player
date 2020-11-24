@@ -97,7 +97,7 @@ let s_danmu = function () {
         </hk-danmufont>
         </hk-panel-slider>`, {
             tabindex: 6
-        }, 'hkplayer-panel');
+        }, 'hkplayer-panel pipnone');
         player.once('ready', () => {
             player.controls.appendChild(panelBtn)
         });

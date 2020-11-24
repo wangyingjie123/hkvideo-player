@@ -1,4 +1,5 @@
 /* eslint-disable */
+// 倍速播放
 import Player from '../../player';
 let s_playbackRate = function () {
     let player = this;
@@ -30,7 +31,7 @@ let s_playbackRate = function () {
     });
     list += '</ul>';
     let ul = util.createDom('hk-playback',
-    `${list}<p class='name'><span>${tipsSpeed}</span></p>`, {}, 'hkplayer-playback');
+    `${list}<p class='name'><span>${tipsSpeed}</span></p>`, {}, 'hkplayer-playback pipnone');
     let root = player.controls;
     root.appendChild(ul);
     ul.addEventListener('click', function (e) {

@@ -8,7 +8,7 @@ let s_playNext = function () {
     if (!nextBtn || !nextBtn.urlList) {
         return
     }
-    let btn = util.createDom('hk-playnext', `<hk-icon class="hkplayer-icon">${PlayNextIcon}</hk-icon>`, {}, 'hkplayer-playnext')
+    let btn = util.createDom('hk-playnext', `<hk-icon class="hkplayer-icon">${PlayNextIcon}</hk-icon>`, {}, 'hkplayer-playnext pipnone');
     let tipsText = player.lang.PLAYNEXT_TIPS
     let tips = util.createDom('hk-tips', `<span class="hkplayer-tip-playnext">${tipsText}</span>`, {}, 'hkplayer-tips')
     btn.appendChild(tips)

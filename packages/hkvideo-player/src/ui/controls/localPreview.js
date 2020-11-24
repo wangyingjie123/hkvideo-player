@@ -5,7 +5,7 @@ let s_localPreview = function () {
     let root = player.root
     let util = Player.util
     if (player.config.preview && player.config.preview.uploadEl) {
-        let preview = util.createDom('hk-preview', '<input type="file">', {}, 'hkplayer-preview')
+        let preview = util.createDom('hk-preview', '<input type="file">', {}, 'hkplayer-preview pipnone')
         let upload = preview.querySelector('input')
         player.config.preview.uploadEl.appendChild(preview)
         upload.onchange = function () {

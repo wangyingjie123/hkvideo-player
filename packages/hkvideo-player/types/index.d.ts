@@ -2,8 +2,8 @@
  * @file index.d.ts
  * @author wangyingjie
  */
-import { EventEmitter } from 'events';
 declare module 'hkvideo-player' {
+    import { EventEmitter } from 'events';
     type DanmuModelType = 'top' | 'bottom' | 'scroll' | string;
 
     interface DanmuOptions {
@@ -577,5 +577,5 @@ declare module 'hkvideo-player' {
          */
         public removeAllProgressDot(): void;
     }
+    export default Player;
 }
-export default Player;

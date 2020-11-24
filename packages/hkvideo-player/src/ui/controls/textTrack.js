@@ -11,7 +11,7 @@ let s_textTrack = function () {
     let controls = player.controls
     let container = util.createDom('hk-texttrack', '', {
         tabindex: 7
-    }, 'hkplayer-texttrack')
+    }, 'hkplayer-texttrack pipnone')
     let list = player.config.textTrack
     if (list && Array.isArray(list) && list.length > 0) {
         util.addClass(player.root, 'hkplayer-is-texttrack')

@@ -11,7 +11,7 @@ let s_cssFullscreen = function () {
     let btn = util.createDom('hk-cssfullscreen', `<hk-icon class="hkplayer-icon">
         <div class="hkplayer-icon-requestfull">${RequestCssFullIcon}</div>
         <div class="hkplayer-icon-exitfull">${ExitCssFullIcon}</div>
-    </hk-icon>`, {}, 'hkplayer-cssfullscreen')
+    </hk-icon>`, {}, 'hkplayer-cssfullscreen pipnone');
 
     let tipsText = {}
     tipsText.requestfull = player.lang.CSSFULLSCREEN_TIPS
