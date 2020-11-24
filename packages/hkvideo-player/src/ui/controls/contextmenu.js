@@ -1,6 +1,7 @@
 /* eslint-disable */
 import Player from '../../player';
 import { version, name } from '../../../package.json';
+import close from '../assets/close.svg';
 let s_contextmenu = function () {
     let player = this;
     let util = Player.util;
@@ -26,7 +27,7 @@ let s_contextmenu = function () {
         <ul class="hkvideo-ctxmenuhelp-list">
             ${labelStr}
         </ul>
-        <div class="hkplayer-close"></div>
+        <div class="hkvideo-close">${close}</div>
     `, {}, 'hkvideo-ctxmenuhelp hkplayer-none');
     // 右键菜单dom
     const ctxList = util.createDom('ul', `
@@ -56,7 +57,7 @@ let s_contextmenu = function () {
             <label class="hkvideo-ctxvideoex-label">播放器版本：</label>
             <span class="hkvideo-ctxvideoex-text">${name}@${version}</span>
         </p>
-        <div class="hkplayer-close"></div>
+        <div class="hkvideo-close">${close}</div>
     `, {}, 'hkvideo-ctxvideoex hkplayer-none');
     ctxCon.appendChild(ctxKeyHelp);
     ctxCon.appendChild(ctxList);

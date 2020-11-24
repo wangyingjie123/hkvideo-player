@@ -12,6 +12,7 @@ let player;
         screenShot: true, // 屏幕截图--有跨域限制，url需要是本地blob地址
         playbackRate: [0.75, 1, 1.5, 2], // 倍速播放
         videopip: true, // 原生画中画
+        // pip: false,
         pipConfig: { // 小窗大小及位置
             width: 580,
             height: 326.25,
@@ -38,18 +39,18 @@ document.querySelector('#sendDanmu').onclick = () => {
 document.querySelector('#button').onclick = function () {
     player.getPIP();
 }
-// let getpiped = false;
-// const pip = () => {
-//     const windowScroll = document.documentElement.scrollTop || document.body.scrollTop;
-//     if (windowScroll > 600) {
-//         if (getpiped) return;
-//         player.getPIP();
-//         getpiped = true;
-//     } else {
-//         if (!getpiped) return;
-//         player.exitPIP();
-//         getpiped = false;
-//     }
-// };
+let getpiped = false;
+const pip = () => {
+    const windowScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    if (windowScroll > 600) {
+        if (getpiped) return;
+        player.getPIP();
+        getpiped = true;
+    } else {
+        if (!getpiped) return;
+        player.exitPIP();
+        getpiped = false;
+    }
+};
 // window.addEventListener('scroll', pip);
 // window.scrollTo(0, 601);

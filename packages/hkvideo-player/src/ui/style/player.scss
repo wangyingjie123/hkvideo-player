@@ -13,9 +13,10 @@
 // hkplayer-download 16
 // hkplayer-rotate 18
 // hkplayer-volume 20
-// // hkplayer-videopip 22
-// hkplayer-cssFullscreen 24
-// hkplayer-fullscreen 26
+// hkplayer-pip 22
+// hkplayer-videopip 24
+// hkplayer-cssFullscreen 26
+// hkplayer-fullscreen 28
 
 // z-index:
 // hkplayer-poster 100
@@ -61,14 +62,10 @@
         outline: none;
     }
     .hkplayer-close {
-        transition: opacity .2s;
-        width: 12px;
-        height: 12px;
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        background: $closeIcon;
-        background-size: contain;
+        fill: $tipsColor;
+        &:hover {
+            fill: $sliderDragBgColor;
+        }
         cursor: pointer;
     }
     .hkplayer-switch {

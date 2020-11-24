@@ -1,10 +1,11 @@
 /* eslint-disable */
 import Player from '../../player';
-import setUp from '../assets/shezhi.svg';
+import setUp from '../assets/setup.svg';
 let s_pip = function () {
     let player = this;
     let util = Player.util;
     let pipswitch = null;
+    if (!player.config.pip) return;
     if (!localStorage.getItem('pipFlag')) {
         localStorage.setItem('pipFlag', 1);
     }
@@ -17,7 +18,7 @@ let s_pip = function () {
                 <span class="txt"></span>
             </div>
         </div>`, {
-        tabindex: 9
+        tabindex: 11
     }, 'hkplayer-pip pipnone');
     player.once('ready', () => {
         player.controls.appendChild(btn);

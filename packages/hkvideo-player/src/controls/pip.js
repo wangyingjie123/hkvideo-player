@@ -9,7 +9,7 @@ let pip = function () {
         const pipFlag = localStorage.getItem('pipFlag');
         if (!pipFlag) {
             localStorage.setItem('pipFlag', 1);
-            return;
+            return
         }
         if (pipFlag === '1') {
             util.removeClass(pipswitch, 'hkplayer-switch-active');
