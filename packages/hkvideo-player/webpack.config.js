@@ -51,9 +51,9 @@ const globConfig = {
         }]
     },
     plugins: [
-        new BundleAnalyzerPlugin({
-            defaultSizes: 'parsed'
-        })
+        // new BundleAnalyzerPlugin({
+        //     defaultSizes: 'parsed'
+        // })
     ],
     optimization: {
 		minimize: isProd
