@@ -12,7 +12,7 @@ let player;
         screenShot: true, // 屏幕截图--有跨域限制，url需要是本地blob地址
         playbackRate: [0.75, 1, 1.5, 2], // 倍速播放
         videopip: true, // 原生画中画
-        // pip: false,
+        pip: true,
         pipConfig: { // 小窗大小及位置
             width: 580,
             height: 326.25,
@@ -25,7 +25,8 @@ let player;
         // closeFocusVideoFocus: true,
         // diyDuration: 300, // 自定义时长
         // enterLogo: 'xxx',
-        url: 'https://haokanupdate.cdn.bcebos.com/hk-intro-video.mp4',
+
+        url: 'https://s3.bytecdn.cn/ies/fe_app_new/musics/tvc-v3.d84159ab.mp4',
         // url: 'https://sf1-hscdn-tos.pstatp.com/obj/media-fe/xgplayer_doc_video/flv/xgplayer-demo-360p.flv',
         // isLive: true
     });

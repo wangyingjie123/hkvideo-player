@@ -25,7 +25,6 @@ class Player extends Proxy {
             inactive: 3000,
             volume: 0.6,
             controls: true,
-            pip: true,
             controlsList: ['nodownload']
         }, options);
         this.version = version;
