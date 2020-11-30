@@ -8,18 +8,6 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const threadLoader = require('thread-loader');
 const fs = require('fs');
 const path = require('path');
-// js-thread-loader
-const jsWorkerPool = {
-    // options
-    // 产生的 worker 的数量，默认是 (cpu 核心数 - 1)
-    // 当 require('os').cpus() 是 undefined 时，则为 1
-    workers: 2,
-    // 闲置时定时删除 worker 进程
-    // 默认为 500ms
-    // 可以设置为无穷大， 这样在监视模式(--watch)下可以保持 worker 持续存在
-    poolTimeout: 2000
-};
-threadLoader.warmup(jsWorkerPool, ['babel-loader']);
 
 const isProd = process.env.NODE_ENV === 'production'
 const globConfig = {
@@ -30,10 +18,6 @@ const globConfig = {
 		rules: [{
 			test: /\.js$/,
 			use: [
-                // {
-                //     loader: 'thread-loader',
-                //     options: jsWorkerPool
-                // },
                 'babel-loader'
 			]
 		}, {
@@ -67,9 +51,9 @@ const globConfig = {
         }]
     },
     plugins: [
-        // new BundleAnalyzerPlugin({
-        //     defaultSizes: 'parsed'
-        // })
+        new BundleAnalyzerPlugin({
+            defaultSizes: 'parsed'
+        })
     ],
     optimization: {
 		minimize: isProd
