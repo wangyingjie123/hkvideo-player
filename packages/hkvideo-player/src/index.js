@@ -1,5 +1,5 @@
 /* eslint-disable */
 import Player from './player';
-import * as Controls from './controls/*.js';
+import Controls from './controls';
 import ui from './ui';
 export default Player;

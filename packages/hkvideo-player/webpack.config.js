@@ -5,13 +5,12 @@
 /* eslint-disable */
 const polyfill = [];
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const threadLoader = require('thread-loader');
 const fs = require('fs');
 const path = require('path');
 
 const isProd = process.env.NODE_ENV === 'production'
 const globConfig = {
-    entry: polyfill.concat(['./src/index.js']),
+    entry: './src/index.js',
     devtool: isProd ? false : 'cheap-module-source-map',
     mode: isProd ? 'production' : 'development',
     module: {
