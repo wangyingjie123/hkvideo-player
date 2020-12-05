@@ -3,7 +3,7 @@ $pipHeight: 240px;
 $pipDefColor: rgba(255, 255, 255, .8);
 .hkplayer-skin-default {
     .hkplayer-pip {
-        order: 9;
+        order: 22;
         width: $playerIcomWidth;
         height: 100%;
         position: relative;
@@ -64,29 +64,23 @@ $pipDefColor: rgba(255, 255, 255, .8);
         }
     }
     .hkplayer-pip-lay {
-        // opacity: 0;
         z-index: 105;
         position: absolute;
         top: 0;
         right: 0;
         padding: 8px;
         color: #fff;
+        // opacity: 0;
         display: flex;
         align-items: center;
+        transition: opacity .3s;
         .pip {
-            &-checkbox {
-                display: none;
-            }
-            &-closebox {
-                display: flex;
-                align-items: center;
-            }
             &-label {
-                margin-right: 10px;
-                cursor: pointer;
+                margin-right: 12px;
                 display: flex;
                 align-items: center;
                 position: relative;
+                cursor: pointer;
                 &:hover {
                     color: $sliderDragBgColor;
                     &:before {
@@ -120,13 +114,6 @@ $pipDefColor: rgba(255, 255, 255, .8);
                     color: #ffffff;
                     display: none;
                 }
-            }
-            &-close {
-                width: 14px;
-                height: 14px;
-                background: $closeIcon;
-                background-size: contain;
-                cursor: pointer;
             }
         }
     }

@@ -1,0 +1,22 @@
+/* eslint-disable */
+import './contextmenu';
+import './cssFullscreen.js';
+import './definition';
+import './download';
+import './errorRetry';
+import './fullscreen';
+import './i18n';
+import './localPreview';
+import './memoryPlay';
+import './mobile';
+import './pc';
+import './pip';
+import './play';
+import './playNext';
+import './reload';
+import './replay';
+import './rotate';
+import './screenShot';
+import './start';
+import './videopip';
+import './volume';

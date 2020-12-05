@@ -11,6 +11,7 @@ import Errors from './error';
 import Draggabilly from 'draggabilly';
 import { getAbsoluteURL } from './utils/url';
 import downloadUtil from 'downloadjs';
+import close from './ui/assets/close.svg';
 import { version } from '../package.json';
 class Player extends Proxy {
     constructor(options) {
@@ -497,13 +498,14 @@ class Player extends Proxy {
         || localStorage.getItem('pipFlag') === '0') {
             return;
         }
-        const dragLay = util.createDom('hk-pip-lay', 
-        `
-        <label class="pip-label">
+        const pipSwitch = this.config.pip ? `<label class="pip-label">
             <span>不再出现</span>
             <div class="pip-label-tips">可在播放器设置中重新打开</div>
-        </label>
-        <div class="pip-close"></div>`, {}, 'hkplayer-pip-lay');
+        </label>` : '';
+        const dragLay = util.createDom('hk-pip-lay', 
+        `
+        ${pipSwitch}
+        ${close}`, {}, 'hkplayer-pip-lay');
         const dragRange = util.createDom('div', '', {}, 'hkplayer-dragrange hiderange');
         this.root.appendChild(dragLay);
         const dragHandle = util.createDom('hk-pip-drag', '<p class="pip-text">按住画面可移动小窗</p>', {
@@ -583,6 +585,7 @@ class Player extends Proxy {
         //     // 100 是控制条高度 + playicon高度， 居中显示playicon
         //     pipactivePlay.style.top = `${-(pipHeight - 52) / 2}px`;
         // });
+        this.emit('pipchange', 'open');
         dragLay.addEventListener('click', (e) => {
             const curtentTar = e.target.tagName.toLocaleLowerCase();
             if (curtentTar === 'span' || curtentTar === 'label') {
@@ -630,6 +633,7 @@ class Player extends Proxy {
         if (dragHandle && dragHandle.parentNode) {
             dragHandle.parentNode.removeChild(dragHandle);
         }
+        this.emit('pipchange', 'close');
     }
 
     updateRotateDeg() {
