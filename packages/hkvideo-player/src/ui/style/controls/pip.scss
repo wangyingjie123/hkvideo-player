@@ -11,12 +11,10 @@ $pipDefColor: rgba(255, 255, 255, .8);
             outline: none;
         }
         .hkplayer-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
             cursor: pointer;
             .icon {
                 transition: transform .3s;
+                margin: 16px 12px;
             }
         }
         .setup {
@@ -30,12 +28,13 @@ $pipDefColor: rgba(255, 255, 255, .8);
                 position: absolute;
                 bottom: $controlHeight;
                 left: 50%;
-                transform: translateX(-50%);
+                margin-left: -72px;
                 text-align: center;
                 white-space: nowrap;
                 cursor: pointer;
                 border-radius: 6px;
                 padding: 0 10px;
+                width: 144px;
                 color: $pipDefColor;
                 align-items: center;
                 height: 50px;
