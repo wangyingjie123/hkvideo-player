@@ -7,9 +7,9 @@
         cursor: pointer;
         .hkplayer-icon {
             margin-right: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            .playnext-icon {
+                margin: 12px 8px;
+            }
         }
         .hkvideo-playnext-tips {
             visibility: hidden;

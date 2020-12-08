@@ -2,10 +2,14 @@
 import Player from '../../player';
 import setUp from '../assets/setup.svg';
 let s_pip = function () {
-    let player = this;
-    let util = Player.util;
-    let pipswitch = null;
+    const player = this;
+    const util = Player.util;
+    const sniffer = Player.sniffer;
+    const { name, version } = Player.sniffer.browser;
     if (!player.config.pip) return;
+    // IE10及以下不支持
+    if (name === 'IE' && version * 1 <= 10) return;
+    let pipswitch = null;
     if (!localStorage.getItem('pipFlag')) {
         localStorage.setItem('pipFlag', 1);
     }
@@ -13,12 +17,12 @@ let s_pip = function () {
         <div class="hkplayer-icon">${setUp}</div>
         <div class="setup-list">
             <span class="setup-txt">小窗播放功能</span>
-            <div id="pipSwitch" class="hkplayer-switch
-            ${localStorage.getItem('pipFlag') === '1' ? 'hkplayer-switch-active' : ''}">
+            <div id="pipSwitch" class="hkplayer-switch ${localStorage.getItem('pipFlag') === '1' ? 'hkplayer-switch-active' : ''}">
                 <span class="txt"></span>
             </div>
-        </div>`, {
-        tabindex: 11
+        </div>
+        `, {
+        tabindex: 22
     }, 'hkplayer-pip pipnone');
     player.once('ready', () => {
         player.controls.appendChild(btn);

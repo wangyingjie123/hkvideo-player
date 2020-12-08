@@ -26,7 +26,7 @@ class Proxy {
             airplay: options['airplay'],
             'webkit-airplay': options['airplay'],
             tabindex: 2,
-            mediaType: options.mediaType || 'video'
+            mediaType: options.mediaType || 'video',
         }
         if (options.muted) {
             this.videoConfig.muted = 'muted';
