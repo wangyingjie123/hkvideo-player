@@ -295,6 +295,9 @@ declare module 'hkvideo-player' {
         // 微信横竖屏控制
         'x5-video-orientation'?: 'landscape' | 'portraint';
 
+        // 自定义video标签属性
+        attribute?: object;
+
         // 自定义配置
         customConfig?: Record<string, unknown>;
 

@@ -3,22 +3,23 @@
  * @author wyj007
  */
 /* eslint-disable */
-const polyfill = [];
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const fs = require('fs');
 const path = require('path');
 
-const isProd = process.env.NODE_ENV === 'production'
+const isProd = process.env.NODE_ENV === 'production';
 const globConfig = {
-    entry: './src/index.js',
+    entry: ['./src/index.js'],
     devtool: isProd ? false : 'cheap-module-source-map',
     mode: isProd ? 'production' : 'development',
+    target: ['web', 'es5'],
     module: {
 		rules: [{
 			test: /\.js$/,
 			use: [
                 'babel-loader'
-			]
+            ],
+            exclude: '/node_modules/',
 		}, {
 			test: /\.scss$/,
 			use: [
@@ -31,11 +32,12 @@ const globConfig = {
 				},
 				'postcss-loader',
 				'sass-loader'
-			]
+            ]
 		},{
             test: /\.svg/,
+            type: 'asset/source',
             use: [
-                {loader: 'raw-loader'},
+                // {loader: 'raw-loader'},
                 {
                     loader: 'svgo-loader',
                     options: {
@@ -50,12 +52,12 @@ const globConfig = {
         }]
     },
     plugins: [
-        // new BundleAnalyzerPlugin({
-        //     defaultSizes: 'parsed'
-        // })
+        new BundleAnalyzerPlugin({
+            defaultSizes: 'parsed'
+        })
     ],
     optimization: {
-		minimize: isProd
+        minimize: isProd,
     }
 }
 const cacheConfig = {
@@ -71,27 +73,28 @@ const umd = {
 		path: `${__dirname}/dist`,
 		filename: 'index.js',
 		library: 'hkplayer',
-		libraryTarget: 'umd'
+        libraryTarget: 'umd'
     },
-    cache: {
+    ...isProd && {cache: {
         ...cacheConfig,
         name: 'umd-cache'
-    },
+    }},
     ...globConfig
 };
 
 const client = {
     ...globConfig,
-    // 配置缓存
-    cache: {
+    // 配置缓存--开发环境开启
+    ...isProd && {cache: {
         ...cacheConfig,
         name: 'client-cache'
-    },
+    }},
 	output: {
 		path: `${__dirname}/browser`,
 		filename: 'index.js',
 		library: 'Player',
-		libraryTarget: 'window'
+        libraryTarget: 'window',
+        libraryExport: 'default'
     }
 };
 // 开发的时候可以去掉umd，打包更快
