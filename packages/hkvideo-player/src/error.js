@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { version } from '../package.json';
+import packageInfo from '../package.json';
 const ErrorTypes = {
     network: {
         code: 1,
@@ -53,7 +53,7 @@ class Errors {
         }, errorCode, mediaError) {
         let r = {}
         if (arguments.length > 1) {
-            r.playerVersion = version // 播放器版本
+            r.playerVersion = packageInfo.version // 播放器版本
             r.errorType = type
             r.domain = document.domain // domain
             r.duration = duration // 视频时长

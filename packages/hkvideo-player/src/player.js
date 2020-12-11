@@ -3,7 +3,7 @@
 * @author wangyingjie07
 */
 /* eslint-disable */
-import Proxy from './proxy';
+import InitPlayer from './proxy';
 import util from './utils/util';
 import Database from './utils/database';
 import sniffer from './utils/sniffer';
@@ -12,8 +12,8 @@ import Draggabilly from 'draggabilly';
 import { getAbsoluteURL } from './utils/url';
 import downloadUtil from 'downloadjs';
 import close from './ui/assets/close.svg';
-import { version } from '../package.json';
-class Player extends Proxy {
+import packageInfo from '../package.json';
+class Player extends InitPlayer {
     constructor(options) {
         super(options);
         this.config = util.deepCopy({
@@ -27,7 +27,7 @@ class Player extends Proxy {
             controls: true,
             controlsList: ['nodownload']
         }, options);
-        this.version = version;
+        this.version = packageInfo.version;
         this.userTimer = null;
         this.waitTimer = null;
         this.database = new Database();
