@@ -1,6 +1,6 @@
 {
     "name": "hkvideo-player",
-    "version": "1.0.4-3",
+    "version": "1.0.4-4",
     "description": "video player",
     "main": "./dist/index.js",
     "typings": "./types/index.d.ts",
@@ -33,15 +33,12 @@
     },
     "devDependencies": {
         "@babel/core": "^7.12.10",
-        "@babel/plugin-transform-arrow-functions": "^7.12.1",
         "@babel/plugin-transform-runtime": "^7.12.1",
         "@babel/preset-env": "^7.12.1",
         "@babel/runtime-corejs3": "^7.12.1",
         "autoprefixer": "^10.0.1",
-        "babel-cli": "^7.0.0-beta.3",
         "babel-loader": "^8.1.0",
         "css-loader": "^5.0.0",
-        "json-loader": "^0.5.7",
         "node-sass": "^4.14.1",
         "postcss-cssnext": "^3.1.0",
         "postcss-loader": "^4.1.0",

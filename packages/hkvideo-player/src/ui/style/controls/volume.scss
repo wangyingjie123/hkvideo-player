@@ -16,14 +16,13 @@
                 svg {
                     margin: $playerIcomMargin;
                 }
+                &:hover {
+                    opacity: .85;
+                }
             }
             .hkplayer-icon-large {
                 display: block;
             }
-            .hkplayer-icon-small {
-                display: none;
-            }
-
             .hkplayer-icon-muted {
                 display: none;
             }
@@ -111,26 +110,6 @@
             .hkplayer-icon-large {
                 display: block;
             }
-
-            .hkplayer-icon-small {
-                display: none;
-            }
-
-            .hkplayer-icon-muted {
-                display: none;
-            }
-        }
-    }
-    &.hkplayer-volume-small {
-        .hkplayer-icon {
-            .hkplayer-icon-large {
-                display: none;
-            }
-    
-            .hkplayer-icon-small {
-                display: block;
-            }
-    
             .hkplayer-icon-muted {
                 display: none;
             }
@@ -141,11 +120,6 @@
             .hkplayer-icon-large {
                 display: none;
             }
-    
-            .hkplayer-icon-small {
-                display: none;
-            }
-    
             .hkplayer-icon-muted {
                 display: block;
             }

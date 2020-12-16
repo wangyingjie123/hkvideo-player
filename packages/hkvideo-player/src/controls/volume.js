@@ -142,10 +142,13 @@ let volume = function () {
                 util.removeClass(container, 'hkplayer-volume-large');
                 if (player.volume === 0) {
                     util.addClass(container, 'hkplayer-volume-muted');
+                    player.emit('changeVolPath', 'muted');
                 } else if (player.volume < 0.5) {
                     util.addClass(container, 'hkplayer-volume-small');
+                    player.emit('changeVolPath', 'small');
                 } else {
                     util.addClass(container, 'hkplayer-volume-large');
+                    player.emit('changeVolPath', 'large');
                 }
                 if (!bar) return;
                 let containerHeight = bar.getBoundingClientRect().height || defaultBarheight;

@@ -31,7 +31,7 @@ let pc = function () {
                             player.pause();
                         }
                     }
-                    clk = 0
+                    clk = 0;
                 }, 200)
             } else {
                 clk = 0

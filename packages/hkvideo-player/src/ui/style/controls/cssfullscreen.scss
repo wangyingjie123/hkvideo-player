@@ -1,18 +1,15 @@
 .hkplayer-skin-default {
-    .hkplayer-cssfullscreen,
-    .hkplayer-cssfullscreen-img {
+    .hkplayer-cssfullscreen {
         position: relative;
         order: 26;
         display: block;
         cursor: pointer;
-
         .hkplayer-icon {
             &-requestfull, &-exitfull {
                 width: 100%;
                 height: 100%;
                 &:hover {
                     svg {
-                        // fill: $definitionLiActiveColor;
                         animation: iconScale .4s ease both;
                     }
                 }
@@ -20,28 +17,9 @@
                     margin: $playerIcomMargin;
                 }
             }
-            .hkplayer-icon-requestfull {
-                display: block;
-            }
-
-            .hkplayer-icon-exitfull {
-                display: none;
-            }
         }
-
-        .hkplayer-tips {
-            .hkplayer-tip-requestfull {
-                display: block;
-            }
-
-            .hkplayer-tip-exitfull {
-                display: none;
-            }
-        }
-
         &:hover {
-            opacity: 0.85;
-
+            opacity: .85;
             .hkplayer-tips {
                 display: block;
             }
@@ -51,42 +29,11 @@
 body.overhidden {
     overflow: hidden;
 }
-.hkplayer-skin-default.hkplayer-is-cssfullscreen {
-
-    .hkplayer-cssfullscreen,
-    .hkplayer-cssfullscreen-img {
-        .hkplayer-icon {
-            .hkplayer-icon-requestfull {
-                display: none;
-            }
-
-            .hkplayer-icon-exitfull {
-                display: block;
-            }
-        }
-
-        .hkplayer-tips {
-            margin-left: -47px;
-
-            .hkplayer-tip-requestfull {
-                display: none;
-            }
-
-            .hkplayer-tip-exitfull {
-                display: block;
-            }
-        }
-    }
-}
-
 .hkplayer-skin-default.hkplayer-is-fullscreen {
-
-    .hkplayer-cssfullscreen,
-    .hkplayer-cssfullscreen-img {
+    .hkplayer-cssfullscreen {
         display: none;
     }
 }
-
 .hkplayer-skin-default.hkplayer-is-cssfullscreen {
     position: fixed !important;
     left: 0 !important;
@@ -95,44 +42,4 @@ body.overhidden {
     height: 100% !important;
     z-index: 99999 !important;
     padding-top: 0 !important;
-}
-
-.lang-is-en {
-
-    .hkplayer-cssfullscreen,
-    .hkplayer-cssfullscreen-img {
-        .hkplayer-tips {
-            margin-left: -46px;
-        }
-    }
-}
-
-.lang-is-en.hkplayer-is-cssfullscreen {
-
-    .hkplayer-cssfullscreen,
-    .hkplayer-cssfullscreen-img {
-        .hkplayer-tips {
-            margin-left: -46px;
-        }
-    }
-}
-
-.lang-is-jp {
-
-    .hkplayer-cssfullscreen,
-    .hkplayer-cssfullscreen-img {
-        .hkplayer-tips {
-            margin-left: -120px;
-        }
-    }
-}
-
-.lang-is-jp.hkplayer-is-cssfullscreen {
-
-    .hkplayer-cssfullscreen,
-    .hkplayer-cssfullscreen-img {
-        .hkplayer-tips {
-            margin-left: -60px;
-        }
-    }
 }

@@ -8,40 +8,17 @@
         cursor: pointer;
         margin-right: 7px;
         .hkplayer-icon {
-            &-requestfull, &-exitfull {
-                width: 100%;
-                height: 100%;
-                &:hover {
-                    svg {
-                        animation: iconScale .4s ease both;
-                    }
-                }
+            &:hover {
                 svg {
-                    margin: $playerIcomMargin;
+                    animation: iconScale .4s ease both;
                 }
             }
-            .hkplayer-icon-requestfull {
-                display: block;
-            }
-
-            .hkplayer-icon-exitfull {
-                display: none;
+            svg {
+                margin: $playerIcomMargin;
             }
         }
-
-        .hkplayer-tips {
-            .hkplayer-tip-requestfull {
-                display: block;
-            }
-
-            .hkplayer-tip-exitfull {
-                display: none;
-            }
-        }
-
         &:hover {
             opacity: 0.85;
-
             .hkplayer-tips {
                 display: block;
             }
@@ -56,30 +33,5 @@
     }
     &.hkplayer-is-fullscreen.hkplayer-inactive {
         cursor: none;
-    }
-}
-
-.hkplayer-skin-default.hkplayer-is-fullscreen {
-    .hkplayer-fullscreen,
-    .hkplayer-fullscreen-img {
-        .hkplayer-icon {
-            .hkplayer-icon-requestfull {
-                display: none;
-            }
-
-            .hkplayer-icon-exitfull {
-                display: block;
-            }
-        }
-
-        .hkplayer-tips {
-            .hkplayer-tip-requestfull {
-                display: none;
-            }
-
-            .hkplayer-tip-exitfull {
-                display: block;
-            }
-        }
     }
 }
