@@ -1,8 +1,8 @@
 import { ajax, sendDanmu, initDanmu, danmu, setDefin } from './tools.js';
 const Player = window.Player;
 let player;
-// ajax('./demo.mp4', 'blob', function(res){
-//     const src = URL.createObjectURL(res);
+ajax('./demo.mp4', 'blob', function(res){
+    const src = URL.createObjectURL(res);
     player = new Player({
         id: 'app',
         cssFullscreen: true,
@@ -34,15 +34,16 @@ let player;
             ],
             // playNextFun: () => window.location.reload()
         },
+        autoplay: true,
         // closeFocusVideoFocus: true,
         // diyDuration: 300, // 自定义时长
         // enterLogo: 'xxx',
-
-        url: 'https://s3.bytecdn.cn/ies/fe_app_new/musics/tvc-v3.d84159ab.mp4',
+        url: src,
+        // url: 'https://s3.bytecdn.cn/ies/fe_app_new/musics/tvc-v3.d84159ab.mp4',
         // url: 'https://sf1-hscdn-tos.pstatp.com/obj/media-fe/xgplayer_doc_video/flv/xgplayer-demo-360p.flv',
         // isLive: true
     });
-// });
+});
 
 // initDanmu(player); // 弹幕初始化
 // setDefin(player); // 设置清晰度
@@ -51,6 +52,7 @@ document.querySelector('#sendDanmu').onclick = () => {
 };
 document.querySelector('#button').onclick = function () {
     player.getPIP();
+    // player.getCssFullscreen();
 }
 let getpiped = false;
 const pip = () => {

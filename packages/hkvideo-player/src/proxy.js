@@ -31,6 +31,7 @@ class Proxy {
         }
         if (options.muted) {
             this.videoConfig.muted = 'muted';
+            options.volume = 0;
         }
         if (options.loop) {
             this.videoConfig.loop = 'loop';

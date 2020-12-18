@@ -11,12 +11,15 @@
         background-color: rgba(0, 0, 0, .6);
         width: 42px;
         min-height: 54px;
-        border-radius: 2px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         z-index: 11;
         transform: translateY(-50%);
+        opacity: 1;
+        transition: opacity .3s ease;
         &:focus {
             outline: none;
         }
@@ -43,19 +46,25 @@
                 height: 28px;
                 margin: 13px auto;
                 cursor: pointer;
+                &:hover {
+                    svg {
+                        animation: iconScale .4s ease both;
+                    }
+                    opacity: .85;
+                }
             }
         }
     }
     &.hkplayer-pip-active {
         .hkplayer-rightslide {
-            visibility: hidden;
+            opacity: 0;
         }
     }
 }
 .hkplayer-skin-default.hkplayer-inactive {
     &:not(.hkplayer-pip-active) {
         .hkplayer-rightslide {
-            display: none;
+            opacity: 0;
         }
     }
 }
@@ -95,7 +104,7 @@
             transform: rotate(-45deg);
             border-radius: 100%;
         }
-        &-btn {
+        .hkplayer-close {
             position: absolute;
             right: 6px;
             top: 7px;

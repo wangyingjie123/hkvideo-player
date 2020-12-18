@@ -71,8 +71,8 @@ declare module 'hkvideo-player' {
 
     interface urlListOption {
         title: string;
-        url: string;
         img: string;
+        duration: string;
     }
     export interface TextTrack {
         src: string;
@@ -175,7 +175,8 @@ declare module 'hkvideo-player' {
 
         // 下一集
         playNext?: {
-            urlList: string[] | Array<urlListOption>;
+            urlList: Array<urlListOption | string>
+            playNextFun?(): void
         };
 
         // 视频下载(默认false)

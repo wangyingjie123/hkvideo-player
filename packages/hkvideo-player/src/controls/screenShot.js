@@ -48,14 +48,13 @@ let screenShot = function () {
         if (preview) {
             const prevImg = util.findDom(preview, '.screenshot-prev-img');
             prevImg.src = img;
-            preview.style.display = 'block';
+            util.removeClass(preview, 'hkplayer-none');
             return;
         }
         preview = util.createDom('div', `
             <div class="screenshot-close">
                 <span class="screenshot-close-bg"></span>
-                <svg class="screenshot-close-btn">
-                    <use xlink:href="#hk-svg-close">${closeIcon}</use>
+                ${closeIcon}
                 </svg>
             </div>
             <div class="screenshot-prev-top">
@@ -68,14 +67,12 @@ let screenShot = function () {
         slide.appendChild(preview);
         const closeBtn = util.findDom(preview, '.screenshot-close');
         const saveBtnevent = util.findDom(saveBtn, '.screenshot-btn-save');
-        saveBtnevent.addEventListener('click', () => {
-            saveScreenShot(screenShotImg, 'hkvideo截图' + format);
-        });
-        closeBtn.addEventListener('click', () => {
-            preview.style.display = 'none';
-        });
+        // 保存按钮点击
+        saveBtnevent.addEventListener('click', () => saveScreenShot(screenShotImg, `截图_${+new Date}${format}`));
+        // 预览图关闭
+        closeBtn.addEventListener('click', () => util.addClass(preview, 'hkplayer-none'));
     }
-    // 按钮点击事件
+    // 截图按钮点击
     const onScreenShotBtnClick = ()  => {
         canvas.width = player.video.videoWidth || 600;
         canvas.height = player.video.videoHeight || 337.5;

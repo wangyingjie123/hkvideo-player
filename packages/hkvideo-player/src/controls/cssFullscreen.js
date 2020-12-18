@@ -1,27 +1,24 @@
 /* eslint-disable */
 import Player from '../player';
 let cssFullscreen = function () {
-    let player = this
-    let root = player.root
-    let util = Player.util
+    let player = this;
+    let root = player.root;
+    let util = Player.util;
 
     function onCssFullscreenBtnClick() {
         if (util.hasClass(root, 'hkplayer-is-cssfullscreen')) {
             player.exitCssFullscreen();
-            util.removeClass(document.body, 'overhidden')
+            util.removeClass(document.body, 'overhidden');
         } else {
             player.getCssFullscreen();
-            util.addClass(document.body, 'overhidden')
+            util.addClass(document.body, 'overhidden');
         }
     }
-    player.on('cssFullscreenBtnClick', onCssFullscreenBtnClick)
-    player.on('exitFullscreen', () => {
-        util.removeClass(root, 'hkplayer-is-cssfullscreen')
-    })
+    player.on('cssFullscreenBtnClick', onCssFullscreenBtnClick);
 
     function onDestroy() {
-        player.off('cssFullscreenBtnClick', onCssFullscreenBtnClick)
-        player.off('destroy', onDestroy)
+        player.off('cssFullscreenBtnClick', onCssFullscreenBtnClick);
+        player.off('destroy', onDestroy);
     }
     player.once('destroy', onDestroy)
 }

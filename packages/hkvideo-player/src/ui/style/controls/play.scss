@@ -9,126 +9,14 @@
         .hkplayer-icon {
             width: 100%;
             height: 100%;
-            &-play, &-pause, &-replay {
-                width: 100%;
-                height: 100%;
-                svg {
-                    margin: 12px;
-                }
-            }
-
-            .hkplayer-icon-play {
-                display: block;
-            }
-            .hkplayer-icon-replay {
-                display: none;
-            }
-            .hkplayer-icon-pause {
-                display: none;
+            svg {
+                margin: 12px;
             }
         }
-
-        .hkplayer-tips {
-            .hkplayer-tip-play {
-                display: block;
-            }
-            .hkplayer-tip-replay {
-                display: none;
-            }
-            .hkplayer-tip-pause {
-                display: none;
-            }
-        }
-
         &:hover {
             opacity: 0.85;
-
             .hkplayer-tips {
                 display: block;
-            }
-        }
-    }
-}
-
-.hkplayer-skin-default.hkplayer-playing {
-    .hkplayer-play, .hkplayer-play-img {
-        .hkplayer-icon {
-            .hkplayer-icon-play {
-                display: none;
-            }
-            .hkplayer-icon-replay {
-                display: none;
-            }
-            .hkplayer-icon-pause {
-                display: block;
-            }
-        }
-
-        .hkplayer-tips {
-            .hkplayer-tip-play {
-                display: none;
-            }
-            .hkplayer-tip-replay {
-                display: none;
-            }
-            .hkplayer-tip-pause {
-                display: block;
-            }
-        }
-    }
-}
-
-.hkplayer-skin-default.hkplayer-pause {
-
-    .hkplayer-play,
-    .hkplayer-play-img {
-        .hkplayer-icon {
-            .hkplayer-icon-play {
-                display: block;
-            }
-
-            .hkplayer-icon-pause {
-                display: none;
-            }
-        }
-
-        .hkplayer-tips {
-            .hkplayer-tip-play {
-                display: block;
-            }
-            .hkplayer-tip-replay {
-                display: none;
-            }
-            .hkplayer-tip-pause {
-                display: none;
-            }
-        }
-    }
-}
-.hkplayer-skin-default.hkplayer-ended {
-    .hkplayer-play, .hkplayer-play-img {
-        .hkplayer-icon {
-            .hkplayer-icon-play {
-                display: none;
-            }
-
-            .hkplayer-icon-pause {
-                display: none;
-            }
-            .hkplayer-icon-replay {
-                display: block;
-            }
-        }
-
-        .hkplayer-tips {
-            .hkplayer-tip-play {
-                display: none;
-            }
-            .hkplayer-tip-replay {
-                display: block;
-            }
-            .hkplayer-tip-pause {
-                display: none;
             }
         }
     }

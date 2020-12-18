@@ -37,7 +37,6 @@ const globConfig = {
             test: /\.svg/,
             type: 'asset/source',
             use: [
-                // {loader: 'raw-loader'},
                 {
                     loader: 'svgo-loader',
                     options: {
@@ -52,9 +51,9 @@ const globConfig = {
         }]
     },
     plugins: [
-        new BundleAnalyzerPlugin({
-            defaultSizes: 'parsed'
-        })
+        // new BundleAnalyzerPlugin({
+        //     defaultSizes: 'parsed'
+        // })
     ],
     optimization: {
         minimize: isProd,

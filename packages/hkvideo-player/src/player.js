@@ -191,7 +191,7 @@ class Player extends InitPlayer {
         }
         player.once('destroy', onDestroy);
     }
-
+    // 开始播放
     start(url = this.config.url) {
         let root = this.root;
         let player = this;
@@ -249,7 +249,7 @@ class Player extends InitPlayer {
             }
         }, 1)
     }
-
+    // 重新加载
     reload() {
         this.video.load()
         this.reloadFunc = function () {
@@ -261,7 +261,7 @@ class Player extends InitPlayer {
         }
         this.once('loadeddata', this.reloadFunc)
     }
-
+    // 销毁播放器实例
     destroy(isDelDom = true) {
         let player = this
         clearInterval(this.bulletResizeTimer)
@@ -309,7 +309,6 @@ class Player extends InitPlayer {
                 }
             })
         }
-
         function destroyFunc() {
             this.emit('destroy')
             // this.root.id = this.root.id + '_del'
@@ -345,7 +344,7 @@ class Player extends InitPlayer {
         }
         super.destroy()
     }
-
+    // 重播
     replay() {
         let self = this
         let _replay = this._replay
@@ -381,35 +380,34 @@ class Player extends InitPlayer {
             }
         }
     }
-
+    // 全屏模式
     getFullscreen(el) {
         let player = this;
         if (el.requestFullscreen) {
-            el.requestFullscreen()
+            el.requestFullscreen();
         } else if (el.mozRequestFullScreen) {
-            el.mozRequestFullScreen()
+            el.mozRequestFullScreen();
         } else if (el.webkitRequestFullscreen) {
-            el.webkitRequestFullscreen(window.Element.ALLOW_KEYBOARD_INPUT)
+            el.webkitRequestFullscreen(window.Element.ALLOW_KEYBOARD_INPUT);
         } else if (player.video.webkitSupportsFullscreen) {
-            player.video.webkitEnterFullscreen()
+            player.video.webkitEnterFullscreen();
         } else if (el.msRequestFullscreen) {
-            el.msRequestFullscreen()
+            el.msRequestFullscreen();
         } else {
-            util.addClass(el, 'hkplayer-is-cssfullscreen')
+            util.addClass(el, 'hkplayer-is-cssfullscreen');
         }
     }
     // 退出全屏
     exitFullscreen(el) {
         if (document.exitFullscreen) {
-            document.exitFullscreen()
+            document.exitFullscreen();
         } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen()
+            document.webkitExitFullscreen();
         } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen()
+            document.mozCancelFullScreen();
         } else if (document.msExitFullscreen) {
-            document.msExitFullscreen()
+            document.msExitFullscreen();
         }
-        util.removeClass(el, 'hkplayer-is-cssfullscreen')
     }
     // 开启原生画中画
     getVideoPip() {
@@ -430,21 +428,14 @@ class Player extends InitPlayer {
     // css全屏
     getCssFullscreen() {
         let player = this;
-        util.addClass(player.root, 'hkplayer-is-cssfullscreen');
         player.emit('requestCssFullscreen');
     }
-
+    // 退出css全屏
     exitCssFullscreen() {
-        let player = this
-        // if (player.config.fluid) {
-        //     player.root.style['width'] = '100%'
-        //     player.root.style['height'] = '0'
-        //     player.root.style['padding-top'] = `${player.config.height * 100 / player.config.width}%`
-        // }
-        util.removeClass(player.root, 'hkplayer-is-cssfullscreen')
-        player.emit('exitCssFullscreen')
+        let player = this;
+        player.emit('exitCssFullscreen');
     }
-
+    // 屏幕旋转
     getRotateFullscreen() {
         let player = this;
         document.documentElement.style.width = '100%';
@@ -454,7 +445,7 @@ class Player extends InitPlayer {
         }
         player.emit('getRotateFullscreen');
     }
-
+    // 退出屏幕旋转
     exitRotateFullscreen() {
         let player = this
         document.documentElement.style.width = 'unset'
@@ -464,12 +455,12 @@ class Player extends InitPlayer {
         }
         player.emit('exitRotateFullscreen')
     }
-
+    // 下载
     download() {
         const url = getAbsoluteURL(this.config.url);
         downloadUtil(url);
     }
-
+    // 插件安装
     pluginsCall() {
         let self = this
         if (Player.plugins) {
@@ -490,7 +481,7 @@ class Player extends InitPlayer {
             })
         }
     }
-
+    // 开启小窗模式
     getPIP() {
         // 原生画中画开启的时候不允许小窗
         if (util.hasClass(this.root, 'hkplayer-pip-active')
@@ -597,7 +588,7 @@ class Player extends InitPlayer {
             this.exitPIP();
         });
     }
-
+    // 关闭小窗模式
     exitPIP() {
         util.removeClass(this.root, 'hkplayer-pip-active');
         this.root.style.right = '';
@@ -635,7 +626,7 @@ class Player extends InitPlayer {
         }
         this.emit('pipchange', 'close');
     }
-
+    // 切换旋转角度
     updateRotateDeg() {
         let player = this;
         if (!player.rotateDeg) {
@@ -700,7 +691,7 @@ class Player extends InitPlayer {
             }
         }
     }
-
+    // 屏幕旋转
     rotate(clockwise = false, innerRotate = true, times = 1) {
         let player = this;
         if (!player.rotateDeg) {
@@ -713,7 +704,7 @@ class Player extends InitPlayer {
 
         player.emit('rotate', player.rotateDeg * 360)
     }
-
+    // 聚焦
     onFocus(e) {
         let player = this
         util.removeClass(this.root, 'hkplayer-inactive')
@@ -733,13 +724,14 @@ class Player extends InitPlayer {
     }
 
     onPlay() {
-        // util.addClass(this.root, 'hkplayer-isloading');
         util.addClass(this.root, 'hkplayer-playing');
         util.removeClass(this.root, 'hkplayer-pause');
+        this.emit('playIconChange');
     }
 
     onPause() {
         util.addClass(this.root, 'hkplayer-pause');
+        this.emit('pauseIconChange', 'pause');
         if (this.userTimer) {
             clearTimeout(this.userTimer);
         }
@@ -747,8 +739,9 @@ class Player extends InitPlayer {
     }
 
     onEnded() {
-        util.addClass(this.root, 'hkplayer-ended')
-        util.removeClass(this.root, 'hkplayer-playing')
+        util.addClass(this.root, 'hkplayer-ended');
+        util.removeClass(this.root, 'hkplayer-playing');
+        this.emit('pauseIconChange', 'replay');
     }
 
     onSeeking() {
@@ -810,7 +803,7 @@ class Player extends InitPlayer {
         util.removeClass(this.root, 'hkplayer-isloading hkplayer-nostart hkplayer-pause hkplayer-ended hkplayer-is-error hkplayer-replay')
         util.addClass(this.root, 'hkplayer-playing')
     }
-
+    // 键盘事件
     onKeydown(event, player) {
         // let player = this
         let e = event || window.event;
@@ -867,6 +860,8 @@ class Player extends InitPlayer {
             } else {
                 player.pause();
             }
+        } else if (e && e.keyCode === 27) {
+            player.emit('exitCssFullscreen');
         }
         e.stopPropagation();
         e.preventDefault();

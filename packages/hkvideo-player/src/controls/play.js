@@ -4,7 +4,7 @@ let play = function () {
     let player = this;
     let util = Player.util;
     let root = player.root;
-    function onPlayBtnClick() {
+    function onPlayBtnClick(e) {
         // if (!player.config.allowPlayAfterEnded && player.ended) {
         //     return
         // }

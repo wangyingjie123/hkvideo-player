@@ -13,7 +13,7 @@ let replay = function () {
 
     function onEnded() {
         if (!player.config.loop) {
-            util.addClass(root, 'replay')
+            util.addClass(root, 'replay');
         }
     }
     player.on('ended', onEnded)
