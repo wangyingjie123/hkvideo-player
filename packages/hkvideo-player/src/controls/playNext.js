@@ -11,10 +11,8 @@ let playNext = function () {
             player.video.autoplay = true;
             const nextSrc = nextBtn.urlList[player.currentVideoIndex];
             player.src = typeof nextSrc === 'string' ? nextSrc : nextSrc.url;
-            console.log(player.currentVideoIndex);
             player.emit('playerNext', nextBtn.urlList[player.currentVideoIndex + 1]);
             if (player.currentVideoIndex + 1 === nextBtn.urlList.length) {
-                console.log('close');
                 player.emit('urlListEnd');
             }
         }
