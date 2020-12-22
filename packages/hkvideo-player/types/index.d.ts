@@ -322,6 +322,9 @@ declare module 'hkvideo-player' {
         // 是否直播
         isLive?: boolean;
 
+        // 暂停后播放是否重新拉流
+        playReflow?: boolean;
+
         //播放错误提示
         errorTips?: string;
     }

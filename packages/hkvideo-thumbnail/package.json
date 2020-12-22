@@ -1,0 +1,39 @@
+{
+    "name": "artplayer-tool-thumbnail",
+    "version": "1.0.0",
+    "expose": "ArtplayerToolThumbnail",
+    "description": "thumbnail tool for ArtPlayer",
+    "main": "dist/artplayer-tool-thumbnail.js",
+    "style": "dist/artplayer-tool-thumbnail.css",
+    "scripts": {
+        "build": "NODE_ENV=production webpack --progress",
+        "dev": "NODE_ENV=development webpack --progress --watch",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/zhw2590582/ArtPlayer.git"
+    },
+    "keywords": [
+        "video",
+        "player"
+    ],
+    "author": "",
+    "license": "MIT",
+    "homepage": "",
+    "dependencies": {
+        "@babel/runtime": "^7.12.1",
+        "core-js": "^3.8.1",
+        "tiny-emitter": "^2.1.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.12.10",
+        "@babel/plugin-transform-runtime": "^7.12.1",
+        "@babel/preset-env": "^7.12.1",
+        "@babel/runtime-corejs3": "^7.12.1",
+        "babel-loader": "^8.1.0",
+        "webpack": "^5.10.0",
+        "webpack-bundle-analyzer": "^4.2.0",
+        "webpack-cli": "^4.2.0"
+    }
+}
