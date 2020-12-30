@@ -149,7 +149,7 @@ function initThumbnail (thumbnail) {
     
     thumbnail.on('update', function(url, percentage) {
         console.log('Processing: ' + Math.floor(percentage.toFixed(2) * 100) + '%');
-        const app = document.querySelector('#app');
+        const app = document.querySelector('.mask-inner');
         app.style.backgroundImage = 'url(' + url + ')';
     });
     
