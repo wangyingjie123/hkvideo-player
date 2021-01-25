@@ -11,7 +11,7 @@ let play = function () {
         if (player.paused) {
             if (player.config.isLive && player.config.playReflow) {
                 util.addClass(root, 'hkplayer-is-enter');
-                player.src = player.src;
+                player.src = player.logParams.playSrc;
                 return;
             }
             let playPromise = player.play();

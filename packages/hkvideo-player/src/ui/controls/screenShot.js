@@ -20,6 +20,7 @@ let s_screenShot = function () {
     {}, 'hkplayer-screenshot');
     rightControl.appendChild(btn);
     player.once('ready', () => {
+        player.video.setAttribute('crossOrigin', 'anonymous');
         player.root.appendChild(rightControl);
     });
 

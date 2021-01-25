@@ -21,6 +21,7 @@ let s_time = function () {
         //   }
         // }
         if (player.videoConfig.mediaType !== 'audio' || !player.isProgressMoving || !player.dash) {
+            // bca-disable-line
             container.innerHTML = `<span class="hkplayer-time-current">${util.format(player.currentTime || 0)}</span>
             <span>${util.format(diyDuration && diyDuration > player.duration ? diyDuration : player.duration)}</span>`;
         }

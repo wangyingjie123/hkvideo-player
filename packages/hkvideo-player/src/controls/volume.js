@@ -7,8 +7,7 @@ let volume = function () {
     let container, slider, bar, selected, volumeVal;
     const defaultBarheight = 100;
     function onCanplay() {
-        // player.volume = Player.sniffer.device === 'mobile' ? 1 : player.config.volume
-        player.volume = player.config.volume;
+        player.volume = Player.sniffer.device === 'mobile' ? 1 : player.config.volume;
         container = player.controls.querySelector('.hkplayer-volume');
         slider = container.querySelector('.hkplayer-slider');
         bar = container.querySelector('.hkplayer-bar');

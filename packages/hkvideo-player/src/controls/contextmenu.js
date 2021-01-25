@@ -40,11 +40,11 @@ let contextMenu = function () {
     const bindEvent = () => {
         // 点击快捷键说明
         const EventArr = [
-            // {
-            //     close: util.findDom(ctxVideoInfo, '.hkplayer-close'),
-            //     box: util.findDom(ctxBox, '.hkvideo-ctxvideoex'),
-            //     btn: util.findDom(ctxList, '#videoexplain')
-            // },
+            {
+                close: util.findDom(ctxVideoInfo, '.hkplayer-close'),
+                box: util.findDom(ctxBox, '.hkvideo-ctxvideoex'),
+                btn: util.findDom(ctxList, '#videoexplain')
+            },
             {
                 close: util.findDom(ctxKeyHelp, '.hkplayer-close'),
                 box: util.findDom(ctxBox, '.hkvideo-ctxmenuhelp'),
@@ -58,14 +58,16 @@ let contextMenu = function () {
             e.stopPropagation();
         });
         for (const v of EventArr) {
-            v.btn.addEventListener('click', (e) => {
-                if (util.hasClass(v.box, 'hkplayer-none')) {
-                    util.removeClass(v.box, 'hkplayer-none');
-                }
-                util.addClass(ctxList, 'hkplayer-none');
-                e.stopPropagation();
-            });
-            v.close.addEventListener('click', _ => util.addClass(v.box, 'hkplayer-none'));
+            if (v.btn) {
+                v.btn.addEventListener('click', (e) => {
+                    if (util.hasClass(v.box, 'hkplayer-none')) {
+                        util.removeClass(v.box, 'hkplayer-none');
+                    }
+                    util.addClass(ctxList, 'hkplayer-none');
+                    e.stopPropagation();
+                });
+                v.close.addEventListener('click', _ => util.addClass(v.box, 'hkplayer-none'));
+            }
         }
     }
     player.on('showCtxMenu', contextMenu);

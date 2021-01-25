@@ -9,8 +9,21 @@
         outline: none;
         top: -10px;
         z-index: 35;
+        &.process-mouseEnter {
+            .hkplayer-progress-curline {
+                opacity: 1;
+            }
+        }
     }
-
+    .hkplayer-progress-curline {
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        left: 0;
+        background-color: #fff;
+        top: 0;
+        opacity: 0;
+    }
     .hkplayer-progress-outer, .hkplayer-progress-inner {
         background: $progressOuterBgColor;
         display: block;
@@ -20,6 +33,9 @@
         width: 100%;
         position: relative;
         cursor: pointer;
+    }
+    .hkplayer-progress-outer {
+        margin-top: 0;
     }
     .diyduration {
         &::after {
@@ -38,7 +54,6 @@
     .hkplayer-progress-played {
         display: block;
         height: 100%;
-        line-height: 1;
         position: absolute;
         left: 0;
         top: 0;
@@ -72,10 +87,10 @@
 
     .hkplayer-progress-point {
         position: absolute;
-
+        line-height: 1;
         &.hkplayer-tips {
             transform: translateX(0);
-            top: -25px;
+            top: -30px;
             display: none;
             z-index: 100;
         }
@@ -123,6 +138,10 @@
             transform: translateX(0);
             display: none;
             z-index: 99;
+        }
+        .hkplayer-enter-spinner {
+            width: 40px;
+            height: 40px;
         }
     }
 
