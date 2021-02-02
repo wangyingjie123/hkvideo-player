@@ -1,0 +1,35 @@
+.hkplayer-skin-default {
+    .hkplayer-play,
+    .hkplayer-play-img {
+        width: 44px;
+        position: relative;
+        order: 0;
+        display: block;
+        cursor: pointer;
+        .hkplayer-icon {
+            width: 100%;
+            height: 100%;
+            svg {
+                margin: 11px;
+            }
+        }
+        .hkplayer-play-icon {
+            display: block;
+        }
+        &:hover {
+            opacity: 0.85;
+            .hkplayer-tips {
+                display: block;
+            }
+        }
+    }
+    &.hkplayer-pause {
+        .hkplayer-pause-icon {
+            display: block;
+        }
+        .hkplayer-play-icon {
+            display: none;
+        }
+    }
+}
+
