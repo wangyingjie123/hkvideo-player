@@ -7,7 +7,7 @@ let s_screenShot = function () {
     if (!player.config.screenShot) {
         return
     }
-    let screenShotText = player.lang.SCREENSHOT;
+    // let screenShotText = player.lang.SCREENSHOT;
     let rightControl = util.createDom('hk-right-slide', '', {
         tabindex: 11
     }, 'hkplayer-rightslide');
@@ -20,6 +20,7 @@ let s_screenShot = function () {
     {}, 'hkplayer-screenshot');
     rightControl.appendChild(btn);
     player.once('ready', () => {
+        player.video.setAttribute('crossOrigin', 'anonymous');
         player.root.appendChild(rightControl);
     });
 

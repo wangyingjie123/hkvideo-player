@@ -1,0 +1,53 @@
+.hkplayer-skin-default {
+    .hkplayer-loading {
+        display: none;
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -50px auto auto -50px;
+        transform: scale(.5);
+        svg {
+            border-radius: 50%;
+            transform-origin: center;
+            animation: loadingRotate 1s linear infinite;
+            path {
+                stroke: #ddd;
+                stroke-dasharray: 236;
+                animation: loadingDashOffset 2s linear infinite;
+                animation-direction: alternate-reverse;
+                fill: none;
+                stroke-width: 12px;
+            }
+        }
+    }
+}
+
+.hkplayer-skin-default.hkplayer-nostart {
+    .hkplayer-loading {
+        display: none;
+    }
+}
+
+.hkplayer-skin-default.hkplayer-pause {
+    .hkplayer-loading {
+        display: none !important;
+    }
+}
+
+.hkplayer-skin-default.hkplayer-isloading {
+    .hkplayer-loading {
+        display: block;
+    }
+}
+@keyframes loadingDashOffset {
+    0% {
+        stroke-dashoffset: 236;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}

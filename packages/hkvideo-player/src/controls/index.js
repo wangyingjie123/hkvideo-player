@@ -1,6 +1,7 @@
 /* eslint-disable */
 import './contextmenu';
 import './cssFullscreen.js';
+// import './danmu.js';
 import './definition';
 import './download';
 import './errorRetry';

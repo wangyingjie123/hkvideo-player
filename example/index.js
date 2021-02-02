@@ -1,9 +1,8 @@
-import { ajax, sendDanmu, initDanmu, danmu, setDefin } from './tools.js';
+/* eslint-disable */
+import { ajax, sendDanmu, initDanmu, danmu, setDefin, initThumbnail } from './tools.js';
+const HkplayerThumbnail = window.thumbnail;
 const Player = window.Player;
-let player;
-ajax('./demo.mp4', 'blob', function(res){
-    const src = URL.createObjectURL(res);
-    player = new Player({
+let player = new Player({
         id: 'app',
         cssFullscreen: true,
         fluid: true, // 流式布局
@@ -34,26 +33,45 @@ ajax('./demo.mp4', 'blob', function(res){
             ],
             // playNextFun: () => window.location.reload()
         },
+        thumbnail: {
+            pic_num: 25,
+            width: 240,
+            height: 136,
+            col: 5,
+            row: 5,
+            urls: ['./demo.png'],
+        },
         autoplay: true,
         // closeFocusVideoFocus: true,
         // diyDuration: 300, // 自定义时长
         // enterLogo: 'xxx',
-        url: src,
-        // url: 'https://s3.bytecdn.cn/ies/fe_app_new/musics/tvc-v3.d84159ab.mp4',
+        // url: src,
+        url: 'https://sf1-hscdn-tos.pstatp.com/obj/media-fe/xgplayer_doc_video/mp4/xgplayer-demo-720p.mp4',
         // url: 'https://sf1-hscdn-tos.pstatp.com/obj/media-fe/xgplayer_doc_video/flv/xgplayer-demo-360p.flv',
         // isLive: true
-    });
 });
-
 // initDanmu(player); // 弹幕初始化
 // setDefin(player); // 设置清晰度
+const thumbnail = new HkplayerThumbnail({
+    fileInput: document.querySelector('#input'),
+    videoSrc: 'https://sf1-hscdn-tos.pstatp.com/obj/media-fe/xgplayer_doc_video/mp4/xgplayer-demo-720p.mp4',
+    delay: 300, // 延迟
+    number: 25, // 数量
+    width: 240, // 宽度
+    height: 136, // 高度
+    column: 5, // 列数
+    canvasText: '图片水印文字', // 图片水印文字
+});
+initThumbnail(thumbnail);
 document.querySelector('#sendDanmu').onclick = () => {
-    sendDanmu(player);
+    // sendDanmu(player);
+    document.querySelector('.mask').style.display = 'block';
+    thumbnail.start();
 };
 document.querySelector('#button').onclick = function () {
     player.getPIP();
-    // player.getCssFullscreen();
 }
+// 滚动出现小窗
 let getpiped = false;
 const pip = () => {
     const windowScroll = document.documentElement.scrollTop || document.body.scrollTop;

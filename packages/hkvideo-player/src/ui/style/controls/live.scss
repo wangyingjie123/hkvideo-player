@@ -13,11 +13,17 @@
                 cursor: pointer;
                 svg {
                     margin: 12px 8px;
+                    transition: transform .3s;
                 }
             }
         }
         &:hover {
             opacity: 0.85;
+            .hkplayer-icon-refresh {
+                svg {
+                    transform: rotate(180deg);
+                }
+            }
             .hkplayer-tips {
                 display: block;
             }

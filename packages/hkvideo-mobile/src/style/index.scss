@@ -1,0 +1,68 @@
+.hkplayer-skin-default {
+    background: #000;
+    width: 100%;
+    padding-top: 56.25%;
+    position: relative;
+    user-select: none;
+    -ms-user-select: none;
+    *{
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+    .hkplayer-none {
+        display: none
+    }
+    video{
+        width:100%;
+        height: 100%;
+        outline: none;
+    }
+    &.hkplayer-nostart {
+        .hkplayer-controls {
+            visibility: hidden;
+        }
+    }
+    &.hkplayer-inactive {
+        .hkplayer-controls {
+            visibility: hidden;
+        }
+    }
+    .hkplayer-controls {
+        display: flex;
+        position: absolute;
+        z-index: 3;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 44px;
+        line-height: 44px;
+        background-image: linear-gradient(
+    0deg
+    ,rgba(0,0,0,.76),transparent);
+        font-size: 0;
+        text-align: left;
+    }
+    .hkplayer-icon {
+        fill: #ffffff;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@import './start.scss';
+@import './time.scss';
+@import './progress.scss';
+@import './enter.scss';
+@import './enterLoading.scss';
+@import './loading.scss';
+@import './play.scss';
+@import './fullscreen.scss';
+@import './replay.scss';
+@import './error.scss';

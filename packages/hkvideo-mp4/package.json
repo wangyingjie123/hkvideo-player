@@ -1,0 +1,47 @@
+{
+    "name": "@baidu/haokan-mp4",
+    "version": "1.0.2-0",
+    "description": "haokan-player plugin for mp4 transform to fmp4",
+    "main": "./dist/index.js",
+    "scripts": {
+        "build": "NODE_ENV=production webpack --progress",
+        "dev": "NODE_ENV=development webpack --progress --watch"
+    },
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "keywords": [
+        "mp4",
+        "fmp4",
+        "player",
+        "video"
+    ],
+    "author": "wangyingjie07",
+    "license": "MIT",
+    "dependencies": {
+        "concat-typed-array": "^1.0.2",
+        "deepmerge": "^2.0.1",
+        "event-emitter": "^0.3.5",
+        "@babel/runtime": "^7.12.1",
+        "core-js": "^3.6.5"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.12.3",
+        "@babel/plugin-proposal-class-properties": "^7.12.1",
+        "@babel/plugin-transform-runtime": "^7.12.1",
+        "@babel/preset-env": "^7.12.1",
+        "@babel/runtime-corejs3": "^7.12.1",
+        "babel-loader": "^8.1.0",
+        "css-loader": "^3.6.0",
+        "hard-source-webpack-plugin": "^0.13.1",
+        "json-loader": "^0.5.7",
+        "node-sass": "^4.14.1",
+        "postcss-cssnext": "^3.1.0",
+        "postcss-loader": "^2.1.5",
+        "sass-loader": "^8.0.2",
+        "style-loader": "^1.2.1",
+        "webpack": "^4.43.0",
+        "webpack-cli": "^3.0.2"
+    }
+}

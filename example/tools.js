@@ -130,6 +130,37 @@ const danmu = {
     closeDefaultBtn: false, // 关闭播放器提供的默认开关
     defaultOff: false // 开启此项后弹幕不会初始化，默认初始化弹幕
 }
+function initThumbnail (thumbnail) {
+    thumbnail.on('file', function(file) {
+        console.log('Read video successfully: ' + file.name);
+    });
+    
+    thumbnail.on('video', function(video) {
+        console.log('Video size: ' + video.videoWidth + ' x ' + video.videoHeight);
+        console.log('Video duration: ' + video.duration + 's');
+        // thumbnail.start();
+    });
+    
+    thumbnail.on('canvas', function(canvas) {
+        console.log('Build canvas successfully');
+        console.log('Canvas size: ' + canvas.width + ' x ' + canvas.height);
+        console.log('Preview density: ' + thumbnail.density + ' p/s');
+    });
+    
+    thumbnail.on('update', function(url, percentage) {
+        console.log('Processing: ' + Math.floor(percentage.toFixed(2) * 100) + '%');
+        const app = document.querySelector('.mask-inner');
+        app.style.backgroundImage = 'url(' + url + ')';
+    });
+    
+    thumbnail.on('download', function(name) {
+        console.log('Start download preview: ' + name);
+    });
+    thumbnail.on('done', function() {
+        thumbnail.download();
+        console.log('Build preview image complete');
+    });
+}
 export {
-    ajax, sendDanmu, createDom, initDanmu, setDefin, danmu
+    ajax, sendDanmu, createDom, initDanmu, setDefin, danmu, initThumbnail
 }

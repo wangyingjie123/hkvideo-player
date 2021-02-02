@@ -1,5 +1,6 @@
 /* eslint-disable */
 import UAParser from 'ua-parser-js';
+const parser = new UAParser();
 let sniffer = {
     get device() {
         let r = sniffer.os
@@ -7,17 +8,6 @@ let sniffer = {
         // return r.isPc ? 'pc' : r.isTablet ? 'tablet' : 'mobile'
     },
     get browser() {
-        // let ua = navigator.userAgent.toLowerCase()
-        // let reg = {
-        //     ie: /rv:([\d.]+)\) like gecko/,
-        //     firfox: /firefox\/([\d.]+)/,
-        //     chrome: /chrome\/([\d.]+)/,
-        //     opera: /opera.([\d.]+)/,
-        //     // safari: /version\/([\d.]+).*safari/
-        //     safari: /version\/([\w\.]+).+?(mobile\s?safari|safari)/i
-        // }
-        // return [].concat(Object.keys(reg).filter(key => reg[key].test(ua)))[0]
-        const parser = new UAParser();
         return parser.getBrowser();
     },
     get os() {

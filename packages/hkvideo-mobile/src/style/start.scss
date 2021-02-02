@@ -1,0 +1,37 @@
+.hkplayer-skin-default {
+    .hkplayer-start {
+        width: 50px;
+        height: 50px;
+        background-size: contain;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        .hkplayer-icon-play {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: url('https://sf1-scmcdn-tos.pstatp.com/goofy/toutiao/xigua-wap/static/media/playButton.c50c0ac9.png') no-repeat;
+            background-size: 100% 100%;
+            transition: variable .2s ease;
+        }
+    }
+}
+
+.hkplayer-skin-default.hkplayer-playing {
+    &.hkplayer-pause {
+        .hkplayer-start {
+            visibility: visible;
+        }
+    }
+    .hkplayer-start {
+        visibility: hidden;
+    }
+}
+.hkplayer-skin-default.hkplayer-nostart {
+    .hkplayer-start {
+        visibility: visible;
+    }
+}

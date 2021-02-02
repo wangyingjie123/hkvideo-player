@@ -2,7 +2,7 @@
  * @file index.d.ts
  * @author wangyingjie
  */
-declare module 'hkvideo-player' {
+declare module '@baidu/haokan-player' {
     import { EventEmitter } from 'events';
     type DanmuModelType = 'top' | 'bottom' | 'scroll' | string;
 
@@ -173,6 +173,9 @@ declare module 'hkvideo-player' {
             urls: string[];
         };
 
+        // 是否异步加载进度条预览图
+        asyncAddThumbnail?: boolean;
+
         // 下一集
         playNext?: {
             urlList: Array<urlListOption | string>
@@ -268,6 +271,9 @@ declare module 'hkvideo-player' {
         // 播放镜像 https://support.apple.com/en-us/HT204289
         airplay?: boolean;
 
+        // 右键菜单是否展示视频信息
+        videoInfomation?: boolean;
+
         // 功能插件开关配置
         // 通过播放器的配置可以实现插件动态开启和关闭，只要在功能插件读取该配置即可。
         pluginRule?: () => boolean;
@@ -321,6 +327,9 @@ declare module 'hkvideo-player' {
 
         // 是否直播
         isLive?: boolean;
+
+        // 暂停后播放是否重新拉流
+        playReflow?: boolean;
 
         //播放错误提示
         errorTips?: string;

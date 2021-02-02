@@ -24,7 +24,7 @@ let s_volume = function () {
             </div>
         </hk-icon>
         <hk-slider class="hkplayer-slider" tabindex="2">
-            <hk-volume-val class="hkplayer-volume-val"></hk-volume-val>
+            <hk-volume-val class="hkplayer-volume-val">${volume * 100}</hk-volume-val>
             <hk-bar class="hkplayer-bar">
                 <hk-drag class="hkplayer-drag"></hk-drag>
             </hk-bar>
@@ -48,7 +48,6 @@ let s_volume = function () {
     let icon = container.querySelector('.hkplayer-icon');
     let volumeVal = container.querySelector('.hkplayer-volume-val');
     selected.style.height = `${volume * 100}%`;
-    volumeVal.innerText = 40;
     slider.volume = volume;
     player.on('changeVolPath', (type) => {
         if (type === 'large') {

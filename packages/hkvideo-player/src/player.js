@@ -203,7 +203,7 @@ class Player extends InitPlayer {
             player.off('canplay', player.canPlayFunc);
         }
         if (util.typeOf(url) === 'String') {
-            if (url.indexOf('blob:') > -1 && url === this.video.src) {
+            if (url.indexOf('blob:') > -1 && url === this.video.src || this.flvOpts || this.hlsOpts) {
                 // 在Chromium环境下用mse url给video二次赋值会导致错误
             } else {
                 this.video.src = url;
@@ -216,36 +216,36 @@ class Player extends InitPlayer {
                 }))
             });
         }
-        this.logParams.pt = new Date().getTime()
-        this.logParams.vt = this.logParams.pt
+        this.logParams.pt = new Date().getTime();
+        this.logParams.vt = this.logParams.pt;
         this.loadeddataFunc = function () {
-            player.logParams.vt = new Date().getTime()
+            player.logParams.vt = new Date().getTime();
             if (player.logParams.pt > player.logParams.vt) {
-                player.logParams.pt = player.logParams.vt
+                player.logParams.pt = player.logParams.vt;
             }
-            player.logParams.vd = player.video.duration
+            player.logParams.vd = player.video.duration;
         }
-        this.once('loadeddata', this.loadeddataFunc)
+        this.once('loadeddata', this.loadeddataFunc);
         if (this.config.autoplay) {
-            this.on('canplay', this.canPlayFunc)
-            let playPromise = player.video.play()
+            this.on('canplay', this.canPlayFunc);
+            let playPromise = player.video.play();
             if (playPromise !== undefined && playPromise) {
                 playPromise.then(function () {
-                    player.emit('autoplay started')
+                    player.emit('autoplay started');
                 }).catch(function () {
-                    player.emit('autoplay was prevented')
-                    Player.util.addClass(player.root, 'hkplayer-is-autoplay')
+                    player.emit('autoplay was prevented');
+                    Player.util.addClass(player.root, 'hkplayer-is-autoplay');
                 })
             }
         }
         if (!this.config.disableStartLoad) {
-            this.video.load()
+            this.video.load();
         }
         root.insertBefore(this.video, root.firstChild)
         setTimeout(() => {
-            this.emit('complete')
+            this.emit('complete');
             if (this.danmu && typeof this.danmu.resize === 'function') {
-                this.danmu.resize()
+                this.danmu.resize();
             }
         }, 1)
     }

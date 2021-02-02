@@ -31,6 +31,7 @@ let s_playNext = function () {
                 </div>
             `;
         }
+        // bca-disable-line
         nextTips.innerHTML = tips;
         // return tips;
     }

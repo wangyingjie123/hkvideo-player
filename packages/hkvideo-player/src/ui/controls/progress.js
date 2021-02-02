@@ -1,5 +1,6 @@
 /* eslint-disable */
 import Player from '../../player';
+import enterLoading from './enterLoading';
 const isRotateFullscreen = (player) => {
     return Player.util.hasClass(player.root, 'hkplayer-rotate-fullscreen');
 }
@@ -7,16 +8,18 @@ const isRotateFullscreen = (player) => {
 let s_progress = function () {
     let player = this;
     let util = Player.util;
-    let { diyDuration } = player.config;
+    let { diyDuration, asyncAddThumbnail } = player.config;
+    let thumbnailFlag = false;
     let container = util.createDom('hk-progress',
         `<hk-outerinner class="hkplayer-progress-inner">
             <hk-outer class="hkplayer-progress-outer ${diyDuration ? 'diyduration' : ''}">
                 <hk-cache class="hkplayer-progress-cache"></hk-cache>
                 <hk-played class="hkplayer-progress-played">
                     <hk-progress-btn class="hkplayer-progress-btn"></hk-progress-btn>
-                    <hk-point class="hkplayer-progress-point hkplayer-tips"></hk-point>
-                    <hk-thumbnail class="hkplayer-progress-thumbnail hkplayer-tips"></hk-thumbnail>
                 </hk-played>
+                <hk-point class="hkplayer-progress-point hkplayer-tips"></hk-point>
+                <hk-thumbnail class="hkplayer-progress-thumbnail hkplayer-tips">${asyncAddThumbnail ? enterLoading() : ''}</hk-thumbnail>
+                <hk-point class="hkplayer-progress-curline"></hk-point>
             </hk-outer>
         </hk-progress-inner>`,
         {
@@ -30,6 +33,7 @@ let s_progress = function () {
     let cache = container.querySelector('.hkplayer-progress-cache');
     let point = container.querySelector('.hkplayer-progress-point');
     let thumbnail = container.querySelector('.hkplayer-progress-thumbnail');
+    let curentLine = container.querySelector('.hkplayer-progress-curline');
     player.dotArr = {};
 
     function dotEvent(dotItem, text) {
@@ -66,7 +70,8 @@ let s_progress = function () {
         // 传入自定义时长
 		if (diyDuration && player.duration < diyDuration) {
             outer.style.width = `${(player.duration / diyDuration) * 100}%`;
-		}
+        }
+        // 进度条特殊点位置
         if (player.config.progressDot && util.typeOf(player.config.progressDot) === 'Array') {
             player.config.progressDot.forEach(item => {
                 if (item.time >= 0 && item.time <= player.duration) {
@@ -82,7 +87,8 @@ let s_progress = function () {
             })
         }
     }
-    player.once('canplay', onCanplay)
+    player.once('canplay', onCanplay);
+    // 添加标记
     player.addProgressDot = function (time, text, duration) {
         if (player.dotArr[time]) {
             return
@@ -106,6 +112,7 @@ let s_progress = function () {
             player.dotArr[time] = null
         }
     }
+    // 删除进度条所有标记点
     player.removeAllProgressDot = function () {
         Object.keys(player.dotArr).forEach(function (key) {
             if (player.dotArr[key]) {
@@ -116,24 +123,29 @@ let s_progress = function () {
             }
         })
     }
-    let tnailPicNum = 0
-    let tnailWidth = 0
-    let tnailHeight = 0
-    let tnailCol = 0
-    let tnailRow = 0
-    let interval = 0
-    let tnailUrls = []
+    let interval = 0;
+    let tnailPicNum = 0;
+    let tnailWidth = 200; // default
+    let tnailHeight = 112.5; // default
+    let tnailCol = 0;
+    let tnailRow = 0;
+    let tnailUrls = [];
+    // 初始化
+    function initThumbnailConf(obj) {
+        obj = obj || {};
+        thumbnailFlag = true;
+        // 进度条预览图
+        tnailPicNum = obj.pic_num;
+        tnailWidth = obj.width;
+        tnailHeight = obj.height;
+        tnailCol = obj.col;
+        tnailRow = obj.row;
+        tnailUrls = obj.urls;
+    }
+    player.on('initThumbnail', initThumbnailConf);
     if (player.config.thumbnail) {
-        tnailPicNum = player.config.thumbnail.pic_num
-        tnailWidth = player.config.thumbnail.width
-        tnailHeight = player.config.thumbnail.height
-        tnailCol = player.config.thumbnail.col
-        tnailRow = player.config.thumbnail.row
-        tnailUrls = player.config.thumbnail.urls
-        thumbnail.style.width = `${tnailWidth}px`
-        thumbnail.style.height = `${tnailHeight}px`
-    };
-
+        player.emit('initThumbnail', player.config.thumbnail);
+    }
     if (typeof player.config.disableSwipeHandler === 'function' && typeof player.config.enableSwipeHandler === 'function') {
         player.root.addEventListener('touchmove', e => {
             e.preventDefault();
@@ -145,16 +157,16 @@ let s_progress = function () {
         });
         player.root.addEventListener('touchstart', e => {
             // e.preventDefault();
-            player.disableSwipe = true
+            player.disableSwipe = true;
             player.config.disableSwipeHandler.call(player);
         });
         player.root.addEventListener('touchend', e => {
             // e.preventDefault();
-            player.disableSwipe = false
+            player.disableSwipe = false;
             player.config.enableSwipeHandler.call(player);
         });
     };
-
+    // 进度条拖动事件
     ['touchstart', 'mousedown'].forEach(item => {
         outer.addEventListener(item, function (e) {
             if (player.config.disableProgress) return;
@@ -233,63 +245,80 @@ let s_progress = function () {
             return true
         })
     })
-
+    // 鼠标移入到进度条事件
     container.addEventListener('mouseenter', function (e) {
         if (!player.config.allowSeekAfterEnded && player.ended) {
             return true
         }
-        const isRotate = isRotateFullscreen(player)
-        let containerLeft = isRotate ? container.getBoundingClientRect().top : container.getBoundingClientRect().left
-        let containerWidth = isRotate ? container.getBoundingClientRect().height : container.getBoundingClientRect().width
+        const isRotate = isRotateFullscreen(player);
+        let containerLeft = isRotate ? container.getBoundingClientRect().top : container.getBoundingClientRect().left;
+        let containerWidth = isRotate ? container.getBoundingClientRect().height : container.getBoundingClientRect().width;
         let duration = diyDuration && diyDuration > player.duration ? diyDuration : player.duration;
+        util.addClass(container, 'process-mouseEnter');
+        // 计算预览图应该出现的位置
         let compute = function (e) {
-            let now = ((isRotate ? e.clientY : e.clientX) - containerLeft) / containerWidth * duration
-            now = now < 0 ? 0 : now
-            point.textContent = util.format(now)
-            let pointWidth = point.getBoundingClientRect().width
-            if (player.config.thumbnail) {
-                interval = duration / tnailPicNum
-                let index = Math.floor(now / interval)
-                thumbnail.style.backgroundImage = `url(${tnailUrls[Math.ceil((index + 1) / (tnailCol * tnailRow)) - 1]})`
-                let indexInPage = index + 1 - (tnailCol * tnailRow) * (Math.ceil((index + 1) / (tnailCol * tnailRow)) - 1)
-                let tnaiRowIndex = Math.ceil(indexInPage / tnailRow) - 1
-                let tnaiColIndex = indexInPage - tnaiRowIndex * tnailRow - 1
-                thumbnail.style['background-position'] = `-${tnaiColIndex * tnailWidth}px -${tnaiRowIndex * tnailHeight}px`
-                let left = (isRotate ? e.clientY : e.clientX) - containerLeft - tnailWidth / 2
-                left = left > 0 ? left : 0
-                left = left < containerWidth - tnailWidth ? left : containerWidth - tnailWidth
-                thumbnail.style.left = `${left}px`
-                thumbnail.style.top = `${-10 - tnailHeight}px`
-                thumbnail.style.display = 'block'
-                point.style.left = `${left + tnailWidth / 2 - pointWidth / 2}px`
+            // 鼠标移入的当前位置
+            let now = ((isRotate ? e.clientY : e.clientX) - containerLeft) / containerWidth * duration;
+            now = now < 0 ? 0 : now;
+            point.textContent = util.format(now);
+            let pointWidth = point.getBoundingClientRect().width;
+            if (asyncAddThumbnail || thumbnailFlag) {
+                if (thumbnailFlag) {
+                    // 间隔
+                    interval = duration / tnailPicNum;
+                    let index = Math.floor(now / interval);
+                    thumbnail.style.backgroundImage = `url(${tnailUrls[Math.ceil((index + 1) / (tnailCol * tnailRow)) - 1]})`;
+                    // 雪碧图上第几个
+                    let indexInPage = index + 1 - (tnailCol * tnailRow) * (Math.ceil((index + 1) / (tnailCol * tnailRow)) - 1);
+                    let tnaiRowIndex = Math.ceil(indexInPage / tnailCol) - 1;
+                    let tnaiColIndex = indexInPage - tnaiRowIndex * tnailCol - 1;
+                    thumbnail.style['background-position'] = `-${tnaiColIndex * tnailWidth}px -${tnaiRowIndex * tnailHeight}px`;
+                    // 清除掉预加载时的填充loading
+                    // bca-disable-line
+                    thumbnail.innerHTML = '';
+                }
+                let left = (isRotate ? e.clientY : e.clientX) - containerLeft;
+                let thumLeft = left - tnailWidth / 2;
+                thumLeft = thumLeft > 0 ? thumLeft : 0;
+                thumLeft = thumLeft < containerWidth - tnailWidth ? thumLeft : containerWidth - tnailWidth;
+                thumbnail.style.width = `${tnailWidth}px`;
+                thumbnail.style.height = `${tnailHeight}px`;
+                thumbnail.style.left = `${thumLeft}px`;
+                thumbnail.style.top = `${-10 - tnailHeight}px`;
+                thumbnail.style.display = 'block';
+                point.style.left = `${thumLeft + tnailWidth / 2 - pointWidth / 2}px`;
+                curentLine.style.left = `${left}px`;
             } else {
-                let left = e.clientX - containerLeft - pointWidth / 2
-                left = left > 0 ? left : 0
-                left = left > containerWidth - pointWidth ? containerWidth - pointWidth : left
-                point.style.left = `${left}px`
+                let left = e.clientX - containerLeft;
+                let pointLeft = left - pointWidth / 2;
+                pointLeft = pointLeft > 0 ? pointLeft : 0;
+                pointLeft = pointLeft > containerWidth - pointWidth ? containerWidth - pointWidth : pointLeft;
+                point.style.left = `${pointLeft}px`;
+                curentLine.style.left = `${left}px`;
             }
             if (util.hasClass(container, 'hkplayer-progress-dot-active')) {
-                point.style.display = 'none'
+                point.style.display = 'none';
             } else {
-                point.style.display = 'block'
+                point.style.display = 'block';
             }
         }
         let move = function (e) {
-            compute(e)
+            compute(e);
         }
         let leave = function (e) {
-            container.removeEventListener('mousemove', move, false)
-            container.removeEventListener('mouseleave', leave, false)
-            compute(e)
-            point.style.display = 'none'
-            thumbnail.style.display = 'none'
+            compute(e);
+            util.removeClass(container, 'process-mouseEnter');
+            point.style.display = 'none';
+            thumbnail.style.display = 'none';
+            container.removeEventListener('mousemove', move, false);
+            container.removeEventListener('mouseleave', leave, false);
         }
-        container.addEventListener('mousemove', move, false)
-        container.addEventListener('mouseleave', leave, false)
-        compute(e)
-    }, false)
+        container.addEventListener('mousemove', move, false);
+        container.addEventListener('mouseleave', leave, false);
+        // compute(e);
+    }, false);
 
-    // let lastBtnLeft = false
+    // timeUpdate
     let onTimeupdate = function () {
         if (!containerWidth && container) {
             containerWidth = container.getBoundingClientRect().width
@@ -302,17 +331,17 @@ let s_progress = function () {
             }
         }
     }
-    player.on('timeupdate', onTimeupdate)
+    player.on('timeupdate', onTimeupdate);
 
     let onCurrentTimeChange = function () {
-        progress.style.width = `${player.currentTime * 100 / player.duration}%`
+        progress.style.width = `${player.currentTime * 100 / player.duration}%`;
     }
-    player.on('currentTimeChange', onCurrentTimeChange)
+    player.on('currentTimeChange', onCurrentTimeChange);
 
     let onSrcChange = function () {
-        progress.style.width = '0%'
+        progress.style.width = '0%';
     }
-    player.on('srcChange', onSrcChange)
+    player.on('srcChange', onSrcChange);
 
     let onCacheUpdate = function () {
         let buffered = player.buffered
@@ -330,26 +359,26 @@ let s_progress = function () {
                     break
                 }
             }
-            cache.style.width = `${end / player.duration * 100}%`
+            cache.style.width = `${end / player.duration * 100}%`;
         }
     }
-    const cacheUpdateEvents = ['bufferedChange', 'cacheupdate', 'ended', 'timeupdate']
+    const cacheUpdateEvents = ['bufferedChange', 'cacheupdate', 'ended', 'timeupdate'];
     cacheUpdateEvents.forEach(item => {
-        player.on(item, onCacheUpdate)
+        player.on(item, onCacheUpdate);
     })
 
     function destroyFunc() {
-        player.removeAllProgressDot()
-        player.off('canplay', onCanplay)
-        player.off('timeupdate', onTimeupdate)
-        player.off('currentTimeChange', onCurrentTimeChange)
-        player.off('srcChange', onSrcChange)
+        player.removeAllProgressDot();
+        player.off('canplay', onCanplay);
+        player.off('timeupdate', onTimeupdate);
+        player.off('currentTimeChange', onCurrentTimeChange);
+        player.off('srcChange', onSrcChange);
         cacheUpdateEvents.forEach(item => {
-            player.off(item, onCacheUpdate)
+            player.off(item, onCacheUpdate);
         })
-        player.off('destroy', destroyFunc)
+        player.off('destroy', destroyFunc);
     }
-    player.once('destroy', destroyFunc)
+    player.once('destroy', destroyFunc);
 }
 
-Player.install('s_progress', s_progress)
+Player.install('s_progress', s_progress);

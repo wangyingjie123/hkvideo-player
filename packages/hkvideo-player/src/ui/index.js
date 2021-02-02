@@ -17,7 +17,7 @@ import './controls/replay.js';
 import './controls/playbackRate.js';
 import './controls/localPreview.js';
 import './controls/download.js';
-// import './controls/danmu.js'
+// import './controls/danmu.js';
 import './controls/pip.js';
 import './controls/playNext.js';
 import './controls/rotate.js';

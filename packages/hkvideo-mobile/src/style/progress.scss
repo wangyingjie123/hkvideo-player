@@ -1,0 +1,51 @@
+.hkplayer-skin-default {
+    .hkplayer-progress {
+        position: relative;
+        height: 100%;
+        flex: 1;
+        order: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        outline: none;
+        &-inner, &-outer {
+            background: rgba(255, 255, 255, .3);
+            display: block;
+            height: 3px;
+            line-height: 3px;
+            width: 100%;
+            position: relative;
+            cursor: pointer;
+        }
+        &-cache {
+            width: 0;
+            background: rgba(255, 255, 255, .5);
+        }
+        &-played {
+            width: 0;
+            background-image: linear-gradient(-90deg, #ff4141 0%, #E31106 100%);
+            border-radius: 0 1.5px 1.5px 0;
+        }
+        &-cache, &-played {
+            display: block;
+            height: 100%;
+            line-height: 1;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        &-btn {
+            display: block;
+            position: absolute;
+            top: 50%;
+            margin-top: -5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 30px;
+            background: #FFFFFF;
+            box-shadow: 0 0 10px 4px rgba(255, 0, 0, 0.38);
+            left: 100%;
+            transform: translate(-50%, 0);
+        }
+    }
+}
