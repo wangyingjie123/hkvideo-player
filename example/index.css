@@ -1,85 +1,90 @@
 /* csshint-disable */
 .content {
-    margin-top: 30px;
-    width: 100%;
-    display: flex;
-    position: relative;
-    height: 1600px;
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  position: relative;
+  height: 1600px;
 }
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
-.left, .right {
-    width: 20%;
-    padding: 15px;
+.left,
+.right {
+  flex: 1;
+  padding: 15px;
 }
 .video {
-    flex: 1;
+  width: 960px;
 }
 .input {
-    box-sizing: border-box;
-    margin: 0;
-    font-variant: tabular-nums;
-    list-style: none;
-    font-feature-settings: "tnum";
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    min-width: 0;
-    padding: 4px 11px;
-    color: rgba(0, 0, 0, .85);
-    font-size: 14px;
-    line-height: 1.5715;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #d9d9d9;
-    border-radius: 2px;
-    transition: all .3s;
+  box-sizing: border-box;
+  margin: 0;
+  font-variant: tabular-nums;
+  list-style: none;
+  font-feature-settings: "tnum";
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-width: 0;
+  padding: 4px 11px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  line-height: 1.5715;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  transition: all 0.3s;
 }
 .btn-group {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 .btn-item {
-    padding: 0 10px;
-    cursor: pointer;
+  padding: 0 10px;
+  cursor: pointer;
 }
 /* 弹幕 */
 .hkplayer-skin-default .danmuel,
 .right .danmuel {
-    font-size: 23px;
-    line-height: 42px;
-    height: 42px;
-    color: rgb(251, 240, 118);
-    border-radius: 20px;
-    overflow: hidden;
-    background-image: linear-gradient(to right, rgb(255, 83, 183) 0px, rgb(251, 240, 118) 100%);
-    -webkit-text-fill-color: transparent;
-    background-repeat: repeat;
-    -webkit-background-clip: text;
-    background-clip: text;
-    text-shadow: none;
+  font-size: 23px;
+  line-height: 42px;
+  height: 42px;
+  color: rgb(251, 240, 118);
+  border-radius: 20px;
+  overflow: hidden;
+  background-image: linear-gradient(
+    to right,
+    rgb(255, 83, 183) 0px,
+    rgb(251, 240, 118) 100%
+  );
+  -webkit-text-fill-color: transparent;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: none;
 }
 .hkplayer-skin-default .danmuel-text,
 .right .danmuel-text {
-    height: 100%;
-    background: inherit;
-    -webkit-text-fill-color: inherit;
-    padding: 0 10px;
+  height: 100%;
+  background: inherit;
+  -webkit-text-fill-color: inherit;
+  padding: 0 10px;
 }
 .mask {
-    display: none;
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background-color: rgba(0, 0, 0, .5);
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .mask-inner {
-    width: 1200px;
-    height: 680px;
-    background: #2b2b2b;
-    margin: 0 auto;
+  width: 1200px;
+  height: 680px;
+  background: #2b2b2b;
+  margin: 0 auto;
 }
